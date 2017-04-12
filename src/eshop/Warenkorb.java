@@ -3,11 +3,11 @@ package eshop;
 public class Warenkorb {
 
 	private Artikel artikel;
-	private int stückzahl;
-	public Warenkorb(Artikel artikel, int stückzahl) {
+	private int stueckzahl;
+	public Warenkorb(Artikel artikel, int stueckzahl) {
 		super();
 		this.artikel = artikel;
-		this.stückzahl = stückzahl;
+		this.stueckzahl = stueckzahl;
 	}
 	
 	
@@ -19,11 +19,11 @@ public class Warenkorb {
 	public void setArtikel(Artikel artikel) {
 		this.artikel = artikel;
 	}
-	public int getStückzahl() {
-		return stückzahl;
+	public int getStueckzahl() {
+		return stueckzahl;
 	}
-	public void setStückzahl(int stückzahl) {
-		this.stückzahl = stückzahl;
+	public void setStueckzahl(int stueckzahl) {
+		this.stueckzahl = stueckzahl;
 	}
 	
 	
