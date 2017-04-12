@@ -7,5 +7,20 @@ public class Kunde {
 	private String nachname;
 	private String adresse;
 		
+	public Kunde() {
+		
+	}
+	
+	public void WarenkorbAendern() {
+		
+	}
+	
+	public void WarenkorbLoeschen() {
+		
+	}
+	
+	public void ArtikelInWarenkorbLegen() {
+		
+	}
 	
 }
