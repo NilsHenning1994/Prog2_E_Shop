@@ -10,7 +10,7 @@ public class ArtikelVerwaltung {
 	private Artikel Erbeere = new Artikel(154,"Deutsche Erdbeere",1);
 	private Artikel Hund = new Artikel(155,"Kleiner Hund",2);
 	
-	ArtikelVerwaltung() {
+	public ArtikelVerwaltung() {
 		
 	}
 	

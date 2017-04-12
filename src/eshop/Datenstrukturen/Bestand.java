@@ -60,7 +60,7 @@ public class Bestand {
 	}
 
 
-	public void setArtikelbestand(Artikel artikel) {
+	public void setArtikelbestand(int artikel) {
 		this.Artikelbestand[0] = artikel;
 	}
 
