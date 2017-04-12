@@ -1,4 +1,4 @@
-package eshop;
+package eshop.Datenstrukturen;
 import java.util.Date;
 
 public class Bestand {

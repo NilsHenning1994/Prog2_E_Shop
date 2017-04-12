@@ -1,4 +1,4 @@
-package eshop;
+package eshop.Datenstrukturen;
 
 import java.util.Date;
 import javax.print.attribute.DateTimeSyntax;

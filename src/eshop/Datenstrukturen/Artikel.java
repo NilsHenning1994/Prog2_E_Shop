@@ -1,4 +1,4 @@
-package eshop;
+package eshop.Datenstrukturen;
 
 public class Artikel {
 	
