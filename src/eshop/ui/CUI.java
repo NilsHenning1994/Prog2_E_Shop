@@ -3,19 +3,15 @@ package eshop.ui;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import eshop.Anwendungslogik.ArtikelVerwaltung;
-import eshop.Anwendungslogik.KundenVerwaltung;
-import eshop.Anwendungslogik.MitarbeiterVerwaltung;
+import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
 
 
 public class CUI {
-	private ArtikelVerwaltung av;
-	private MitarbeiterVerwaltung mv;
-	private KundenVerwaltung kv;
+	
+	private Shop shop;
 	private Artikel ar;
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,7 +37,7 @@ public class CUI {
 	public void run(){
 
 		do{
-			av.artikelEinlesen();
+			System.out.println(av.artikelEinlesen());
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();
@@ -69,9 +65,14 @@ public class CUI {
 
 		super();
 		this.br =  new BufferedReader(new InputStreamReader(System.in));
-		av = new ArtikelVerwaltung();
-		mv = new MitarbeiterVerwaltung();
-		kv = new KundenVerwaltung();
+		this.shop = new Shop();
 
 	}
+	
+	public static void main(String[] args) {
+
+		CUI cui = new CUI();
+		cui.run();
+}
+
 }

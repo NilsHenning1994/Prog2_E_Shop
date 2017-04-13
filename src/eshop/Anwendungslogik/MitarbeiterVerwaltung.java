@@ -1,12 +1,12 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Datenstrukturen.Benutzer;
 
 public class MitarbeiterVerwaltung {
 	
 
-	private Mitarbeiter mi;
+	private Benutzer mi;
 	private Artikel ar;
 
 //
