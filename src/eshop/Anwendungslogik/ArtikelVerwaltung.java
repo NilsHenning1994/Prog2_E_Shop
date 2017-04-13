@@ -25,8 +25,8 @@ public class ArtikelVerwaltung {
 	Artikel[] artikelArray = new Artikel[10];
 	// Artikel in Array einlesen
 	public Artikel[] artikelEinlesen(){
-		int i = 0;
-		while(artikelArray[i]== null){
+		
+		for(int i = 0; i < artikelArray.length; i ++){
 			artikelArray[i] = kartoffel;
 			i++;
 			artikelArray[i] = mais;
@@ -46,7 +46,7 @@ public class ArtikelVerwaltung {
 			artikelArray[i] = fernseher;
 			i++;
 			artikelArray[i] = schrank;
-			i++;
+			
 		}return(artikelArray);
 		
 		
