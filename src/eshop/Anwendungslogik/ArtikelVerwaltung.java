@@ -14,7 +14,7 @@ public class ArtikelVerwaltung {
 	private Artikel Kuh = new Artikel(158,"Hausrind",3);
 	private Artikel Fisch = new Artikel(159,"Hering",300);
 	private Artikel Fernsehr = new Artikel(160,"LED Smart TV ",10);
-	private Artikel Schrank = new Artikel(156,"PAX Kleiderschrank",1);
+	private Artikel Schrank = new Artikel(161,"PAX Kleiderschrank",1);
 	
 	public ArtikelVerwaltung() {
 		
