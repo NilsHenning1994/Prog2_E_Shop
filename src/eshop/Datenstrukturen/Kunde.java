@@ -38,7 +38,7 @@ public class Kunde {
 	}
 
 
-	private void setKundennr(int kundennr) {
+	public void setKundennr(int kundennr) {
 		this.kundennr = kundennr;
 	}
 
@@ -48,7 +48,7 @@ public class Kunde {
 	}
 
 
-	private void setVorname(String vorname) {
+	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
 
@@ -58,7 +58,7 @@ public class Kunde {
 	}
 
 
-	private void setNachname(String nachname) {
+	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
 
@@ -68,7 +68,7 @@ public class Kunde {
 	}
 
 
-	private void setAdresse(String adresse) {
+	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
 
