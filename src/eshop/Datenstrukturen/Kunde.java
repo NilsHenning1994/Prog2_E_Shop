@@ -11,14 +11,6 @@ public class Kunde {
 		
 	}
 	
-	// Gibt eine Darstellung der Objekte als String zurück
-	public String toString() {
-        String ergebnis = "Name: " + vorname + nachname + "\n";
-        ergebnis += "Kundennummer: " + kundennr + "\n";
-        ergebnis += "Adresse: " + adresse;
-        return ergebnis;
-    }
-	
 	public void WarenkorbAendern() {
 		
 	}
