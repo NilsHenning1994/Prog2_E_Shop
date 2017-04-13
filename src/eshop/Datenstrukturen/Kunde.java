@@ -6,20 +6,21 @@ public class Kunde {
 	private String vorname;		// Vorname des Kunden
 	private String nachname;	// Nachname des Kunden
 	private String adresse;		// Adresse des Kunden
-		
-	public Kunde() {
-		
+	private Artikel artikel;	// Artikelobjekt
+	private int stueckzahl;		// Anzahl des Artikelobjektes
+	
+	// Konstruktor der Klasse Kunde
+	public Kunde(int kundennr, String vorname, String nachname, String adresse, Artikel artikel, int stueckzahl) {
+		super();
+		this.kundennr = kundennr;
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.adresse = adresse;
+		this.artikel = artikel;
+		this.stueckzahl = stueckzahl;
 	}
 	
-	// Gibt eine Darstellung der Objekte als String zurück
-	public String toString() {
-        String ergebnis = "Name: " + vorname + nachname + "\n";
-        ergebnis += "Kundennummer: " + kundennr + "\n";
-        ergebnis += "Adresse: " + adresse;
-        return ergebnis;
-    }
-	
-	public void WarenkorbAendern() {
+	public void WarenkorbAendern(Artikel artikel, int stueckzahl) {
 		
 	}
 	
@@ -32,5 +33,44 @@ public class Kunde {
 	}
 	
 	
-	
+	public int getKundennr() {
+		return kundennr;
+	}
+
+
+	private void setKundennr(int kundennr) {
+		this.kundennr = kundennr;
+	}
+
+
+	public String getVorname() {
+		return vorname;
+	}
+
+
+	private void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
+
+	public String getNachname() {
+		return nachname;
+	}
+
+
+	private void setNachname(String nachname) {
+		this.nachname = nachname;
+	}
+
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+	private void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+
 }

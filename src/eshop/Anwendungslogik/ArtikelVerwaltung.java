@@ -5,6 +5,7 @@ import eshop.Datenstrukturen.Artikel;
 public class ArtikelVerwaltung {
 
 
+
 	private Artikel kartoffel = new Artikel(152,"Tuerkische Kartoffel");
 	private Artikel mais = new Artikel(153,"Griechischer Mais");
 	private Artikel erbeere = new Artikel(154,"Deutsche Erdbeere");
@@ -15,6 +16,7 @@ public class ArtikelVerwaltung {
 	private Artikel fisch = new Artikel(159,"Hering");
 	private Artikel fernseher = new Artikel(160,"LED Smart TV ");
 	private Artikel schrank = new Artikel(161,"PAX Kleiderschrank");
+
 
 	public ArtikelVerwaltung() {
 

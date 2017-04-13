@@ -44,6 +44,11 @@ public class CUI {
 				String input = br.readLine();
 				if(input.equals("M")){
 					System.out.println("Mitarbeiter");
+					System.out.println("Artikel nach Artikelnr sortieren[S]");
+					String inputt = br.readLine();
+					if(inputt.equals("S")){
+						mv.artikelSortierenNr();
+					}
 				}
 				
 				if(input.equals("K")){
