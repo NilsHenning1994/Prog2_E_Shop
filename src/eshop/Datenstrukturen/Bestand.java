@@ -7,7 +7,7 @@ public class Bestand {
 	private int anzahl;
 	private Date einlagerung;
 	private Date auslagerung;
-	private int[] Artikelbestand = new int[15];
+	
 	
 	
 	public Bestand(Artikel artikel, int anzahl, Date einlagerung,
@@ -60,14 +60,7 @@ public class Bestand {
 	}
 
 
-	public void setArtikelbestand(int artikel) {
-		this.Artikelbestand[0] = artikel;
-	}
 
-
-	public int[] getArtikelbestand() {
-		return Artikelbestand;
-	}
 	
 	
 	
