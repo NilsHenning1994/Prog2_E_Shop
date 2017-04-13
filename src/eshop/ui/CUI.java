@@ -9,12 +9,14 @@ import java.io.InputStreamReader;
 import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
+import eshop.Datenstrukturen.Artikel;
 
 
 public class CUI {
 	private ArtikelVerwaltung av;
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
+	private Artikel ar;
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public void setConsoleLine(String s){
@@ -35,7 +37,7 @@ public class CUI {
 	}
 
 
-
+	// Methode zum Starten des EShops
 	public void run(){
 
 		do{
@@ -44,10 +46,10 @@ public class CUI {
 				String input = br.readLine();
 				if(input.equals("M")){
 					System.out.println("Mitarbeiter");
-					System.out.println("Artikel nach Artikelnr sortieren[S]");
+					System.out.println("Artikel anzeigen[S]");
 					String inputt = br.readLine();
 					if(inputt.equals("S")){
-						mv.artikelSortierenNr();
+					//	next operation
 					}
 				}
 				
