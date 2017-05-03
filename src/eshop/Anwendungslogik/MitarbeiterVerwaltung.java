@@ -55,20 +55,12 @@ public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbei
 
 //	Methoden, um sich als Mitarbeiter zu registrieren
 	public void registrieren(String vorname, String nachname, String mail, String passwort){
+		System.out.println(mitarbeiterliste);
 		int id = mitarbeiterliste.size() + 1;
 		mitarbeiterliste.add(new Mitarbeiter(id, vorname, nachname, mail, passwort, false));		
 		
 	}
 	
-//	Methode, um über die Shopklasse neue Artikel anzulegen.
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, float preis, int bestand){
-		Artikel artikel = new Artikel(bez, nummer, preis, bestand);
-		shop.artikelAnlegen(artikel);
-	}
-	
-//	Methode, um den Bestand eines Artikels zu erhöhen.
-	public void bestandErhoehen(Artikel artikel){
-		
-	}
+
 	
 }
