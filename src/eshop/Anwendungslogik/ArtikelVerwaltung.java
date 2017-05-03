@@ -49,6 +49,14 @@ public class ArtikelVerwaltung {
 
 	}
 
+	public Vector<Artikel> getArtikelListe() {
+		return artikelListe;
+	}
+
+	public void setArtikelListe(Vector<Artikel> artikelListe) {
+		this.artikelListe = artikelListe;
+	}
+
 	/**
 	 * Methode, die ein Artikel an das Ende der Artikelliste einf¸gt.
 	 * 
