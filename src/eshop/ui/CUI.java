@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import eshop.Shop;
+import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Datenstrukturen.Artikel;
 
 
@@ -13,7 +14,10 @@ public class CUI {
 	
 	private Shop shop;
 	private Artikel ar;
+	private ArtikelVerwaltung av;
 
+	Artikel testArtikel = new Artikel("a","b","c");
+	
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public void setConsoleLine(String s){
 		System.out.println(s);
@@ -38,6 +42,8 @@ public class CUI {
 
 		do{
 			
+			av.artikelAnlegen(testArtikel);
+			av.getArtikelliste();
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();
@@ -66,6 +72,7 @@ public class CUI {
 		super();
 		this.br =  new BufferedReader(new InputStreamReader(System.in));
 		this.shop = new Shop();
+		this.av = new ArtikelVerwaltung();
 
 	}
 	
