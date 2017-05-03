@@ -5,8 +5,8 @@ public class Bestand {
 	
 	private Artikel artikel;
 	private int anzahl;
-	private Date einlagerung;
-	private Date auslagerung;
+	//private Date einlagerung;
+	//private Date auslagerung;
 	
 	
 	
@@ -15,8 +15,8 @@ public class Bestand {
 		super();
 		this.artikel = artikel;
 		this.anzahl = anzahl;
-		this.einlagerung = einlagerung;
-		this.auslagerung = auslagerung;
+		//this.einlagerung = einlagerung;
+		//this.auslagerung = auslagerung;
 	}
 
 
@@ -40,24 +40,24 @@ public class Bestand {
 	}
 
 
-	public Date getEinlagerung() {
-		return einlagerung;
-	}
+	//public Date getEinlagerung() {
+		//return einlagerung;
+	//}
 
 
-	public void setEinlagerung(Date einlagerung) {
-		this.einlagerung = einlagerung;
-	}
+	//public void setEinlagerung(Date einlagerung) {
+		//this.einlagerung = einlagerung;
+	//}
 
 
-	public Date getAuslagerung() {
-		return auslagerung;
-	}
+	//public Date getAuslagerung() {
+		//return auslagerung;
+	//}
 
 
-	public void setAuslagerung(Date auslagerung) {
-		this.auslagerung = auslagerung;
-	}
+	//public void setAuslagerung(Date auslagerung) {
+		//this.auslagerung = auslagerung;
+	//}
 
 
 

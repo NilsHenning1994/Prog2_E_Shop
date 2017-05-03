@@ -13,13 +13,15 @@ public class Artikel {
 	private String bez;
 	private String nummer;
 	private String preis;
+	private String bestand;
 	private boolean verfuegbar; 
 
 	// nr, bez, preis, bestand
-	public Artikel(String nr, String bez,  String preis) {
+	public Artikel(String nr, String bez,  String preis, String bestand) {
 		nummer = nr;
 		this.preis = preis;
 		this.bez = bez;
+		this.bestand = bestand;
 	}
 
 	/**
@@ -30,7 +32,7 @@ public class Artikel {
 
 	public String toString() {
 
-		return ( "Nummer: "+ getNummer() + " | Bezeichnung: " + getBez() + " | Preis: "+ getPreis() );
+		return ( "Nummer: "+ getNummer() + " | Bezeichnung: " + getBez() + " | Preis: "+ getPreis() + " | Bestand: " + getBestand() );
 	}
 
 	/**
@@ -62,6 +64,10 @@ public class Artikel {
 	public String getPreis(){
 		return preis;
 	}
+	
+	public String getBestand(){
+		return bestand;
+	}
 
 	public void setBez(String bez) {
 		this.bez = bez;
@@ -74,6 +80,11 @@ public class Artikel {
 	public void setPreis(String preis) {
 		this.preis = preis;
 	}
+	
+	public void setBestand(String bestand){
+		this.bestand = bestand;
+	}
+	
 
 	public boolean isVerfuegbar() {
 		return verfuegbar;

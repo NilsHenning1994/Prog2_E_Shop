@@ -1,7 +1,10 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Bestand;
+
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -14,21 +17,13 @@ import java.util.Vector;
 public class ArtikelVerwaltung {
 
 
-	private Artikel kartoffel = new Artikel("152","Tuerkische Kartoffel","");
-	private Artikel mais = new Artikel("153","Griechischer Mais","");
-	private Artikel erbeere = new Artikel("154","Deutsche Erdbeere","");
-	private Artikel hund = new Artikel("155","Kleiner Hund","");
-	private Artikel katze = new Artikel("156","Hauskatze","");
-	private Artikel pferd = new Artikel("157","Araber","");
-	private Artikel kuh = new Artikel("158","Hausrind","");
-	private Artikel fisch = new Artikel("159","Hering","");
-	private Artikel fernseher = new Artikel("160","LED Smart TV ","");
-	private Artikel schrank = new Artikel("161","PAX Kleiderschrank","");
-
+	private Artikel kartoffel = new Artikel("152","Tuerkische Kartoffel", "1000", "35");
+	
 
 
 	// Verwaltung des Buchbestands
 	private Vector<Artikel> artikelListe = new Vector<Artikel>();
+	
 
 	//       private Map<Artikel, Integer> bestandsListe = null;
 
@@ -43,7 +38,7 @@ public class ArtikelVerwaltung {
 	public void schreibeArtikel(Artikel artikel) throws IOException  {
 
 		
-		Artikel einArtikel = new Artikel("Test Nummer","Test Bezeichnung","Test Preis");
+		Artikel einArtikel = new Artikel("Test Nummer","Test Bezeichnung","Test Preis", "Test Bestand");
 		
 		Iterator<Artikel> it = artikelListe.iterator();
 		while (it.hasNext()) {
@@ -112,6 +107,54 @@ public class ArtikelVerwaltung {
 		System.out.println(artikelListe);
 		return artikelListe;
 	}
+	
+	public void sortB(){
+	
+		
+		Vector<Artikel> besListe = new Vector<Artikel>();
+		
+		
+		int listenG = artikelListe.size();
+		int[] sort = new int[listenG];
+		
+			int i = 0;
+			int g = 0;
+			while ( i < listenG +1){
+				
+				String bla = artikelListe.get(i).getBestand();
+				int eins = Integer.parseInt(artikelListe.get(i).getBestand());
+			    int zwei = Integer.parseInt(artikelListe.get(g+1).getBestand());
+				
+			   for(  eins > zwei)  {
+				   artikelListe
+			   }
+				sort[i] = Integer.parseInt(bla);
+				System.out.println(sort[i]);
+				
+				i++;
+			}
+	
+	
+	}
 
+	public static void bubblesrt(Vector<Artikel> artikelListe)
+	  {
+	        Drink temp;
+	        if (artikelListe.size()>1) // check if the number of orders is larger than 1
+	        {
+	            for (int x=0; x<artikelListe.size(); x++) // bubble sort outer loop
+	            {
+	            	for (int i=0; i < artikelListe.size() - x - 1; i++){
+	                    if (artikelListe.get(i).getBestand().compareTo(artikelListe.get(i+1).getBestand()) > 0)
+	                    {
+	                        temp = artikelListe.get(i).getBestand();
+	                        artikelListe.set(i,artikelListe.get(i+1) );
+	                        artikelListe.set(i+1, temp);
+	                    }
+	                }
+	            }
+	        }
+
+	  }
 
 }

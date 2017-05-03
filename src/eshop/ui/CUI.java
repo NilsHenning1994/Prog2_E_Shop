@@ -16,7 +16,10 @@ public class CUI {
 	private Artikel ar;
 	private ArtikelVerwaltung av;
 
-	Artikel testArtikel = new Artikel("a","b","c");
+	Artikel testArtikel = new Artikel("a","b","c","10");
+	Artikel testArtikel1 = new Artikel("d","e","f","11");
+	Artikel testArtikel2 = new Artikel("k","j","i","6");
+	Artikel testArtikel3 = new Artikel("l","m","n","4");
 	
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public void setConsoleLine(String s){
@@ -43,7 +46,11 @@ public class CUI {
 		do{
 			
 			av.artikelAnlegen(testArtikel);
+			av.artikelAnlegen(testArtikel1);
+			av.artikelAnlegen(testArtikel2);
+			av.artikelAnlegen(testArtikel3);
 			av.getArtikelliste();
+			av.sortB();
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();
