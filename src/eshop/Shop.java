@@ -3,6 +3,10 @@ package eshop;
 import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
+import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Datenstrukturen.Rechnung;
 
 public class Shop {
 
@@ -16,5 +20,15 @@ public class Shop {
 		kv = new KundenVerwaltung();
 	}
 	
-	// diverse Methoden
+	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
+		
+	}
+	
+	public Rechnung warenkorbKaufen(Kunde k){
+		return null;
+	}
+	
+	public Artikel artikelAnlegen(Mitarbeiter m, String artikelAttribute){
+		return null;
+	}
 }

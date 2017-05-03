@@ -6,22 +6,35 @@ public class ArtikelVerwaltung {
 
 
 
-	private Artikel kartoffel = new Artikel(152,"Tuerkische Kartoffel");
-	private Artikel mais = new Artikel(153,"Griechischer Mais");
-	private Artikel erbeere = new Artikel(154,"Deutsche Erdbeere");
-	private Artikel hund = new Artikel(155,"Kleiner Hund");
-	private Artikel katze = new Artikel(156,"Hauskatze");
-	private Artikel pferd = new Artikel(157,"Araber");
-	private Artikel kuh = new Artikel(158,"Hausrind");
-	private Artikel fisch = new Artikel(159,"Hering");
-	private Artikel fernseher = new Artikel(160,"LED Smart TV ");
-	private Artikel schrank = new Artikel(161,"PAX Kleiderschrank");
+	private Artikel kartoffel = new Artikel(152,"Tuerkische Kartoffel", 0, false);
+	private Artikel mais = new Artikel(153,"Griechischer Mais", 0, false);
+	private Artikel erbeere = new Artikel(154,"Deutsche Erdbeere", 0, false);
+	private Artikel hund = new Artikel(155,"Kleiner Hund", 0, false);
+	private Artikel katze = new Artikel(156,"Hauskatze", 0, false);
+	private Artikel pferd = new Artikel(157,"Araber", 0, false);
+	private Artikel kuh = new Artikel(158,"Hausrind", 0, false);
+	private Artikel fisch = new Artikel(159,"Hering", 0, false);
+	private Artikel fernseher = new Artikel(160,"LED Smart TV ", 0, false);
+	private Artikel schrank = new Artikel(161,"PAX Kleiderschrank", 0, false);
 
 
-	public ArtikelVerwaltung() {
+	
 
+	public ArtikelVerwaltung(Artikel kartoffel, Artikel mais, Artikel erbeere, Artikel hund, Artikel katze,
+			Artikel pferd, Artikel kuh, Artikel fisch, Artikel fernseher, Artikel schrank, Artikel[] artikelArray) {
+		super();
+		this.kartoffel = kartoffel;
+		this.mais = mais;
+		this.erbeere = erbeere;
+		this.hund = hund;
+		this.katze = katze;
+		this.pferd = pferd;
+		this.kuh = kuh;
+		this.fisch = fisch;
+		this.fernseher = fernseher;
+		this.schrank = schrank;
+		this.artikelArray = artikelArray;
 	}
-
 	Artikel[] artikelArray = new Artikel[10];
 	// Artikel in Array einlesen
 	public Artikel[] artikelEinlesen(){

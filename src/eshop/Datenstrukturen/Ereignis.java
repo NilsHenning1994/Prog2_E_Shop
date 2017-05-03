@@ -27,6 +27,49 @@ public class Ereignis {
 		
 		
 	}
+
+
+
+
+	public int getAnz() {
+		return anz;
+	}
+
+
+
+
+	public void setAnz(int anz) {
+		this.anz = anz;
+	}
+
+
+
+
+	public Date getEinlagerung() {
+		return einlagerung;
+	}
+
+
+
+
+	public void setEinlagerung(Date einlagerung) {
+		this.einlagerung = einlagerung;
+	}
+
+
+
+
+	public Date getAuslagerung() {
+		return auslagerung;
+	}
+
+
+
+
+	public void setAuslagerung(Date auslagerung) {
+		this.auslagerung = auslagerung;
+	}
+	
 	
 	
 	

@@ -1,5 +1,7 @@
 package eshop.Datenstrukturen;
 
+import java.util.List;
+
 public class Warenkorb {
 
 	private List<WarenkorbEintrag> eintraege = null;
