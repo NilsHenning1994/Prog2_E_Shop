@@ -1,7 +1,8 @@
 package eshop.Anwendungslogik;
 
+import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
-
+import eshop.Datenstrukturen.Mitarbeiter;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -18,6 +19,7 @@ public class ArtikelVerwaltung {
 
 
 	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
+	private Shop shop;
 	
 
 
@@ -116,4 +118,18 @@ public class ArtikelVerwaltung {
 		return artikelListe;
 	}
 	
+	
+//	Methode, um über die Shopklasse neue Artikel anzulegen.
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, float preis, int bestand){
+		Artikel artikel = new Artikel(bez, nummer, preis, bestand);
+		shop.artikelAnlegen(mitarbeiter, artikel);
+	}
+	
+//	Methode, um den Bestand eines Artikels zu erhöhen.
+	public Artikel bestandErhoehen(Mitarbeiter mitarbeiter, Artikel artikel, int anz){
+		artikel.setBestand(artikel.getBestand()+anz);
+		return artikel;
+	}
+
+
 }

@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import eshop.Shop;
 import eshop.Anwendungslogik.ArtikelVerwaltung;
+import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Datenstrukturen.Artikel;
 
 
@@ -16,6 +17,7 @@ public class CUI {
 	private Shop shop;
 	private Artikel ar;
 	private ArtikelVerwaltung av;
+	private MitarbeiterVerwaltung mv;
 
 	Artikel testArtikel = new Artikel("a",1,2,10);
 	Artikel testArtikel1 = new Artikel("d",1,3,11);
@@ -59,6 +61,8 @@ public class CUI {
 				String input = br.readLine();
 				if(input.equals("M")){
 					System.out.println("Mitarbeiter");
+					mv.registrieren(input, input, input, input);
+					mv.einloggen(input, input);
 					System.out.println("Artikel anzeigen[S]");
 					String inputt = br.readLine();
 					if(inputt.equals("S")){
@@ -83,6 +87,7 @@ public class CUI {
 		this.br =  new BufferedReader(new InputStreamReader(System.in));
 		this.shop = new Shop();
 		this.av = new ArtikelVerwaltung();
+		this.mv = new MitarbeiterVerwaltung(null, null, av, shop);
 
 	}
 	
