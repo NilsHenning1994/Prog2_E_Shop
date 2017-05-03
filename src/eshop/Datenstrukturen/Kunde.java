@@ -12,13 +12,8 @@ public class Kunde extends Benutzer {
 	// Konstruktor der Klasse Kunde
 	public Kunde(int id, String vorname, String nachname, String email, String adresse) {
 		super(id, vorname, nachname, email);
-//		this.kundennr = kundennr;
-//		this.vorname = vorname;
-//		this.nachname = nachname;
 		this.adresse = adresse;
-//		this.artikel = artikel;
-//		this.stueckzahl = stueckzahl;
-		this.cart = new Warenkorb();
+		this.cart = new Warenkorb(null);
 	}
 	
 //	public void WarenkorbAendern(Artikel artikel, int stueckzahl) {
@@ -41,4 +36,14 @@ public class Kunde extends Benutzer {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
+
+	public Warenkorb getCart() {
+		return cart;
+	}
+
+	public void setCart(Warenkorb cart) {
+		this.cart = cart;
+	}
+	
+	
 }

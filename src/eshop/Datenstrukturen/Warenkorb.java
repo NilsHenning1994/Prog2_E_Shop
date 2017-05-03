@@ -23,6 +23,7 @@ public class Warenkorb {
 		this.eintraege.add(eintrag);
 	}
 
+
 	
 	
 }
