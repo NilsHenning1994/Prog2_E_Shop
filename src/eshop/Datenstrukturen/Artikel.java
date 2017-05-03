@@ -11,14 +11,13 @@ public class Artikel {
 
 	// Attribute zur Beschreibung eines Artikels:
 	private String bez;
-	private String nummer;
-	private String preis;
-	private String bestand;
-	private boolean verfuegbar; 
+	private int nummer;
+	private float preis;
+	private int bestand;
 
 	// nr, bez, preis, bestand
-	public Artikel(String nr, String bez,  String preis, String bestand) {
-		nummer = nr;
+	public Artikel(String bez, int nr, float preis, int bestand) {
+		this.nummer = nr;
 		this.preis = preis;
 		this.bez = bez;
 		this.bestand = bestand;
@@ -43,7 +42,7 @@ public class Artikel {
 
 	public boolean equals(Object andererArtikel) {
 		if (andererArtikel instanceof Artikel) 
-			return ((this.getNummer().equals(((Artikel) andererArtikel).getNummer())) 
+			return ((this.getNummer() ==(((Artikel) andererArtikel).getNummer())) 
 					&& (this.getBez().equals(((Artikel) andererArtikel).getBez())));
 		else
 			return false;
@@ -53,46 +52,44 @@ public class Artikel {
 	 * Ab hier Accessor-Methoden
 	 */
 
-	public String getNummer() {
-		return nummer;
-	}
+	
+	
+
+	
 
 	public String getBez() {
 		return bez;
-	}
-
-	public String getPreis(){
-		return preis;
-	}
-	
-	public String getBestand(){
-		return bestand;
 	}
 
 	public void setBez(String bez) {
 		this.bez = bez;
 	}
 
-	public void setNummer(String nummer) {
+	public int getNummer() {
+		return nummer;
+	}
+
+	public void setNummer(int nummer) {
 		this.nummer = nummer;
 	}
 
-	public void setPreis(String preis) {
+	public float getPreis() {
+		return preis;
+	}
+
+	public void setPreis(float preis) {
 		this.preis = preis;
 	}
-	
-	public void setBestand(String bestand){
+
+	public int getBestand() {
+		return bestand;
+	}
+
+	public void setBestand(int bestand) {
 		this.bestand = bestand;
 	}
-	
 
-	public boolean isVerfuegbar() {
-		return verfuegbar;
-	}
 
-	public void setVerfuegbar(boolean verfuegbar) {
-		this.verfuegbar = verfuegbar;
-	}
 
 
 }

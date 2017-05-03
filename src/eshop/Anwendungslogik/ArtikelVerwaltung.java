@@ -1,7 +1,6 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Bestand;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -17,7 +16,7 @@ import java.util.Vector;
 public class ArtikelVerwaltung {
 
 
-	private Artikel kartoffel = new Artikel("152","Tuerkische Kartoffel", "1000", "35");
+	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
 	
 
 
@@ -38,7 +37,7 @@ public class ArtikelVerwaltung {
 	public void schreibeArtikel(Artikel artikel) throws IOException  {
 
 		
-		Artikel einArtikel = new Artikel("Test Nummer","Test Bezeichnung","Test Preis", "Test Bestand");
+		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
 		
 		Iterator<Artikel> it = artikelListe.iterator();
 		while (it.hasNext()) {
@@ -116,53 +115,6 @@ public class ArtikelVerwaltung {
 		return artikelListe;
 	}
 	
-	public void sortB(){
 	
-		
-		Vector<Artikel> besListe = new Vector<Artikel>();
-		
-		
-		int listenG = artikelListe.size();
-		int[] sort = new int[listenG];
-		
-			int i = 0;
-			int g = 0;
-			while ( i < listenG +1){
-				
-				String bla = artikelListe.get(i).getBestand();
-				int eins = Integer.parseInt(artikelListe.get(i).getBestand());
-			    int zwei = Integer.parseInt(artikelListe.get(g+1).getBestand());
-				
-			   for(  eins > zwei)  {
-				   artikelListe
-			   }
-				sort[i] = Integer.parseInt(bla);
-				System.out.println(sort[i]);
-				
-				i++;
-			}
-	
-	
-	}
-
-	public static void bubblesrt(Vector<Artikel> artikelListe)
-	  {
-	        Drink temp;
-	        if (artikelListe.size()>1) // check if the number of orders is larger than 1
-	        {
-	            for (int x=0; x<artikelListe.size(); x++) // bubble sort outer loop
-	            {
-	            	for (int i=0; i < artikelListe.size() - x - 1; i++){
-	                    if (artikelListe.get(i).getBestand().compareTo(artikelListe.get(i+1).getBestand()) > 0)
-	                    {
-	                        temp = artikelListe.get(i).getBestand();
-	                        artikelListe.set(i,artikelListe.get(i+1) );
-	                        artikelListe.set(i+1, temp);
-	                    }
-	                }
-	            }
-	        }
-
-	  }
 
 }
