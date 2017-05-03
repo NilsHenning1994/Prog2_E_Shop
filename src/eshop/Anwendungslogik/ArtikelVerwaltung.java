@@ -1,82 +1,117 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Vector;
 
+
+
+/**
+ * Klasse zur Verwaltung von Artikel.
+ * 
+ */
 public class ArtikelVerwaltung {
 
 
+	private Artikel kartoffel = new Artikel("152","Tuerkische Kartoffel","");
+	private Artikel mais = new Artikel("153","Griechischer Mais","");
+	private Artikel erbeere = new Artikel("154","Deutsche Erdbeere","");
+	private Artikel hund = new Artikel("155","Kleiner Hund","");
+	private Artikel katze = new Artikel("156","Hauskatze","");
+	private Artikel pferd = new Artikel("157","Araber","");
+	private Artikel kuh = new Artikel("158","Hausrind","");
+	private Artikel fisch = new Artikel("159","Hering","");
+	private Artikel fernseher = new Artikel("160","LED Smart TV ","");
+	private Artikel schrank = new Artikel("161","PAX Kleiderschrank","");
 
-	private Artikel kartoffel = new Artikel(152,"Tuerkische Kartoffel", 0, false);
-	private Artikel mais = new Artikel(153,"Griechischer Mais", 0, false);
-	private Artikel erbeere = new Artikel(154,"Deutsche Erdbeere", 0, false);
-	private Artikel hund = new Artikel(155,"Kleiner Hund", 0, false);
-	private Artikel katze = new Artikel(156,"Hauskatze", 0, false);
-	private Artikel pferd = new Artikel(157,"Araber", 0, false);
-	private Artikel kuh = new Artikel(158,"Hausrind", 0, false);
-	private Artikel fisch = new Artikel(159,"Hering", 0, false);
-	private Artikel fernseher = new Artikel(160,"LED Smart TV ", 0, false);
-	private Artikel schrank = new Artikel(161,"PAX Kleiderschrank", 0, false);
 
 
-	public ArtikelVerwaltung() {
+	// Verwaltung des Buchbestands
+	private Vector<Artikel> artikelListe = new Vector<Artikel>();
 
-	}
+	//       private Map<Artikel, Integer> bestandsListe = null;
 
-	Artikel[] artikelArray = new Artikel[10];
-	// Artikel in Array einlesen
-	public Artikel[] artikelEinlesen(){
+
+
+	
+
+	/**
+	 * Methode zum Schreiben eines Artikels in eine Liste.
+	 * 
+	 */
+	public void schreibeArtikel(Artikel artikel) throws IOException  {
+
 		
-		for(int i = 0; i < artikelArray.length; i ++){
-			artikelArray[i] = kartoffel;
-			i++;
-			artikelArray[i] = mais;
-			i++;
-			artikelArray[i] = erbeere;
-			i++;
-			artikelArray[i] = hund;
-			i++;
-			artikelArray[i] = katze;
-			i++;
-			artikelArray[i] = pferd;
-			i++;
-			artikelArray[i] = kuh;
-			i++;
-			artikelArray[i] = fisch;
-			i++;
-			artikelArray[i] = fernseher;
-			i++;
-			artikelArray[i] = schrank;
-			
-		}return (artikelArray);
+		Artikel einArtikel = new Artikel("Test Nummer","Test Bezeichnung","Test Preis");
 		
-		
-		
-	}
-	// Artikel in Array sortieren
-	public void artikelSortieren(){
+		Iterator<Artikel> it = artikelListe.iterator();
+		while (it.hasNext()) {
+			einArtikel = it.next();
+
+		}
+
 
 	}
-	// alten Artikel auslagern
-	public void artikelAuslagern(){
+
+	/**
+	 * Methode, die ein Artikel an das Ende der Artikelliste einf¸gt.
+	 * 
+	 * @param einArtikel das einzuf¸gende Artikel
+	 */
+
+	public void artikelAnlegen(Artikel einArtikel) {
+		if (artikelListe.contains(einArtikel)) {
+			// Artikel fehlermeldung
+
+		} else artikelListe.add(einArtikel); 
 
 	}
-	// neuen Artikel einlagern
-	public void artikelEinlagern(){
 
-	}
-	// alle Artikel anzeigen
-	public void alleArtikelAnzeigen(){
+	/**
+	 * Methode zum Lˆschen eines Artikel aus dem Lager. 
+	 * 
+	 * @param einArtikel das lˆschende Artikel
+	 */
 
+	public void loeschen(Artikel einArtikel) {
+		artikelListe.remove(einArtikel);
 	}
-	// einen bestimmten Artikel anzeigen " ID "
-	public void artikelAnzeigenID(){
 
-	}
-	// einen bestimmten Artikel anzeigen " Name "
-	public void artikelAnzeigenName(){
 
+	/**
+	 * Methode, die anhand eines Titels nach Artikel sucht. Es wird einen Vector von Artikel
+	 * zur¸ckgegeben, die alle Artikel mit exakt ¸bereinstimmendem Titel enth‰lt.
+	 * 
+	 * @param bez Titel des gesuchten Artikels
+	 * @return Vector der Artikel mit gesuchtem Titel (evtl. leer)
+	 */
+
+	public Vector<Artikel> artikelVorhanden(String bez) {
+		Vector<Artikel> suchErg = new Vector<Artikel>();
+
+		// Set<Artikel> artikelListe = bestandsListe.keySet();
+
+		Iterator<Artikel> it = artikelListe.iterator();
+		while (it.hasNext()) {
+			Artikel einArtikel = it.next();
+			if (einArtikel.getBez().equals(bez))
+				suchErg.add(einArtikel);
+		}
+
+		return suchErg;
 	}
-	//
+
+	/**
+	 * Methode, die alle Artikel zur¸ck gibt.
+	 * 
+	 */
+
+	public Vector<Artikel> getArtikelliste() {
+		// return new Vector<Artikel>(bestandsListe.keySet());
+		System.out.println(artikelListe);
+		return artikelListe;
+	}
 
 
 }
