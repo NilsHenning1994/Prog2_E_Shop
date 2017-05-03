@@ -1,7 +1,10 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ef530011337fa70d6df471eed597dd3bafba2d65
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -17,7 +20,7 @@ import java.util.Vector;
 public class ArtikelVerwaltung {
 
 
-	private Artikel kartoffel = new Artikel("152","Tuerkische Kartoffel", "1000", "35");
+	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
 	
 
 
@@ -38,7 +41,7 @@ public class ArtikelVerwaltung {
 	public void schreibeArtikel(Artikel artikel) throws IOException  {
 
 		
-		Artikel einArtikel = new Artikel("Test Nummer","Test Bezeichnung","Test Preis", "Test Bestand");
+		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
 		
 		Iterator<Artikel> it = artikelListe.iterator();
 		while (it.hasNext()) {
@@ -117,6 +120,7 @@ public class ArtikelVerwaltung {
 	}
 	
 	
+<<<<<<< HEAD
 
 	public static void bubblesrt(Vector<Artikel> artikelListe)
 	  {
@@ -137,5 +141,7 @@ public class ArtikelVerwaltung {
 	        }
 
 	  }
+=======
+>>>>>>> ef530011337fa70d6df471eed597dd3bafba2d65
 
 }

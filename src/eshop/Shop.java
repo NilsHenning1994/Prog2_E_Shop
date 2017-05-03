@@ -16,7 +16,7 @@ public class Shop {
 	
 	public Shop() {
 		av = new ArtikelVerwaltung();
-		mv = new MitarbeiterVerwaltung();
+		mv = new MitarbeiterVerwaltung(null, null, av, null);
 		kv = new KundenVerwaltung();
 	}
 	
@@ -28,7 +28,7 @@ public class Shop {
 		return null;
 	}
 	
-	public Artikel artikelAnlegen(Mitarbeiter m, String bez, String nummer, String preis, boolean verfuegbar){
-		return null;
+	public void artikelAnlegen(Artikel artikel){
+		av.getArtikelListe().add(artikel);
 	}
 }

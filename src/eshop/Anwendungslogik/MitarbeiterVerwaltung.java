@@ -20,12 +20,19 @@ public class MitarbeiterVerwaltung {
 	private Shop shop;
 	
 
-	public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbeiterliste) {
+
+
+	
+public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbeiterliste, ArtikelVerwaltung av,
+			Shop shop) {
 		super();
 		this.mitarbeiter = mitarbeiter;
 		this.mitarbeiterliste = mitarbeiterliste;
+		this.av = av;
+		this.shop = shop;
 	}
 
+//	Methode, um sich als Mitarbeiter einzuloggen
 	public void einloggen(String mail, String passwort){
 		for(int i = 0; i< mitarbeiterliste.size(); i++){
 			if(mitarbeiterliste.contains(mail)){
@@ -40,23 +47,26 @@ public class MitarbeiterVerwaltung {
 		}
 	}
 	
+//	Methode, um sich als Mitarbeiter auszuloggen
 	public void ausloggen(Mitarbeiter mitarbeiter){
 		mitarbeiter.setLogin(false);
 		
 	}
 
+//	Methoden, um sich als Mitarbeiter zu registrieren
 	public void registrieren(String vorname, String nachname, String mail, String passwort){
 		int id = mitarbeiterliste.size() + 1;
 		mitarbeiterliste.add(new Mitarbeiter(id, vorname, nachname, mail, passwort, false));		
 		
 	}
 	
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, String nummer, String preis, boolean verfuegbar){
-		List<Artikel> artikelliste = new ArrayList<Artikel>();
-		artikelliste = av.getArtikelliste();
-		shop.artikelAnlegen(mitarbeiter, bez, nummer, preis, verfuegbar)
+//	Methode, um über die Shopklasse neue Artikel anzulegen.
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, float preis, int bestand){
+		Artikel artikel = new Artikel(bez, nummer, preis, bestand);
+		shop.artikelAnlegen(artikel);
 	}
 	
+//	Methode, um den Bestand eines Artikels zu erhöhen.
 	public void bestandErhoehen(Artikel artikel){
 		
 	}
