@@ -19,6 +19,7 @@ public abstract class Benutzer {
 		return vorname;
 	}
 
+	
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
