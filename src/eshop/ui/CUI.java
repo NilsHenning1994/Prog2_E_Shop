@@ -37,7 +37,7 @@ public class CUI {
 	public void run(){
 
 		do{
-			System.out.println(av.artikelEinlesen());
+			
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();

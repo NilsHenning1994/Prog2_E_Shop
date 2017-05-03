@@ -47,7 +47,7 @@ public class ArtikelVerwaltung {
 			i++;
 			artikelArray[i] = schrank;
 			
-		}return(artikelArray);
+		}return (artikelArray);
 		
 		
 		
