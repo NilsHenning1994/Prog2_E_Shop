@@ -19,11 +19,6 @@ public class Rechnung {
 		this.preisinfo = preisinfo;
 		this.gesamtpreis = gesamtpreis;
 	}
-
-	
-	
-	
-	
 	
 	public Kunde getKunde() {
 		return kunde;
