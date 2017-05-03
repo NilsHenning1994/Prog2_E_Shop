@@ -4,6 +4,7 @@ package eshop.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Vector;
 
 import eshop.Shop;
 import eshop.Anwendungslogik.ArtikelVerwaltung;
@@ -41,7 +42,7 @@ public class CUI {
 
 
 	// Methode zum Starten des EShops
-	public void run(){
+	public void run(Vector<Artikel> artikelListe){
 
 		do{
 			
@@ -50,7 +51,8 @@ public class CUI {
 			av.artikelAnlegen(testArtikel2);
 			av.artikelAnlegen(testArtikel3);
 			av.getArtikelliste();
-			av.sortB();
+			av.bubblesrt(artikelListe);
+			av.getArtikelliste();
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();
@@ -86,7 +88,7 @@ public class CUI {
 	public static void main(String[] args) {
 
 		CUI cui = new CUI();
-		cui.run();
+		cui.run(null);
 }
 
 }
