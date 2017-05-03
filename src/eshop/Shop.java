@@ -28,7 +28,7 @@ public class Shop {
 		return null;
 	}
 	
-	public Artikel artikelAnlegen(Mitarbeiter m, String artikelAttribute){
+	public Artikel artikelAnlegen(Mitarbeiter m, String bez, String nummer, String preis, boolean verfuegbar){
 		return null;
 	}
 }
