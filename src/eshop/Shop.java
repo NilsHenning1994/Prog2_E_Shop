@@ -14,6 +14,12 @@ public class Shop {
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	
+	Artikel testArtikel = new Artikel("Apfel",1,2,10);
+	Artikel testArtikel1 = new Artikel("Birne",1,3,11);
+	Artikel testArtikel2 = new Artikel("Kokusnuss",4,5,6);
+	Artikel testArtikel3 = new Artikel("Banane",6,7,4);
+
+	
 	public Shop() {
 		av = new ArtikelVerwaltung();
 		mv = new MitarbeiterVerwaltung(null, null, av, null);
@@ -31,4 +37,16 @@ public class Shop {
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, Artikel artikel){
 		av.getArtikelListe().add(artikel);
 	}
+	
+	// Mitarbeiter Registrieren 
+	public void mitarbeiterRegi(String vorname,String nachname,String mail,String passwort){
+		mv.registrieren(vorname, nachname, mail, passwort);
+	}
+	
+	// Mitarbeiter Bestand von Artikel erhoehen
+	
+	public void mitBestandErhoehen(Mitarbeiter mitarbeiter,Artikel artikel,int anz){
+		av.bestandErhoehen(mitarbeiter, artikel, anz);
+	}
+	
 }

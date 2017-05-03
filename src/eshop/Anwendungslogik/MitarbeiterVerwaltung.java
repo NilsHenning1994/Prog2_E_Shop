@@ -29,6 +29,8 @@ public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbei
 		this.shop = shop;
 	}
 
+	
+	
 //	Methode, um sich als Mitarbeiter einzuloggen
 	public void einloggen(String mail, String passwort){
 		for(int i = 0; i< mitarbeiterliste.size(); i++){
@@ -51,11 +53,13 @@ public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbei
 	}
 
 //	Methoden, um sich als Mitarbeiter zu registrieren
-	public void registrieren(String vorname, String nachname, String mail, String passwort){
-		System.out.println(mitarbeiterliste);
-		int id = mitarbeiterliste.size() + 1;
-		mitarbeiterliste.add(new Mitarbeiter(id, vorname, nachname, mail, passwort, false));		
+	public List<Mitarbeiter> registrieren(String vorname, String nachname, String mail, String passwort){
+		Mitarbeiter Frank = new Mitarbeiter( 1, "Frank", "Steinmeyer", "frank.steinmeyer@fake.de", "Frank", true);
+		mitarbeiterliste.add(0, Frank);
 		
+		int id = mitarbeiterliste.size() + 1;
+		mitarbeiterliste.add(new Mitarbeiter(id, vorname, nachname, mail, passwort, true));		
+		return mitarbeiterliste;
 	}
 	
 
