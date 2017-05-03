@@ -20,9 +20,6 @@ public class MitarbeiterVerwaltung {
 	private Shop shop;
 	
 
-
-
-	
 public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbeiterliste, ArtikelVerwaltung av,
 			Shop shop) {
 		super();
@@ -62,5 +59,6 @@ public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbei
 	}
 	
 
+	
 	
 }

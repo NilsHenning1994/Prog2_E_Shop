@@ -28,7 +28,7 @@ public class Shop {
 		return null;
 	}
 	
-	public void artikelAnlegen(Artikel artikel){
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, Artikel artikel){
 		av.getArtikelListe().add(artikel);
 	}
 }

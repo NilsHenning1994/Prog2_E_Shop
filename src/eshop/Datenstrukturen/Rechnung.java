@@ -7,6 +7,7 @@ public class Rechnung {
 
 	private Kunde kunde;
 	private Warenkorb warenkorb;
+	private WarenkorbEintrag we;
 	private Date datum;
 	private float preisinfo;
 	private float gesamtpreis;
