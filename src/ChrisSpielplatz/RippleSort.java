@@ -1,12 +1,21 @@
 package ChrisSpielplatz;
 
+import java.util.Vector;
+
+import eshop.Anwendungslogik.ArtikelVerwaltung;
+import eshop.Datenstrukturen.Artikel;
+
 public class RippleSort {
 
-
+	private ArtikelVerwaltung av;
+	private Artikel ar;
 
 	public class Ripplesort { 
 
 	    public int[] intArr = { 16, 23, 14, 7, 21, 20, 6, 1, 17, 13, 12, 9, 3, 19 }; 
+	    
+	    private Vector<Artikel> artikelListe = new Vector<Artikel>();
+	    Artikel kartoffel = new Artikel("Grosse Kartoffel",10,35);
 
 	    public int[] sort() { 
 	        boolean switched; 

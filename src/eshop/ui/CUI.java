@@ -51,11 +51,9 @@ public class CUI {
 			av.artikelAnlegen(testArtikel2);
 			av.artikelAnlegen(testArtikel3);
 			av.getArtikelliste();
-<<<<<<< HEAD
-			av.bubblesrt(artikelListe);
-			av.getArtikelliste();
-=======
->>>>>>> ef530011337fa70d6df471eed597dd3bafba2d65
+
+			
+
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();

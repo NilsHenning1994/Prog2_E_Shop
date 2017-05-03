@@ -1,10 +1,7 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
-<<<<<<< HEAD
 
-=======
->>>>>>> ef530011337fa70d6df471eed597dd3bafba2d65
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -119,29 +116,4 @@ public class ArtikelVerwaltung {
 		return artikelListe;
 	}
 	
-	
-<<<<<<< HEAD
-
-	public static void bubblesrt(Vector<Artikel> artikelListe)
-	  {
-	        Artikel temp = null;
-	        if (artikelListe.size()>1) // check if the number of orders is larger than 1
-	        {
-	            for (int x=0; x<artikelListe.size(); x++) // bubble sort outer loop
-	            {
-	            	for (int i=0; i < artikelListe.size() - x - 1; i++){
-	                    if (artikelListe.get(i).getBestand().compareTo(artikelListe.get(i+1).getBestand()) > 0)
-	                    {
-	                        temp.equals(artikelListe.get(i).getBestand());
-	                        artikelListe.set(i,artikelListe.get(i+1) );
-	                        artikelListe.set(i+1, temp);
-	                    }
-	                }
-	            }
-	        }
-
-	  }
-=======
->>>>>>> ef530011337fa70d6df471eed597dd3bafba2d65
-
 }
