@@ -10,20 +10,16 @@ import eshop.Shop;
 import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Mitarbeiter;
 
 
 public class CUI {
-	
-	private Shop shop;
-	private Artikel ar;
-	private ArtikelVerwaltung av;
-	private MitarbeiterVerwaltung mv;
 
-	Artikel testArtikel = new Artikel("a",1,2,10);
-	Artikel testArtikel1 = new Artikel("d",1,3,11);
-	Artikel testArtikel2 = new Artikel("k",4,5,6);
-	Artikel testArtikel3 = new Artikel("l",6,7,4);
-	
+	private Shop shop;
+
+
+
+
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public void setConsoleLine(String s){
 		System.out.println(s);
@@ -47,31 +43,94 @@ public class CUI {
 	public void run(Vector<Artikel> artikelListe){
 
 		do{
-			
-			av.artikelAnlegen(testArtikel);
-			av.artikelAnlegen(testArtikel1);
-			av.artikelAnlegen(testArtikel2);
-			av.artikelAnlegen(testArtikel3);
-			av.getArtikelliste();
-
-			
 
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
 				String input = br.readLine();
 				if(input.equals("M")){
 					System.out.println("Mitarbeiter");
-					mv.registrieren(input, input, input, input);
-					mv.einloggen(input, input);
-					System.out.println("Artikel anzeigen[S]");
-					String inputt = br.readLine();
-					if(inputt.equals("S")){
-					//	next operation
+					System.out.println("Registrieren   	-> R");
+					System.out.println("Einloggen   	-> E");
+					System.out.println("Abbruch			-> A");
+					input = br.readLine();
+					if(input.equals("R")){ // Methode zum Registrieren von Mitarbeitern einfuegen
+						System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
+						System.out.println("Vorname:");
+						input = br.readLine();					
+						String vorname = input;
+						
+						System.out.println("Nachname:");
+						input = br.readLine();					
+						String nachname = input;
+						
+						System.out.println("Mail:");
+						input = br.readLine();					
+						String mail = input;
+						
+						System.out.println("Passwort:");
+						input = br.readLine();					
+						String passwort = input;
+						shop.mitarbeiterRegi(vorname, nachname, mail, passwort);
+						
+						System.out.println("Bestand von Artikel ändern  	-> BA");
+						System.out.println("Neuen Artikel anlegen  			-> AA");
+						if(input.equals("BA")){
+							
+//							System.out.println("Mitarbeiter:");
+//							input = br.readLine();					
+//							Mitarbeiter mit = new Mitarbeiter(input);
+//							
+//							System.out.println("Mail:");
+//							input = br.readLine();					
+//							String mail = input;
+//							
+//							System.out.println("Passwort:");
+//							input = br.readLine();					
+//							String passwort = input;
+//							
+//							shop.mitBestandErhoehen(mitarbeiter, artikel, anz);
+						}
+						if(input.equals("AA")){
+							//	next operation
+						}
+					}
+					if(input.equals("E")){  // Methode zum Einloggen von Mitarbeitern einfuegen
+						System.out.println("Sie sind eingeloggt");
+						input = br.readLine();
+						System.out.println("Bestand von Artikel ändern  	-> BA");
+						System.out.println("Neuen Artikel anlegen  			-> AA");
+						if(input.equals("BA")){
+							//	next operation
+						}
+						if(input.equals("AA")){
+							//	next operation
+						}
+					}
+					if(input.equals("A")){
+						break;
+					}else{
+						break;
 					}
 				}
-				
+
 				if(input.equals("K")){
-					System.out.println("Kunde");					
+					System.out.println("Kunde");	
+					System.out.println("Registrieren   	-> R");
+					System.out.println("Einloggen   	-> E");
+					System.out.println("Abbruch			-> A");
+					input = br.readLine();
+					if(input.equals("R")){  // Methode zum Registrieren von Kunden einfuegen
+						//	next operation
+					}
+					if(input.equals("E")){
+						//	Shop.mv.einloggen // Methode zum Einloggen von Kunden einfuegen
+						System.out.println("Methode zum einloggen fehlt noch");
+					}
+					if(input.equals("A")){
+						break;
+					}else{
+						break;
+					}
 				}
 
 			} catch (IOException e) {
@@ -86,15 +145,14 @@ public class CUI {
 		super();
 		this.br =  new BufferedReader(new InputStreamReader(System.in));
 		this.shop = new Shop();
-		this.av = new ArtikelVerwaltung();
-		this.mv = new MitarbeiterVerwaltung(null, null, av, shop);
+
 
 	}
-	
+
 	public static void main(String[] args) {
 
 		CUI cui = new CUI();
 		cui.run(null);
-}
+	}
 
 }

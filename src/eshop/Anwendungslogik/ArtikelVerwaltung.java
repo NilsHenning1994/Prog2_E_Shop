@@ -23,7 +23,7 @@ public class ArtikelVerwaltung {
 	
 
 
-	// Verwaltung des Buchbestands
+
 	private Vector<Artikel> artikelListe = new Vector<Artikel>();
 	
 
@@ -37,7 +37,7 @@ public class ArtikelVerwaltung {
 	 * Methode zum Schreiben eines Artikels in eine Liste.
 	 * 
 	 */
-	public void schreibeArtikel(Artikel artikel) throws IOException  {
+	public void schreibeArtikel(Artikel artikel)  {
 
 		
 		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
@@ -60,9 +60,9 @@ public class ArtikelVerwaltung {
 	}
 
 	/**
-	 * Methode, die ein Artikel an das Ende der Artikelliste einf¸gt.
+	 * Methode, die ein Artikel an das Ende der Artikelliste einfuegt.
 	 * 
-	 * @param einArtikel das einzuf¸gende Artikel
+	 * @param einArtikel das einzufuegende Artikel
 	 */
 
 	public void artikelAnlegen(Artikel einArtikel) {
@@ -74,9 +74,9 @@ public class ArtikelVerwaltung {
 	}
 
 	/**
-	 * Methode zum Lˆschen eines Artikel aus dem Lager. 
+	 * Methode zum loeschen eines Artikel aus dem Lager. 
 	 * 
-	 * @param einArtikel das lˆschende Artikel
+	 * @param einArtikel das loeschende Artikel
 	 */
 
 	public void loeschen(Artikel einArtikel) {
@@ -86,7 +86,7 @@ public class ArtikelVerwaltung {
 
 	/**
 	 * Methode, die anhand eines Titels nach Artikel sucht. Es wird einen Vector von Artikel
-	 * zur¸ckgegeben, die alle Artikel mit exakt ¸bereinstimmendem Titel enth‰lt.
+	 * zurueckgegeben, die alle Artikel mit exakt ¸bereinstimmendem Titel enthaelt.
 	 * 
 	 * @param bez Titel des gesuchten Artikels
 	 * @return Vector der Artikel mit gesuchtem Titel (evtl. leer)
@@ -108,7 +108,7 @@ public class ArtikelVerwaltung {
 	}
 
 	/**
-	 * Methode, die alle Artikel zur¸ck gibt.
+	 * Methode, die alle Artikel zurueck gibt.
 	 * 
 	 */
 
