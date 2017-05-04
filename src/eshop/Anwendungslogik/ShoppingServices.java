@@ -1,6 +1,7 @@
 package eshop.Anwendungslogik;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import eshop.Datenstrukturen.Artikel;
@@ -10,7 +11,8 @@ import eshop.Datenstrukturen.WarenkorbEintrag;
 
 public class ShoppingServices {
 
-	
+	private ArtikelVerwaltung av;
+	private Rechnung rechnung;
 //	
 	public void artikelInWarenkorb(Kunde kunde, Artikel artikel, int anz){
 		
@@ -42,10 +44,21 @@ public class ShoppingServices {
 	
 //	Warenkorb wird geleert und reservierte Artikel wieder freigegeben.
 	public void warenkorbLeeren(Kunde kunde){
-		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
-//			Artikel bestand wieder auffüllen!
-		}
 		kunde.getCart().getEintraege().clear();
+	}
+	
+	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand, int preisinfo, int gesamt){
+		int summe = 0;
+		rechnung.setKunde(kunde);
+		rechnung.setDatum(date);
+		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
+			rechnung.getArtikelListe().set(i, artikel);
+			rechnung.getArtikelListe().get(i).setBestand(bestand);
+			rechnung.getArtikelListe().get(i).setPreis(preisinfo);
+			summe = summe + (int) rechnung.getArtikelListe().get(i).getPreis();
+		}
+		rechnung.setGesamtpreis(summe);
+		return rechnung;
 	}
 	
 	
@@ -57,7 +70,21 @@ public class ShoppingServices {
 	
 	public Rechnung artikelKaufen(Kunde kunde){
 		Rechnung rechnung = null;
-		kunde.getCart().getEintraege().clear();
-		return rechnung;
+		int stueck;
+		int bestand;
+		int id;
+		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
+			stueck = kunde.getCart().getEintraege().get(i).getStueckzahl();
+			id = kunde.getCart().getEintraege().get(i).getArtikel().getNummer();
+			for(int j = 0; j< av.getArtikelListe().size();j++){
+				if(av.getArtikelListe().get(j).getNummer() == id){
+					bestand = av.getArtikelListe().get(j).getBestand();
+					av.getArtikelListe().get(j).setBestand(bestand-stueck);
+				}
+			}
+		}
+		warenkorbLeeren(kunde);
+//		Wie werden Werte übergeben???
+//		rechnungErstellen(kunde, Date date, kunde.getCart().getEintraege().getClass())
 	}
 }

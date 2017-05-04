@@ -12,11 +12,11 @@ public class Artikel {
 	// Attribute zur Beschreibung eines Artikels:
 	private String bez;
 	private int nummer;
-	private float preis;
+	private int preis;
 	private int bestand;
 
 	// nr, bez, preis, bestand
-	public Artikel(String bez, int nr, float preis, int bestand) {
+	public Artikel(String bez, int nr, int preis, int bestand) {
 		this.nummer = nr;
 		this.preis = preis;
 		this.bez = bez;
@@ -77,7 +77,7 @@ public class Artikel {
 		return preis;
 	}
 
-	public void setPreis(float preis) {
+	public void setPreis(int preis) {
 		this.preis = preis;
 	}
 
