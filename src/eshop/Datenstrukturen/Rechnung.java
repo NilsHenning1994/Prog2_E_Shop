@@ -9,7 +9,7 @@ public class Rechnung {
 
 	private Kunde kunde;
 	private Warenkorb warenkorb;
-	private WarenkorbEintrag we;
+//	private WarenkorbEintrag we;
 	private Date datum;
 	private List<Artikel> artikelListe;
 	private Artikel artikel;

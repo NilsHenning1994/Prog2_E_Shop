@@ -43,4 +43,14 @@ public abstract class Benutzer {
 	public int getId() {
 		return id;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Benutzer) {
+			Benutzer andererBenutzer = (Benutzer) obj;
+			return (this.email.equals(andererBenutzer.email));
+		}
+		
+		return false;
+	}
 }

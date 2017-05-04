@@ -3,12 +3,11 @@ package eshop.Datenstrukturen;
 public class Mitarbeiter extends Benutzer {
 	
 	private String passwort;
-	private boolean login;
+	private boolean login = false;
 	
-	public Mitarbeiter(int id, String vorname, String nachname, String email, String passwort, boolean login) {
+	public Mitarbeiter(int id, String vorname, String nachname, String email, String passwort) {
 		super(id, vorname, nachname, email);
 		this.passwort = passwort;
-		this.login = login;
 	}
 
 	public String getPasswort() {
@@ -25,8 +24,5 @@ public class Mitarbeiter extends Benutzer {
 
 	public void setLogin(boolean login) {
 		this.login = login;
-	}
-	
-	
-	
+	}	
 }

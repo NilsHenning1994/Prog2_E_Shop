@@ -18,8 +18,8 @@ import java.util.Vector;
 public class ArtikelVerwaltung {
 
 
-	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
-	private Shop shop;
+//	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
+//	private Shop shop;
 	
 
 
@@ -120,9 +120,12 @@ public class ArtikelVerwaltung {
 	
 	
 //	Methode, um über die Shopklasse neue Artikel anzulegen.
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, float preis, int bestand){
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, int preis, int bestand){
 		Artikel artikel = new Artikel(bez, nummer, preis, bestand);
-		shop.artikelAnlegen(mitarbeiter, artikel);
+		
+		// contains
+		
+		artikelListe.add(artikel);
 	}
 	
 //	Methode, um den Bestand eines Artikels zu erhöhen.

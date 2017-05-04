@@ -12,7 +12,11 @@ public class Ereignis {
 	private Mitarbeiter mitarbeiter;
 	private Kunde kunde;
 	
-	
+/*	
+	private Date wann;
+	private Benutzer user;
+	private ??? aktion;	// -> enum!?
+*/	
 	
 	
 	public Ereignis(Artikel artikel, int anz, Date einlagerung, Date auslagerung, Mitarbeiter mitarbeiter,

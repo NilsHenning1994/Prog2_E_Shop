@@ -22,7 +22,7 @@ public class Shop {
 	
 	public Shop() {
 		av = new ArtikelVerwaltung();
-		mv = new MitarbeiterVerwaltung(null, null, av, null);
+		mv = new MitarbeiterVerwaltung();
 		kv = new KundenVerwaltung();
 	}
 	
@@ -31,6 +31,7 @@ public class Shop {
 	}
 	
 	public Rechnung warenkorbKaufen(Kunde k){
+		
 		return null;
 	}
 	
@@ -39,8 +40,8 @@ public class Shop {
 	}
 	
 	// Mitarbeiter Registrieren 
-	public void mitarbeiterRegi(String vorname,String nachname,String mail,String passwort){
-		mv.registrieren(vorname, nachname, mail, passwort);
+	public boolean mitarbeiterRegi(String vorname,String nachname,String mail,String passwort){
+		return mv.registrieren(vorname, nachname, mail, passwort);
 	}
 	
 	// Mitarbeiter Bestand von Artikel erhoehen

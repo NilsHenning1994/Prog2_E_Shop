@@ -14,55 +14,46 @@ public class MitarbeiterVerwaltung {
 //		existierender Artikel erhöhen.
 	
 	
-	private Mitarbeiter mitarbeiter;
+//	private Mitarbeiter mitarbeiter;
 	private List<Mitarbeiter> mitarbeiterliste = new ArrayList<Mitarbeiter>();
-	private ArtikelVerwaltung av;
-	private Shop shop;
+//	private ArtikelVerwaltung av;
+//	private Shop shop;
 	
 
-public MitarbeiterVerwaltung(Mitarbeiter mitarbeiter, List<Mitarbeiter> mitarbeiterliste, ArtikelVerwaltung av,
-			Shop shop) {
-		super();
-		this.mitarbeiter = mitarbeiter;
-		this.mitarbeiterliste = mitarbeiterliste;
-		this.av = av;
-		this.shop = shop;
-	}
+//public MitarbeiterVerwaltung() {
+//		super();
+//	}
 
 	
 	
 //	Methode, um sich als Mitarbeiter einzuloggen
-	public void einloggen(String mail, String passwort){
+	public Mitarbeiter einloggen(String mail, String passwort){
 		for(int i = 0; i< mitarbeiterliste.size(); i++){
-			if(mitarbeiterliste.contains(mail)){
-				if(mitarbeiterliste.get(i).getEmail().equals(mail)){
-					if(mitarbeiterliste.get(i).getPasswort().equals(passwort)){
-						mitarbeiterliste.set(i, mitarbeiter).setLogin(true);
-					}
-				}
+			Mitarbeiter ma = mitarbeiterliste.get(i);
+//			if(mitarbeiterliste.contains(mail)){
+			if (ma.getEmail().equals(mail) && ma.getPasswort().equals(passwort)){
+				ma.setLogin(true);
+				return ma;
 			}
-			
-			
 		}
+		return null; 	// TODO: besser LoginFailedException
 	}
 	
 //	Methode, um sich als Mitarbeiter auszuloggen
 	public void ausloggen(Mitarbeiter mitarbeiter){
 		mitarbeiter.setLogin(false);
-		
 	}
 
 //	Methoden, um sich als Mitarbeiter zu registrieren
-	public List<Mitarbeiter> registrieren(String vorname, String nachname, String mail, String passwort){
-		Mitarbeiter Frank = new Mitarbeiter( 1, "Frank", "Steinmeyer", "frank.steinmeyer@fake.de", "Frank", true);
-		mitarbeiterliste.add(0, Frank);
-		
+	public boolean registrieren(String vorname, String nachname, String mail, String passwort){
 		int id = mitarbeiterliste.size() + 1;
-		mitarbeiterliste.add(new Mitarbeiter(id, vorname, nachname, mail, passwort, true));		
-		return mitarbeiterliste;
-	}
-	
+		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort);
+		
+		if (!mitarbeiterliste.contains(ma)) {
+			mitarbeiterliste.add(ma);		
+			return true;
+		}
 
-	
-	
+		return false; 	// TODO: besser UserAlreadyExistsException
+	}	
 }

@@ -7,20 +7,21 @@ import java.util.List;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Rechnung;
+import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
 
 public class ShoppingServices {
 
-	private ArtikelVerwaltung av;
+	private ArtikelVerwaltung av = null;
 	private Rechnung rechnung;
 //	
 	public void artikelInWarenkorb(Kunde kunde, Artikel artikel, int anz){
 		
 		if(artikel.getBestand()>=anz){
 			artikel.setBestand(artikel.getBestand()-anz);
-			WarenkorbEintrag eintrag = null;
-			eintrag.setArtikel(artikel);
-			eintrag.setStueckzahl(anz);
+			WarenkorbEintrag eintrag = new WarenkorbEintrag(artikel, anz);
+//			eintrag.setArtikel(artikel);
+//			eintrag.setStueckzahl(anz);
 			kunde.getCart().addEintrag(eintrag);
 			
 		}else{
@@ -73,6 +74,13 @@ public class ShoppingServices {
 		int stueck;
 		int bestand;
 		int id;
+		
+		Warenkorb cart = kunde.getCart();
+		List<WarenkorbEintrag> eintraege = cart.getEintraege();
+		for (WarenkorbEintrag eintrag: eintraege) {
+			// eintrag auslesen
+		}
+		
 		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
 			stueck = kunde.getCart().getEintraege().get(i).getStueckzahl();
 			id = kunde.getCart().getEintraege().get(i).getArtikel().getNummer();
