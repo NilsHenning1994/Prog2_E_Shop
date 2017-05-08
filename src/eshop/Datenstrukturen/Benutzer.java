@@ -6,13 +6,16 @@ public abstract class Benutzer {
 	private  String vorname;
 	private String nachname;
 	private String email;
+	private String passwort;
+	private boolean login = false;
 	
-	public Benutzer(int id, String vorname, String nachname, String email) {
+	public Benutzer(int id, String vorname, String nachname, String email, String passwort) {
 		super();
 		this.id = id;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
+		this.passwort = passwort;
 	}
 
 	public String getVorname() {
@@ -44,6 +47,22 @@ public abstract class Benutzer {
 		return id;
 	}
 	
+	public String getPasswort() {
+		return passwort;
+	}
+
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
+	}
+	
+	public boolean isLogin() {
+		return login;
+	}
+
+	public void setLogin(boolean login) {
+		this.login = login;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Benutzer) {

@@ -129,9 +129,9 @@ public class ArtikelVerwaltung {
 	}
 	
 //	Methode, um den Bestand eines Artikels zu erhöhen.
-	public Artikel bestandErhoehen(Mitarbeiter mitarbeiter, Artikel artikel, int anz){
+	public boolean bestandErhoehen(Mitarbeiter mitarbeiter, Artikel artikel, int anz){
 		artikel.setBestand(artikel.getBestand()+anz);
-		return artikel;
+		return true;
 	}
 
 

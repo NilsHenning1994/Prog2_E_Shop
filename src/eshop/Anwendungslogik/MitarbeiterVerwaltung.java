@@ -14,16 +14,7 @@ public class MitarbeiterVerwaltung {
 //		existierender Artikel erhöhen.
 	
 	
-//	private Mitarbeiter mitarbeiter;
 	private List<Mitarbeiter> mitarbeiterliste = new ArrayList<Mitarbeiter>();
-//	private ArtikelVerwaltung av;
-//	private Shop shop;
-	
-
-//public MitarbeiterVerwaltung() {
-//		super();
-//	}
-
 	
 	
 //	Methode, um sich als Mitarbeiter einzuloggen
@@ -47,13 +38,12 @@ public class MitarbeiterVerwaltung {
 //	Methoden, um sich als Mitarbeiter zu registrieren
 	public boolean registrieren(String vorname, String nachname, String mail, String passwort){
 		int id = mitarbeiterliste.size() + 1;
-		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort);
+		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort, false);
 		
 		if (!mitarbeiterliste.contains(ma)) {
 			mitarbeiterliste.add(ma);		
 			return true;
 		}
-
 		return false; 	// TODO: besser UserAlreadyExistsException
 	}	
 }

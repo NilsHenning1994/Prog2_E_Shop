@@ -52,7 +52,7 @@ public class CUI {
 					System.out.println("Einloggen   	-> E");
 					System.out.println("Abbruch			-> A");
 					input = br.readLine();
-					if(input.equals("R")){ // Methode zum Registrieren von Mitarbeitern einfuegen
+					if(input.equals("R")){ // Methode zum Registrieren von Mitarbeitern
 
 						boolean success = false;
 						do {
@@ -79,24 +79,23 @@ public class CUI {
 							}
 						} while (!success);
 						System.out.println("Erfolgreich registriert");
+					}
+					if(input.equals("E")){ // Methode zum Einloggen von Mitarbeitern
+						System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
+						System.out.println("Email Adresse:");
+						input = br.readLine();					
+						String mail = input;
 
+						System.out.println("Passwort:");
+						input = br.readLine();					
+						String passwort = input;
+						eingeloggterBenutzer = shop.mitarbeiterEinloggen(mail, passwort);
+						
 						System.out.println("Bestand von Artikel ändern  	-> BA");
 						System.out.println("Neuen Artikel anlegen  			-> AA");
 						if(input.equals("BA")){
-
-							//							System.out.println("Mitarbeiter:");
-							//							input = br.readLine();					
-							//							Mitarbeiter mit = new Mitarbeiter(input);
-							//							
-							//							System.out.println("Mail:");
-							//							input = br.readLine();					
-							//							String mail = input;
-							//							
-							//							System.out.println("Passwort:");
-							//							input = br.readLine();					
-							//							String passwort = input;
-							//							
-							//							shop.mitBestandErhoehen(mitarbeiter, artikel, anz);
+							
+						
 						}
 						if(input.equals("AA")){
 							//	next operation
