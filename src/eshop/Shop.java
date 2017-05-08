@@ -5,6 +5,7 @@ import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
@@ -36,10 +37,9 @@ public class Shop {
 		return null;
 	}
 
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, Artikel artikel){
-		av.getArtikelListe().add(artikel);
-	}
 
+	
+	
 	//	Mitarbeiter Methoden ----->
 
 	// Mitarbeiter Registrieren 
@@ -53,7 +53,7 @@ public class Shop {
 	}
 
 	// Mitarbeiter ausloggen
-	public void mitarbeiterAusloggen(Mitarbeiter mitarbeiter){
+	public void mitarbeiterAusloggen(Benutzer mitarbeiter){
 		mv.ausloggen(mitarbeiter);
 	}
 
@@ -77,8 +77,8 @@ public class Shop {
 	}
 
 	// Kunde ausloggen
-	public void kundeAusloggen(Kunde kunde){
-		kv.ausloggen(kunde);
+	public void kundeAusloggen(Benutzer user){
+		kv.ausloggen(user);
 	}
 
 	//	Artikel Methoden ---->
@@ -89,8 +89,28 @@ public class Shop {
 		return ar;
 	}
 
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, int preis, int bestand){
-		
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
+		av.artikelAnlegen(mitarbeiter, bez, preis, bestand);
 	}
 
+
+	//	---------- test -----------
+
+	public void printArtikelListe(){
+		for(int i = 0; i< av.getArtikelListe().size();i++){
+			System.out.println(av.getArtikelListe().get(i).getNummer());
+		}
+	}
+
+	public void printMitarbeiterListe(){
+		for(int i = 0; i< mv.getMitarbeiterliste().size();i++){
+			System.out.println(mv.getMitarbeiterliste().get(i).getId());
+		}
+	}
+
+	public void printKundenListe(){
+		for(int i = 0; i< kv.getKundenliste().size();i++){
+			System.out.println(kv.getKundenliste().get(i).getId());
+		}
+	}
 }

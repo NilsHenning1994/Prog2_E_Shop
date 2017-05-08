@@ -30,9 +30,9 @@ public class MitarbeiterVerwaltung {
 		return null; 	// TODO: besser LoginFailedException
 	}
 	
-//	Methode, um sich als Mitarbeiter auszuloggen
-	public void ausloggen(Mitarbeiter mitarbeiter){
-		mitarbeiter.setLogin(false);
+//	Methode, um sich als Benutzer auszuloggen
+	public void ausloggen(Benutzer benutzer){
+		benutzer.setLogin(false);
 	}
 
 //	Methoden, um sich als Mitarbeiter zu registrieren
@@ -45,5 +45,15 @@ public class MitarbeiterVerwaltung {
 			return true;
 		}
 		return false; 	// TODO: besser UserAlreadyExistsException
+	}
+
+	public List<Mitarbeiter> getMitarbeiterliste() {
+		return mitarbeiterliste;
+	}
+
+	public void setMitarbeiterliste(List<Mitarbeiter> mitarbeiterliste) {
+		this.mitarbeiterliste = mitarbeiterliste;
 	}	
+	
+	
 }

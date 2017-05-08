@@ -18,20 +18,20 @@ import java.util.Vector;
 public class ArtikelVerwaltung {
 
 
-//	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
-//	private Shop shop;
-	
+	//	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
+	//	private Shop shop;
+
 
 
 
 	private Vector<Artikel> artikelListe = new Vector<Artikel>();
-	
+
 
 	//       private Map<Artikel, Integer> bestandsListe = null;
 
 
 
-	
+
 
 	/**
 	 * Methode zum Schreiben eines Artikels in eine Liste.
@@ -39,9 +39,9 @@ public class ArtikelVerwaltung {
 	 */
 	public void schreibeArtikel(Artikel artikel)  {
 
-		
+
 		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
-		
+
 		Iterator<Artikel> it = artikelListe.iterator();
 		while (it.hasNext()) {
 			einArtikel = it.next();
@@ -59,19 +59,7 @@ public class ArtikelVerwaltung {
 		this.artikelListe = artikelListe;
 	}
 
-	/**
-	 * Methode, die ein Artikel an das Ende der Artikelliste einfuegt.
-	 * 
-	 * @param einArtikel das einzufuegende Artikel
-	 */
 
-	public void artikelAnlegen(Artikel einArtikel) {
-		if (artikelListe.contains(einArtikel)) {
-			// Artikel fehlermeldung
-
-		} else artikelListe.add(einArtikel); 
-
-	}
 
 	/**
 	 * Methode zum loeschen eines Artikel aus dem Lager. 
@@ -117,22 +105,33 @@ public class ArtikelVerwaltung {
 		System.out.println(artikelListe);
 		return artikelListe;
 	}
-	
-	
-//	Methode, um über die Shopklasse neue Artikel anzulegen.
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int nummer, int preis, int bestand){
-		Artikel artikel = new Artikel(bez, nummer, preis, bestand);
+
+
+	//	Methode, um über die Shopklasse neue Artikel anzulegen.
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
 		
-		// contains
-		
+		for(int i = 0; i<artikelListe.size(); i++){
+			if(artikelListe.get(i).getBez().equals(bez)){
+				System.out.println("Dieser Artikel existiert bereits!");
+			}
+		}
+		int id = artikelListe.size() + 1;
+		Artikel artikel = new Artikel(bez, id, preis, bestand);
 		artikelListe.add(artikel);
+		System.out.println("Artikel wurde erfolgreich hinzugefügt!");
+		
 	}
-	
-//	Methode, um den Bestand eines Artikels zu erhöhen.
+	// contains
+
+
+
+
+	//	Methode, um den Bestand eines Artikels zu erhöhen.
 	public boolean bestandErhoehen(Mitarbeiter mitarbeiter, Artikel artikel, int anz){
 		artikel.setBestand(artikel.getBestand()+anz);
 		return true;
 	}
+
 
 
 }

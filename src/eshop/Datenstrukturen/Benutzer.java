@@ -7,15 +7,16 @@ public abstract class Benutzer {
 	private String nachname;
 	private String email;
 	private String passwort;
-	private boolean login = false;
+	private boolean login;
 	
-	public Benutzer(int id, String vorname, String nachname, String email, String passwort) {
+	public Benutzer(int id, String vorname, String nachname, String email, String passwort, boolean login) {
 		super();
 		this.id = id;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
 		this.passwort = passwort;
+		this.login = login;
 	}
 
 	public String getVorname() {

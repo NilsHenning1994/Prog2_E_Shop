@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eshop.Datenstrukturen.Adresse;
+import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 
 public class KundenVerwaltung {
@@ -22,7 +23,7 @@ public class KundenVerwaltung {
 	}
 
 	
-	public void ausloggen(Kunde kunde){
+	public void ausloggen(Benutzer kunde){
 		kunde.setLogin(false);
 	}
 	
@@ -38,5 +39,14 @@ public class KundenVerwaltung {
 		}
 		return false;	// TODO: besser UserAlreadyExistsException
 	}
-	
+
+
+	public List<Kunde> getKundenliste() {
+		return kundenliste;
+	}
+
+
+	public void setKundenliste(List<Kunde> kundenliste) {
+		this.kundenliste = kundenliste;
+	}
 }
