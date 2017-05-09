@@ -51,14 +51,19 @@ public class CUI {
 			try {
 				do{
 					String input = br.readLine();
+
+					//					---- Mitarbeiter ----
+
 					if(input.equals("M")){
 						System.out.println("Mitarbeiter");
 						System.out.println("Registrieren   	-> R");
 						System.out.println("Einloggen   	-> E");
 						System.out.println("Abbruch			-> A");
 						input = br.readLine();
-						if(input.equals("R")){ // Methode zum Registrieren von Mitarbeitern
+						
+						//						---- Mitarbeiter Registrieren ---
 
+						if(input.equals("R")){
 							boolean success = false;
 							do {
 								shop.printMitarbeiterListe();
@@ -89,6 +94,8 @@ public class CUI {
 							shop.printMitarbeiterListe();
 						}
 
+						//						---- Mitarbeiter Einloggen ----
+
 						if(input.equals("E")){ // Methode zum Einloggen von Mitarbeitern
 							System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
 							System.out.println("Email Adresse:");
@@ -100,15 +107,46 @@ public class CUI {
 							String passwort = input;
 							eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
 
-							if(eingeloggterMitarbeiter != null){
+							do{
 								System.out.println("Bestand von Artikel ändern  	-> BA");
-								System.out.println("Neuen Artikel anlegen  			-> AA");
-								System.out.println("Ausloggen			  			-> Logout");
+								System.out.println("Neuen Artikel anlegen  		-> AA");
+								System.out.println("Ereignisliste anzeigen 		-> EA");
+								System.out.println("Ausloggen			  -> Logout");
+												
+								input = br.readLine();
+								
+								//								---- Ereignisliste Anzeigen ----
+								if(input.equals("EA")){
+									shop.printEreignisListe();
+								}
+
+								//								---- Bestand von Artikel ändern ----
 								if(input.equals("BA")){
+									System.out.println("Von welchem Artikel den Bestand ändern?");
+									shop.printArtikelListe();
+									System.out.println("Wählen Sie den Artikel anhand der ID aus");
+									int inputt =  getInputInt();
+									int id = inputt;
+									Artikel ar;
+									if(!shop.artikelSuchenNachID(id).equals(null)){
+										ar = shop.artikelSuchenNachID(id);
+										System.out.println("Um wieviel wollen Sie den bestand des Artikels "+ ar.getBez() + " aendern?");
+										
+										inputt =  getInputInt();
+										int anz = inputt;
+										shop.bestandAendern(eingeloggterMitarbeiter, ar, anz);
+										System.out.println("Artikel wurde erfolgreich geändert!");
+										shop.printArtikelListe();
+									}else{
+										System.out.println("Artikelnummer existiert nicht"); // besser Exception
+									}
+
 
 
 								}
-//								------> kommt nicht bis hier her! <-------
+
+								//								---- Artikel Anlegen ---
+
 								if(input.equals("AA")){
 
 
@@ -125,12 +163,20 @@ public class CUI {
 									inputt = getInputInt();					
 									int bestand = inputt;
 									shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
+									shop.printArtikelListe();
 								}
+
+								//								---- Mitarbeiter Ausloggen ---
+
 								if (input.equals("Logout")){
 									shop.mitarbeiterAusloggen(eingeloggterMitarbeiter);
 								}
-							}while(eingeloggterMitarbeiter != null);
+							}while(eingeloggterMitarbeiter.isLogin() == true);
+
 						}
+
+						//						---- Abbrechen ---
+
 						if(input.equals("A")){
 							break;
 						}else{
@@ -138,12 +184,16 @@ public class CUI {
 						}
 					}
 
+					//					---- Kunde ----
+
 					if(input.equals("K")){
 						System.out.println("Kunde");	
 						System.out.println("Registrieren   	-> R");
 						System.out.println("Einloggen   	-> E");
 						System.out.println("Abbruch			-> A");
 						input = br.readLine();
+
+						//						---- Kunde Registrieren ----
 
 						if(input.equals("R")){ // Methode zum Registrieren von Kunden
 
@@ -192,6 +242,8 @@ public class CUI {
 							} while (!success);
 							System.out.println("Erfolgreich registriert");
 							shop.printKundenListe();
+
+							//							---- Als Kunde Einloggen ----
 						}
 						if(input.equals("E")){
 							System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
@@ -203,14 +255,73 @@ public class CUI {
 							input = br.readLine();					
 							String passwort = input;
 							eingeloggterKunde = shop.kundeEinloggen(mail, passwort); // Methode zum Einloggen von Kunden 
+
+
+							do{
+								System.out.println("Artikel in den Warenkorb legen  	-> AW");
+								System.out.println("Artikel kaufen  		-> AK");
+								System.out.println("Warenkorb leeren  		-> WL");
+								System.out.println("Warenkorb ändern  		-> WA");
+								System.out.println("Warenkorbinhalt kaufen 	-> WK");
+								System.out.println("Ausloggen			  -> Logout");
+								input = br.readLine();
+
+								//								---- Artikel in den Warenkorb legen ----
+
+								if(input.equals("AW")){
+
+
+								}
+
+								//								---- einzelnen Artikel kaufen ----
+
+								if(input.equals("AK")){
+
+								}
+
+								//								---- Warenkorb leeren ----
+
+								if(input.equals("WL")){
+
+									//										next operation
+								}
+
+								//								---- Warenkorb ändern (Artikel entfernen/ Anzahl von Artikeln ändern) ----
+
+								if(input.equals("WA")){
+
+									//										next operation
+								}
+
+								//								---- Warenkorbinhalt kaufen ----
+
+								if(input.equals("WK")){
+
+									//										next operation
+								}
+
+								//								---- Kunden ausloggen ----
+
+								if (input.equals("Logout")){
+									shop.kundeAusloggen(eingeloggterKunde);
+								}
+							}while(eingeloggterKunde.isLogin() == true);
+
 						}
+
+						//						---- Abbrechen ----
+
 						if(input.equals("A")){
 							break;
 						}else{
 							break;
 						}
+
+
 					}
 				}while(true);
+
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

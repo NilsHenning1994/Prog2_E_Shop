@@ -1,33 +1,29 @@
 package eshop.Datenstrukturen;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Ereignis {
 
 	
 	private Artikel artikel;
 	private int anz;
-	private Date einlagerung;
-	private Date auslagerung;
-	private Mitarbeiter mitarbeiter;
-	private Kunde kunde;
-	
-/*	
 	private Date wann;
 	private Benutzer user;
-	private ??? aktion;	// -> enum!?
-*/	
+	private enum aktion{ EINLAGERN, AUSLAGERN, KAUF }
+
+
 	
 	
-	public Ereignis(Artikel artikel, int anz, Date einlagerung, Date auslagerung, Mitarbeiter mitarbeiter,
-			Kunde kunde) {
+	
+	public Ereignis( Date wann, Artikel artikel, int anz, Benutzer user) {
 		super();
+		this.wann = wann;
 		this.artikel = artikel;
 		this.anz = anz;
-		this.einlagerung = einlagerung;
-		this.auslagerung = auslagerung;
-		this.mitarbeiter = mitarbeiter;
-		this.kunde = kunde;
+		this.user = user;
+		
 		
 		
 	}
@@ -49,32 +45,48 @@ public class Ereignis {
 
 
 
-	public Date getEinlagerung() {
-		return einlagerung;
+	public Artikel getArtikel() {
+		return artikel;
 	}
 
 
 
 
-	public void setEinlagerung(Date einlagerung) {
-		this.einlagerung = einlagerung;
+	public void setArtikel(Artikel artikel) {
+		this.artikel = artikel;
 	}
 
 
 
 
-	public Date getAuslagerung() {
-		return auslagerung;
+	public Date getWann() {
+		return wann;
 	}
 
 
 
 
-	public void setAuslagerung(Date auslagerung) {
-		this.auslagerung = auslagerung;
+	public void setWann(Date wann) {
+		this.wann = wann;
 	}
-	
-	
+
+
+
+
+	public Benutzer getUser() {
+		return user;
+	}
+
+
+
+
+	public void setUser(Benutzer user) {
+		this.user = user;
+	}
+
+
+
+
 	
 	
 }

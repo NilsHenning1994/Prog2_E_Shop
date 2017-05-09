@@ -2,11 +2,16 @@ package eshop.Anwendungslogik;
 
 import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Mitarbeiter;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -18,38 +23,32 @@ import java.util.Vector;
 public class ArtikelVerwaltung {
 
 
-	//	private Artikel kartoffel = new Artikel("Tuerkische Kartoffel",4 , 1000, 35);
-	//	private Shop shop;
-
-
 
 
 	private Vector<Artikel> artikelListe = new Vector<Artikel>();
-
-
 	//       private Map<Artikel, Integer> bestandsListe = null;
+	private List<Ereignis> ereignisListe = new ArrayList<Ereignis>();
 
 
 
 
-
-	/**
-	 * Methode zum Schreiben eines Artikels in eine Liste.
-	 * 
-	 */
-	public void schreibeArtikel(Artikel artikel)  {
-
-
-		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
-
-		Iterator<Artikel> it = artikelListe.iterator();
-		while (it.hasNext()) {
-			einArtikel = it.next();
-
-		}
-
-
-	}
+//	/**
+//	 * Methode zum Schreiben eines Artikels in eine Liste.
+//	 * 
+//	 */
+//	public void schreibeArtikel(Artikel artikel)  {
+//
+//
+//		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
+//
+//		Iterator<Artikel> it = artikelListe.iterator();
+//		while (it.hasNext()) {
+//			einArtikel = it.next();
+//
+//		}
+//
+//
+//	}
 
 	public Vector<Artikel> getArtikelListe() {
 		return artikelListe;
@@ -95,6 +94,25 @@ public class ArtikelVerwaltung {
 		return suchErg;
 	}
 
+//	Methode, die einen Artikel aus der Artikelliste anhand einer genau uebereinstimmenden ID Nummer heraussucht.
+	
+	public Artikel artikelNachID(int id) {
+		Artikel suchErg = null;
+
+		// Set<Artikel> artikelListe = bestandsListe.keySet();
+
+		Iterator<Artikel> it = artikelListe.iterator();
+		while (it.hasNext()) {
+			Artikel einArtikel = it.next();
+			if (einArtikel.getNummer() == id)
+				suchErg = einArtikel;
+		}
+
+		return suchErg;
+	}
+	
+	
+	
 	/**
 	 * Methode, die alle Artikel zurueck gibt.
 	 * 
@@ -109,7 +127,7 @@ public class ArtikelVerwaltung {
 
 	//	Methode, um über die Shopklasse neue Artikel anzulegen.
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
-		
+
 		for(int i = 0; i<artikelListe.size(); i++){
 			if(artikelListe.get(i).getBez().equals(bez)){
 				System.out.println("Dieser Artikel existiert bereits!");
@@ -119,19 +137,24 @@ public class ArtikelVerwaltung {
 		Artikel artikel = new Artikel(bez, id, preis, bestand);
 		artikelListe.add(artikel);
 		System.out.println("Artikel wurde erfolgreich hinzugefügt!");
-		
-	}
-	// contains
 
+	}
 
 
 
 	//	Methode, um den Bestand eines Artikels zu erhöhen.
-	public boolean bestandErhoehen(Mitarbeiter mitarbeiter, Artikel artikel, int anz){
+	public void bestandErhoehen(Mitarbeiter ma, Artikel artikel, int anz){
+		artikel.getBestand();
+		if(artikel.getBestand()-anz < 0){
+			System.out.println("Es sind nicht ausreichend Artikel vorhanden!");
+			return; // besser Exception
+		}
 		artikel.setBestand(artikel.getBestand()+anz);
-		return true;
 	}
-
-
+	
+	public Artikel createArtikel(String bez, int nummer, int preis, int bestand){
+		Artikel ar = new Artikel(bez, nummer, preis, bestand);
+		return ar;
+	}
 
 }
