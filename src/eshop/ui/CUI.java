@@ -117,11 +117,12 @@ public class CUI {
 								input = br.readLine();
 								
 								//								---- Ereignisliste Anzeigen ----
+								
 								if(input.equals("EA")){
-									//shop.printEreignisListe();
-									throw new TestException();
-								} 
-
+									shop.printEreignisListe();
+								}
+								
+								
 								//								---- Bestand von Artikel aendern ----
 								if(input.equals("BA")){
 									System.out.println("Von welchem Artikel den Bestand aendern?");
@@ -328,6 +329,7 @@ public class CUI {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}while(true);
 	}
 
@@ -339,6 +341,8 @@ public class CUI {
 
 
 	}
+	
+	
 
 	public static void main(String[] args) throws TestException {
 
