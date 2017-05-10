@@ -27,7 +27,6 @@ public class ArtikelVerwaltung {
 
 	private Vector<Artikel> artikelListe = new Vector<Artikel>();
 	//       private Map<Artikel, Integer> bestandsListe = null;
-	private List<Ereignis> ereignisListe = new ArrayList<Ereignis>();
 
 
 
@@ -72,8 +71,8 @@ public class ArtikelVerwaltung {
 
 
 	/**
-	 * Methode, die anhand eines Titels nach Artikel sucht. Es wird einen Vector von Artikel
-	 * zurueckgegeben, die alle Artikel mit exakt Â¸bereinstimmendem Titel enthaelt.
+	 * Methode, die anhand eines Titels nach Artikel sucht. Es wird ein Vector von Artikel
+	 * zurueckgegeben, die alle Artikel mit exakt uebereinstimmendem Titel enthaelt.
 	 * 
 	 * @param bez Titel des gesuchten Artikels
 	 * @return Vector der Artikel mit gesuchtem Titel (evtl. leer)
@@ -125,7 +124,7 @@ public class ArtikelVerwaltung {
 	}
 
 
-	//	Methode, um über die Shopklasse neue Artikel anzulegen.
+	//	Methode, um ï¿½ber die Shopklasse neue Artikel anzulegen.
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
 
 		for(int i = 0; i<artikelListe.size(); i++){
@@ -136,13 +135,13 @@ public class ArtikelVerwaltung {
 		int id = artikelListe.size() + 1;
 		Artikel artikel = new Artikel(bez, id, preis, bestand);
 		artikelListe.add(artikel);
-		System.out.println("Artikel wurde erfolgreich hinzugefügt!");
+		System.out.println("Artikel wurde erfolgreich hinzugefï¿½gt!");
 
 	}
 
 
 
-	//	Methode, um den Bestand eines Artikels zu erhöhen.
+	//	Methode, um den Bestand eines Artikels zu erhï¿½hen.
 	public void bestandErhoehen(Mitarbeiter ma, Artikel artikel, int anz){
 		artikel.getBestand();
 		if(artikel.getBestand()-anz < 0){
