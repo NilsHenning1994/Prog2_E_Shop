@@ -7,6 +7,7 @@ import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Exceptions.BenutzerExistiertBereitsException;
 
 public class MitarbeiterVerwaltung {
 	
@@ -36,15 +37,17 @@ public class MitarbeiterVerwaltung {
 	}
 
 //	Methoden, um sich als Mitarbeiter zu registrieren
-	public boolean registrieren(String vorname, String nachname, String mail, String passwort){
+	public boolean registrieren(String vorname, String nachname, String mail, String passwort) throws BenutzerExistiertBereitsException{
 		int id = mitarbeiterliste.size() + 1;
 		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort, false);
 		
 		if (!mitarbeiterliste.contains(ma)) {
 			mitarbeiterliste.add(ma);		
 			return true;
+		}else{
+		throw new BenutzerExistiertBereitsException(ma);
+//		return false; 	// TODO: besser UserAlreadyExistsException
 		}
-		return false; 	// TODO: besser UserAlreadyExistsException
 	}
 
 	public List<Mitarbeiter> getMitarbeiterliste() {

@@ -13,6 +13,8 @@ import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.TestException;
+import persistence.ObjectPersistenceManager;
+import eshop.Exceptions.BenutzerExistiertBereitsException;
 
 
 public class CUI {
@@ -22,6 +24,7 @@ public class CUI {
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
 	private int xnr = -1;
+	
 
 
 
@@ -43,14 +46,38 @@ public class CUI {
 		return Integer.parseInt(getInputLine());
 	}
 
+	
+
+	
+		
+		
 
 	// Methode zum Starten des EShops
-	public void run(Vector<Artikel> artikelListe) throws TestException{
+	public void run(Vector<Artikel> artikelListe) throws TestException, Exception{
+		
+		
 
 		do{
 
 			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
+//				String input = br.readLine();
+//				int y = Integer.parseInt(input);
+//				if(y == 2){
+//					System.out.println("HALLO");
+//					ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
+//					//shop = ladeManager.ladeShop("test");
+//					xnr=shop.getXnr();
+//
+//
+//
+//
+//				}else{
+//
+//
+//					String aktion = "";
+//				}
+				
 				do{
 					String input = br.readLine();
 
@@ -169,6 +196,7 @@ public class CUI {
 									shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
 									shop.printArtikelListe();
 								}
+								
 
 								//								---- Mitarbeiter Ausloggen ---
 
@@ -345,7 +373,7 @@ public class CUI {
 	
 	
 
-	public static void main(String[] args) throws TestException {
+	public static void main(String[] args) throws Exception {
 
 		CUI cui = new CUI();
 		cui.run(null);

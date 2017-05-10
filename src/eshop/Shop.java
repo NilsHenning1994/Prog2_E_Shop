@@ -1,5 +1,6 @@
 package eshop;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import eshop.Anwendungslogik.ArtikelVerwaltung;
@@ -12,13 +13,15 @@ import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
+import eshop.Exceptions.BenutzerExistiertBereitsException;
 
-public class Shop {
+public class Shop implements Serializable, ShopInterface {
 
 	private ArtikelVerwaltung av;
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	private EreignisVerwaltung ev;
+	private int xnr = -1;
 
 	Artikel testArtikel = new Artikel("Apfel",1,2,10);
 	Artikel testArtikel1 = new Artikel("Birne",1,3,11);
@@ -48,7 +51,7 @@ public class Shop {
 	//	Mitarbeiter Methoden ----->
 
 	// Mitarbeiter Registrieren 
-	public boolean mitarbeiterRegi(String vorname,String nachname,String mail,String passwort){
+	public boolean mitarbeiterRegi(String vorname,String nachname,String mail,String passwort) throws BenutzerExistiertBereitsException{
 		return mv.registrieren(vorname, nachname, mail, passwort);
 	}
 
@@ -108,6 +111,15 @@ public class Shop {
 		return av.artikelNachID(id);
 	}
 
+	
+	
+	public int getXnr() {
+		return xnr;
+	}
+
+	public void setXnr(int xnr) {
+		this.xnr = xnr;
+	}
 
 
 
