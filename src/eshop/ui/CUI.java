@@ -12,6 +12,7 @@ import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Exceptions.TestException;
 
 
 public class CUI {
@@ -43,7 +44,7 @@ public class CUI {
 
 
 	// Methode zum Starten des EShops
-	public void run(Vector<Artikel> artikelListe){
+	public void run(Vector<Artikel> artikelListe) throws TestException{
 
 		do{
 
@@ -108,7 +109,7 @@ public class CUI {
 							eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
 
 							do{
-								System.out.println("Bestand von Artikel ändern  	-> BA");
+								System.out.println("Bestand von Artikel aendern  	-> BA");
 								System.out.println("Neuen Artikel anlegen  		-> AA");
 								System.out.println("Ereignisliste anzeigen 		-> EA");
 								System.out.println("Ausloggen			  -> Logout");
@@ -117,14 +118,15 @@ public class CUI {
 								
 								//								---- Ereignisliste Anzeigen ----
 								if(input.equals("EA")){
-									shop.printEreignisListe();
-								}
+									//shop.printEreignisListe();
+									throw new TestException();
+								} 
 
-								//								---- Bestand von Artikel ändern ----
+								//								---- Bestand von Artikel aendern ----
 								if(input.equals("BA")){
-									System.out.println("Von welchem Artikel den Bestand ändern?");
+									System.out.println("Von welchem Artikel den Bestand aendern?");
 									shop.printArtikelListe();
-									System.out.println("Wählen Sie den Artikel anhand der ID aus");
+									System.out.println("Waehlen Sie den Artikel anhand der ID aus");
 									int inputt =  getInputInt();
 									int id = inputt;
 									Artikel ar;
@@ -135,10 +137,10 @@ public class CUI {
 										inputt =  getInputInt();
 										int anz = inputt;
 										shop.bestandAendern(eingeloggterMitarbeiter, ar, anz);
-										System.out.println("Artikel wurde erfolgreich geändert!");
+										System.out.println("Artikel wurde erfolgreich geaendert!");
 										shop.printArtikelListe();
 									}else{
-										System.out.println("Artikelnummer existiert nicht"); // besser Exception
+										//System.out.println("Artikelnummer existiert nicht"); // besser Exception
 									}
 
 
@@ -214,7 +216,7 @@ public class CUI {
 
 
 								System.out.println("Adresse");
-								System.out.println("Straße:");
+								System.out.println("StraÃŸe:");
 								input = br.readLine();					
 								String strasse = input;
 
@@ -261,7 +263,7 @@ public class CUI {
 								System.out.println("Artikel in den Warenkorb legen  	-> AW");
 								System.out.println("Artikel kaufen  		-> AK");
 								System.out.println("Warenkorb leeren  		-> WL");
-								System.out.println("Warenkorb ändern  		-> WA");
+								System.out.println("Warenkorb aendern  		-> WA");
 								System.out.println("Warenkorbinhalt kaufen 	-> WK");
 								System.out.println("Ausloggen			  -> Logout");
 								input = br.readLine();
@@ -286,7 +288,7 @@ public class CUI {
 									//										next operation
 								}
 
-								//								---- Warenkorb ändern (Artikel entfernen/ Anzahl von Artikeln ändern) ----
+								//								---- Warenkorb aendern (Artikel entfernen/ Anzahl von Artikeln aendern) ----
 
 								if(input.equals("WA")){
 
@@ -338,7 +340,7 @@ public class CUI {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TestException {
 
 		CUI cui = new CUI();
 		cui.run(null);
