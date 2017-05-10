@@ -13,6 +13,7 @@ import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.TestException;
+import persistence.ObjectPersistenceManager;
 
 
 public class CUI {
@@ -61,7 +62,7 @@ public class CUI {
 						System.out.println("Einloggen   	-> E");
 						System.out.println("Abbruch			-> A");
 						input = br.readLine();
-						
+
 						//						---- Mitarbeiter Registrieren ---
 
 						if(input.equals("R")){
@@ -113,9 +114,9 @@ public class CUI {
 								System.out.println("Neuen Artikel anlegen  		-> AA");
 								System.out.println("Ereignisliste anzeigen 		-> EA");
 								System.out.println("Ausloggen			  -> Logout");
-												
+
 								input = br.readLine();
-								
+
 								//								---- Ereignisliste Anzeigen ----
 								if(input.equals("EA")){
 									//shop.printEreignisListe();
@@ -133,7 +134,7 @@ public class CUI {
 									if(!shop.artikelSuchenNachID(id).equals(null)){
 										ar = shop.artikelSuchenNachID(id);
 										System.out.println("Um wieviel wollen Sie den bestand des Artikels "+ ar.getBez() + " aendern?");
-										
+
 										inputt =  getInputInt();
 										int anz = inputt;
 										shop.bestandAendern(eingeloggterMitarbeiter, ar, anz);
@@ -168,6 +169,29 @@ public class CUI {
 									shop.printArtikelListe();
 								}
 
+								//								!------- Hatices Code -------!
+
+								if(input.equals("P")){
+
+									System.out.println("1 Neues Spiel");
+									System.out.println("2 Spiel laden");
+									String x = reader.readLine();
+									int y = Integer.parseInt(x);
+									if(y == 2){
+										System.out.println("HALLO");
+										ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
+										//shop = ladeManager.ladeShop("test");
+										xnr=shop.getXnr();
+
+
+
+
+									}else{
+
+
+										String aktion = "";
+									}
+								}
 								//								---- Mitarbeiter Ausloggen ---
 
 								if (input.equals("Logout")){
@@ -175,175 +199,176 @@ public class CUI {
 								}
 							}while(eingeloggterMitarbeiter.isLogin() == true);
 
-						}
 
-						//						---- Abbrechen ---
 
-						if(input.equals("A")){
-							break;
-						}else{
-							break;
+							//						---- Abbrechen ---
+
+							if(input.equals("A")){
+								break;
+							}else{
+								break;
+							}
 						}
 					}
 
-					//					---- Kunde ----
+						//					---- Kunde ----
 
-					if(input.equals("K")){
-						System.out.println("Kunde");	
-						System.out.println("Registrieren   	-> R");
-						System.out.println("Einloggen   	-> E");
-						System.out.println("Abbruch			-> A");
-						input = br.readLine();
+						if(input.equals("K")){
+							System.out.println("Kunde");	
+							System.out.println("Registrieren   	-> R");
+							System.out.println("Einloggen   	-> E");
+							System.out.println("Abbruch			-> A");
+							input = br.readLine();
 
-						//						---- Kunde Registrieren ----
+							//						---- Kunde Registrieren ----
 
-						if(input.equals("R")){ // Methode zum Registrieren von Kunden
+							if(input.equals("R")){ // Methode zum Registrieren von Kunden
 
-							boolean success = false;
-							do {
+								boolean success = false;
+								do {
+									System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
+									System.out.println("Vorname:");
+									input = br.readLine();					
+									String vorname = input;
+
+									System.out.println("Nachname:");
+									input = br.readLine();					
+									String nachname = input;
+
+									System.out.println("Mail:");
+									input = br.readLine();					
+									String mail = input;
+
+
+									System.out.println("Adresse");
+									System.out.println("Straße:");
+									input = br.readLine();					
+									String strasse = input;
+
+									System.out.println("Hausnummer:");
+									input = br.readLine();					
+									String hnr = input;
+
+									System.out.println("PLZ:");
+									input = br.readLine();					
+									String plz = input;
+
+									System.out.println("Stadt:");
+									input = br.readLine();					
+									String stadt = input;
+									Adresse adresse = new Adresse(strasse, hnr, plz, stadt);
+
+									System.out.println("Passwort:");
+									input = br.readLine();					
+									String passwort = input;
+
+									success = shop.kundeRegi(vorname, nachname, mail, passwort, adresse);
+									if (!success) {
+										System.out.println("Bittet noch mal!");
+									}
+								} while (!success);
+								System.out.println("Erfolgreich registriert");
+								shop.printKundenListe();
+
+								//							---- Als Kunde Einloggen ----
+							}
+							if(input.equals("E")){
 								System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
-								System.out.println("Vorname:");
-								input = br.readLine();					
-								String vorname = input;
-
-								System.out.println("Nachname:");
-								input = br.readLine();					
-								String nachname = input;
-
-								System.out.println("Mail:");
+								System.out.println("Email Adresse:");
 								input = br.readLine();					
 								String mail = input;
-
-
-								System.out.println("Adresse");
-								System.out.println("Straße:");
-								input = br.readLine();					
-								String strasse = input;
-
-								System.out.println("Hausnummer:");
-								input = br.readLine();					
-								String hnr = input;
-
-								System.out.println("PLZ:");
-								input = br.readLine();					
-								String plz = input;
-
-								System.out.println("Stadt:");
-								input = br.readLine();					
-								String stadt = input;
-								Adresse adresse = new Adresse(strasse, hnr, plz, stadt);
 
 								System.out.println("Passwort:");
 								input = br.readLine();					
 								String passwort = input;
-
-								success = shop.kundeRegi(vorname, nachname, mail, passwort, adresse);
-								if (!success) {
-									System.out.println("Bittet noch mal!");
-								}
-							} while (!success);
-							System.out.println("Erfolgreich registriert");
-							shop.printKundenListe();
-
-							//							---- Als Kunde Einloggen ----
-						}
-						if(input.equals("E")){
-							System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
-							System.out.println("Email Adresse:");
-							input = br.readLine();					
-							String mail = input;
-
-							System.out.println("Passwort:");
-							input = br.readLine();					
-							String passwort = input;
-							eingeloggterKunde = shop.kundeEinloggen(mail, passwort); // Methode zum Einloggen von Kunden 
+								eingeloggterKunde = shop.kundeEinloggen(mail, passwort); // Methode zum Einloggen von Kunden 
 
 
-							do{
-								System.out.println("Artikel in den Warenkorb legen  	-> AW");
-								System.out.println("Artikel kaufen  		-> AK");
-								System.out.println("Warenkorb leeren  		-> WL");
-								System.out.println("Warenkorb aendern  		-> WA");
-								System.out.println("Warenkorbinhalt kaufen 	-> WK");
-								System.out.println("Ausloggen			  -> Logout");
-								input = br.readLine();
+								do{
+									System.out.println("Artikel in den Warenkorb legen  	-> AW");
+									System.out.println("Artikel kaufen  		-> AK");
+									System.out.println("Warenkorb leeren  		-> WL");
+									System.out.println("Warenkorb aendern  		-> WA");
+									System.out.println("Warenkorbinhalt kaufen 	-> WK");
+									System.out.println("Ausloggen			  -> Logout");
+									input = br.readLine();
 
-								//								---- Artikel in den Warenkorb legen ----
+									//								---- Artikel in den Warenkorb legen ----
 
-								if(input.equals("AW")){
+									if(input.equals("AW")){
 
 
-								}
+									}
 
-								//								---- einzelnen Artikel kaufen ----
+									//								---- einzelnen Artikel kaufen ----
 
-								if(input.equals("AK")){
+									if(input.equals("AK")){
 
-								}
+									}
 
-								//								---- Warenkorb leeren ----
+									//								---- Warenkorb leeren ----
 
-								if(input.equals("WL")){
+									if(input.equals("WL")){
 
-									//										next operation
-								}
+										//										next operation
+									}
 
-								//								---- Warenkorb aendern (Artikel entfernen/ Anzahl von Artikeln aendern) ----
+									//								---- Warenkorb aendern (Artikel entfernen/ Anzahl von Artikeln aendern) ----
 
-								if(input.equals("WA")){
+									if(input.equals("WA")){
 
-									//										next operation
-								}
+										//										next operation
+									}
 
-								//								---- Warenkorbinhalt kaufen ----
+									//								---- Warenkorbinhalt kaufen ----
 
-								if(input.equals("WK")){
+									if(input.equals("WK")){
 
-									//										next operation
-								}
+										//										next operation
+									}
 
-								//								---- Kunden ausloggen ----
+									//								---- Kunden ausloggen ----
 
-								if (input.equals("Logout")){
-									shop.kundeAusloggen(eingeloggterKunde);
-								}
-							}while(eingeloggterKunde.isLogin() == true);
+									if (input.equals("Logout")){
+										shop.kundeAusloggen(eingeloggterKunde);
+									}
+								}while(eingeloggterKunde.isLogin() == true);
+
+							}
+
+							//						---- Abbrechen ----
+
+							if(input.equals("A")){
+								break;
+							}else{
+								break;
+							}
+
 
 						}
-
-						//						---- Abbrechen ----
-
-						if(input.equals("A")){
-							break;
-						}else{
-							break;
-						}
+					}while(true);
 
 
-					}
-				}while(true);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}while(true);
+		}
+
+		public CUI() {
+
+			super();
+			this.br =  new BufferedReader(new InputStreamReader(System.in));
+			this.shop = new Shop();
 
 
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}while(true);
-	}
+		}
 
-	public CUI() {
+		public static void main(String[] args) throws TestException {
 
-		super();
-		this.br =  new BufferedReader(new InputStreamReader(System.in));
-		this.shop = new Shop();
-
+			CUI cui = new CUI();
+			cui.run(null);
+		}
 
 	}
-
-	public static void main(String[] args) throws TestException {
-
-		CUI cui = new CUI();
-		cui.run(null);
-	}
-
-}

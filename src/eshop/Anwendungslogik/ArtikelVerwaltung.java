@@ -1,17 +1,9 @@
 package eshop.Anwendungslogik;
 
-import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Benutzer;
-import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Mitarbeiter;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Date;
+import persistence.PersistenceManager;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -28,6 +20,8 @@ public class ArtikelVerwaltung {
 	private Vector<Artikel> artikelListe = new Vector<Artikel>();
 	//       private Map<Artikel, Integer> bestandsListe = null;
 
+	// Persistenz-Schnittstelle, die fuer die Details des Dateizugriffs verantwortlich ist
+		private PersistenceManager pm = null; // = new FilePersistenceManager();
 
 
 
