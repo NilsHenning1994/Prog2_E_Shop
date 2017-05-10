@@ -11,7 +11,7 @@ public class TestException extends Exception {
      * @param name
      */
     public TestException() {
-        //super((char) 27 + "Wenn du das lesen kannst funktioniert die Exception" + (char) 27);
-        super("Wenn du das lesen kannst funktioniert die Exception");
+        //super((char) 27 + "Ein Fehler ist aufgetreten!" + (char) 27);
+        super("Ein Fehler ist aufgetreten!");
     }
 }

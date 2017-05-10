@@ -146,7 +146,7 @@ public class Shop {
 			ev.getEreignisListe().get(i).getWann()+" von dem Mitarbeiter "+ 
 			ev.getEreignisListe().get(i).getUser().getVorname()+ " "+ 
 			ev.getEreignisListe().get(i).getUser().getNachname() + " auf " + 
-			ev.getEreignisListe().get(i).getAnz() + " geändert.");
+			ev.getEreignisListe().get(i).getAnz() + " geaendert.");
 		}
 	}
 }
