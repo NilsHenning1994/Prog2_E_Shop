@@ -11,7 +11,6 @@ public class Ereignis {
 	private int anz;
 	private Date wann;
 	private Benutzer user;
-	private enum aktion{ EINLAGERN, AUSLAGERN, KAUF }
 
 
 	
