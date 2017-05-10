@@ -22,6 +22,7 @@ public class CUI {
 
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
+	private int xnr = -1;
 
 
 

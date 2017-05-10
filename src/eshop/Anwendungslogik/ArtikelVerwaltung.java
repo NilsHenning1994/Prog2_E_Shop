@@ -5,6 +5,8 @@ import eshop.Datenstrukturen.Mitarbeiter;
 import persistence.PersistenceManager;
 import java.util.Iterator;
 import java.util.Vector;
+import java.io.Serializable;
+
 
 
 
