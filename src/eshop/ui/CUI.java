@@ -134,6 +134,8 @@ public class CUI {
 							System.out.println("Passwort:");
 							input = br.readLine();					
 							String passwort = input;
+							
+							
 							eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
 
 							do{

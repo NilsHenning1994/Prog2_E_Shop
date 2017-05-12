@@ -20,8 +20,6 @@ public class ShoppingServices {
 		if(artikel.getBestand()>=anz){
 			artikel.setBestand(artikel.getBestand()-anz);
 			WarenkorbEintrag eintrag = new WarenkorbEintrag(artikel, anz);
-//			eintrag.setArtikel(artikel);
-//			eintrag.setStueckzahl(anz);
 			kunde.getCart().addEintrag(eintrag);
 			
 		}else{

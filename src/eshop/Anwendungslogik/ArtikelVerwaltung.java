@@ -151,5 +151,9 @@ public class ArtikelVerwaltung {
 		Artikel ar = new Artikel(bez, nummer, preis, bestand);
 		return ar;
 	}
+	
+	
+	
+	
 
 }

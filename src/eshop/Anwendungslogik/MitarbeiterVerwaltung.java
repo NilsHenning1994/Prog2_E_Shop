@@ -10,19 +10,19 @@ import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 
 public class MitarbeiterVerwaltung {
-	
-//	 	Mitarbeiter (mit Name und eindeutiger Nummer) können neue Artikel anlegen und den Bestand
-//		existierender Artikel erhöhen.
-	
-	
+
+	//	 	Mitarbeiter (mit Name und eindeutiger Nummer) können neue Artikel anlegen und den Bestand
+	//		existierender Artikel erhöhen.
+
+
 	private List<Mitarbeiter> mitarbeiterliste = new ArrayList<Mitarbeiter>();
-	
-	
-//	Methode, um sich als Mitarbeiter einzuloggen
+
+
+	//	Methode, um sich als Mitarbeiter einzuloggen
 	public Mitarbeiter einloggen(String mail, String passwort){
 		for(int i = 0; i< mitarbeiterliste.size(); i++){
 			Mitarbeiter ma = mitarbeiterliste.get(i);
-//			if(mitarbeiterliste.contains(mail)){
+			//			if(mitarbeiterliste.contains(mail)){
 			if (ma.getEmail().equals(mail) && ma.getPasswort().equals(passwort)){
 				ma.setLogin(true);
 				return ma;
@@ -30,23 +30,22 @@ public class MitarbeiterVerwaltung {
 		}
 		return null; 	// TODO: besser LoginFailedException
 	}
-	
-//	Methode, um sich als Benutzer auszuloggen
+
+	//	Methode, um sich als Benutzer auszuloggen
 	public void ausloggen(Benutzer benutzer){
 		benutzer.setLogin(false);
 	}
 
-//	Methoden, um sich als Mitarbeiter zu registrieren
+	//	Methoden, um sich als Mitarbeiter zu registrieren
 	public boolean registrieren(String vorname, String nachname, String mail, String passwort) throws BenutzerExistiertBereitsException{
 		int id = mitarbeiterliste.size() + 1;
 		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort, false);
-		
+
 		if (!mitarbeiterliste.contains(ma)) {
 			mitarbeiterliste.add(ma);		
 			return true;
 		}else{
-		throw new BenutzerExistiertBereitsException(ma);
-//		return false; 	// TODO: besser UserAlreadyExistsException
+			throw new BenutzerExistiertBereitsException(ma);
 		}
 	}
 
@@ -57,6 +56,6 @@ public class MitarbeiterVerwaltung {
 	public void setMitarbeiterliste(List<Mitarbeiter> mitarbeiterliste) {
 		this.mitarbeiterliste = mitarbeiterliste;
 	}	
-	
-	
+
+
 }
