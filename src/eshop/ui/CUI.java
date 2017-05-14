@@ -15,6 +15,7 @@ import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.TestException;
 import persistence.ObjectPersistenceManager;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
+import eshop.Exceptions.EingabeException;
 
 
 public class CUI {
@@ -24,7 +25,7 @@ public class CUI {
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
 	private int xnr = -1;
-	
+
 
 
 
@@ -46,39 +47,30 @@ public class CUI {
 		return Integer.parseInt(getInputLine());
 	}
 
-	
 
-	
-		
-		
+
+
+
+
 
 	// Methode zum Starten des EShops
-	public void run(Vector<Artikel> artikelListe) throws TestException, Exception{
-		
-		
+	public void run() throws IOException, BenutzerExistiertBereitsException{
+
+
 
 		do{
-
-			System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 			try {
-//				String input = br.readLine();
-//				int y = Integer.parseInt(input);
-//				if(y == 2){
-//					System.out.println("HALLO");
-//					ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
-//					//shop = ladeManager.ladeShop("test");
-//					xnr=shop.getXnr();
-//
-//
-//
-//
-//				}else{
-//
-//
-//					String aktion = "";
-//				}
-				
+				ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
+				//spiel = ladeManager.ladeSpiel("test");
+				setXnr(shop.getXnr());
+
+
+
+
+
 				do{
+					System.out.println("Mitarbeiter[M] oder Kunde[K]?");
+					System.out.println("[S] um den aktuellen Stand zu speichern");
 					String input = br.readLine();
 
 					//					---- Mitarbeiter ----
@@ -89,7 +81,7 @@ public class CUI {
 						System.out.println("Einloggen   	-> E");
 						System.out.println("Abbruch			-> A");
 						input = br.readLine();
-						
+
 						//						---- Mitarbeiter Registrieren ---
 
 						if(input.equals("R")){
@@ -134,8 +126,8 @@ public class CUI {
 							System.out.println("Passwort:");
 							input = br.readLine();					
 							String passwort = input;
-							
-							
+
+
 							eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
 
 							do{
@@ -143,16 +135,16 @@ public class CUI {
 								System.out.println("Neuen Artikel anlegen  		-> AA");
 								System.out.println("Ereignisliste anzeigen 		-> EA");
 								System.out.println("Ausloggen			  -> Logout");
-												
+
 								input = br.readLine();
-								
+
 								//								---- Ereignisliste Anzeigen ----
-								
+
 								if(input.equals("EA")){
 									shop.printEreignisListe();
 								}
-								
-								
+
+
 								//								---- Bestand von Artikel aendern ----
 								if(input.equals("BA")){
 									System.out.println("Von welchem Artikel den Bestand aendern?");
@@ -164,7 +156,7 @@ public class CUI {
 									if(!shop.artikelSuchenNachID(id).equals(null)){
 										ar = shop.artikelSuchenNachID(id);
 										System.out.println("Um wieviel wollen Sie den bestand des Artikels "+ ar.getBez() + " aendern?");
-										
+
 										inputt =  getInputInt();
 										int anz = inputt;
 										shop.bestandAendern(eingeloggterMitarbeiter, ar, anz);
@@ -198,7 +190,7 @@ public class CUI {
 									shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
 									shop.printArtikelListe();
 								}
-								
+
 
 								//								---- Mitarbeiter Ausloggen ---
 
@@ -215,6 +207,20 @@ public class CUI {
 							break;
 						}else{
 							break;
+						}
+					}
+
+					if(input.equals("S")){
+						System.out.println("Spiel Speichern? (y/n)");
+						//						BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+						String speichern = br.readLine();
+						if(speichern.equals("y")){
+							ObjectPersistenceManager objectPersistenceManager = new ObjectPersistenceManager();
+							//				objectPersistenceManager.speichereSpiel(spiel, "test");
+
+							System.out.println("");
+							System.out.println("Spiel wurde gepeichert!");
+							System.out.println("");
 						}
 					}
 
@@ -352,15 +358,16 @@ public class CUI {
 						}
 
 
-					}
+
+					}while(true);
 				}while(true);
 
-
-			} catch (IOException e) {
+			}catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
+
 		}while(true);
 	}
 
@@ -372,13 +379,44 @@ public class CUI {
 
 
 	}
-	
-	
+
+
+	public boolean isAlpha(String text) throws EingabeException {
+		for (char c : text.toCharArray()) {
+
+			// a - z
+			if (c >= 'a' && c <= 'z')
+				continue;
+
+			// A - Z
+			if (c >= 'A' && c <= 'Z')
+				continue;
+
+			// ö, ü, ä, ß
+			if (c == 'ö' || c == 'ß' || c == 'ä' || c == 'ü')
+				continue;
+
+			throw new EingabeException(text);
+			//            return false;
+		}
+		return true;
+	}
+
+
 
 	public static void main(String[] args) throws Exception {
 
 		CUI cui = new CUI();
-		cui.run(null);
+		cui.run();
+	}
+
+
+
+	public int getXnr() {
+		return xnr;
+	}
+	public void setXnr(int xnr) {
+		this.xnr = xnr;
 	}
 
 }

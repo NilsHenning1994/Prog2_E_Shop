@@ -22,6 +22,7 @@ public class ShoppingServices {
 			WarenkorbEintrag eintrag = new WarenkorbEintrag(artikel, anz);
 			kunde.getCart().addEintrag(eintrag);
 			
+			
 		}else{
 //			Fehlermeldung werfen
 			return;
