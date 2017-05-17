@@ -1,6 +1,9 @@
 package eshop;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import eshop.Anwendungslogik.ArtikelVerwaltung;
@@ -14,13 +17,15 @@ import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
+import persistence.FilePersistenceManager;
 
-public class Shop implements Serializable, ShopInterface {
+public class Shop implements Serializable {
 
 	private ArtikelVerwaltung av;
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	private EreignisVerwaltung ev;
+	private FilePersistenceManager fp;
 	private int xnr = -1;
 
 	Artikel testArtikel = new Artikel("Apfel",1,2,10);
@@ -34,6 +39,7 @@ public class Shop implements Serializable, ShopInterface {
 		mv = new MitarbeiterVerwaltung();
 		kv = new KundenVerwaltung();
 		ev = new EreignisVerwaltung();
+		fp = new FilePersistenceManager();
 	}
 
 	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
@@ -65,6 +71,13 @@ public class Shop implements Serializable, ShopInterface {
 		mv.ausloggen(mitarbeiter);
 	}
 
+	public void speicherMitarbeiter() throws IOException{
+		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
+		newmitarbeiterliste = mv.getMitarbeiterliste();
+		fp.openForWriting("SHOP_M.txt");
+		fp.speichereMitarbeiterliste(newmitarbeiterliste);
+		fp.close();
+	}
 
 
 

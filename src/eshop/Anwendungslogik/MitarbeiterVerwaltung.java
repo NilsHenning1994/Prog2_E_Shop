@@ -40,7 +40,7 @@ public class MitarbeiterVerwaltung {
 	public boolean registrieren(String vorname, String nachname, String mail, String passwort) throws BenutzerExistiertBereitsException{
 		int id = mitarbeiterliste.size() + 1;
 		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort, false);
-
+		
 		if (!mitarbeiterliste.contains(ma)) {
 			mitarbeiterliste.add(ma);		
 			return true;
