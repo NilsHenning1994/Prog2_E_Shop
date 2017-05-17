@@ -25,7 +25,7 @@ public class CUI {
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
 	private int xnr = -1;
-
+	
 
 
 
@@ -107,8 +107,12 @@ public class CUI {
 								String passwort = input;
 
 								success = shop.mitarbeiterRegi(vorname, nachname, mail, passwort);
+								
 								if (!success) {
 									System.out.println("Bittet noch mal!");
+								}
+								if(success){
+									shop.speicherMitarbeiter();
 								}
 							} while (!success);
 							System.out.println("Erfolgreich registriert");

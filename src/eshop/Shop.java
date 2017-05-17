@@ -1,21 +1,23 @@
 package eshop;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.EreignisVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
-import eshop.Anwendungslogik.ShoppingServices;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
-import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
+import persistence.FilePersistenceManager;
 
 public class Shop implements Serializable {
 
@@ -23,7 +25,7 @@ public class Shop implements Serializable {
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	private EreignisVerwaltung ev;
-	private ShoppingServices ss;
+	private FilePersistenceManager fp;
 	private int xnr = -1;
 
 	Artikel testArtikel = new Artikel("Apfel",1,2,10);
@@ -37,7 +39,7 @@ public class Shop implements Serializable {
 		mv = new MitarbeiterVerwaltung();
 		kv = new KundenVerwaltung();
 		ev = new EreignisVerwaltung();
-		ss = new ShoppingServices();
+		fp = new FilePersistenceManager();
 	}
 
 	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
@@ -69,6 +71,13 @@ public class Shop implements Serializable {
 		mv.ausloggen(mitarbeiter);
 	}
 
+	public void speicherMitarbeiter() throws IOException{
+		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
+		newmitarbeiterliste = mv.getMitarbeiterliste();
+		fp.openForWriting("SHOP_M.txt");
+		fp.speichereMitarbeiterliste(newmitarbeiterliste);
+		fp.close();
+	}
 
 
 
@@ -115,9 +124,6 @@ public class Shop implements Serializable {
 		return av.artikelNachID(id);
 	}
 
-	public void MassengutartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz){
-		ss.MartikelInWarenkorb(kunde, ma, anz);
-	}
 	
 	
 	public int getXnr() {
