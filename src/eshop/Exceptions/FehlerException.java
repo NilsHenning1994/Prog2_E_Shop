@@ -1,6 +1,6 @@
 package eshop.Exceptions;
 
-public class TestException extends Exception {
+public class FehlerException extends Exception {
 	/**
 	 * 
 	 */
@@ -10,7 +10,7 @@ public class TestException extends Exception {
      * Konstruktor der Klasse TestException
      * @param name
      */
-    public TestException() {
+    public FehlerException() {
         //super((char) 27 + "Ein Fehler ist aufgetreten!" + (char) 27);
         super("Ein Fehler ist aufgetreten!");
     }
