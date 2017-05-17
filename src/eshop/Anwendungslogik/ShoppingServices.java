@@ -18,6 +18,8 @@ public class ShoppingServices {
 	private ArtikelVerwaltung av = null;
 	private Rechnung rechnung;
 	
+	
+	// Ein Artikel wird in den Warenkorb gelegt z.B. ein Buch
 	public void artikelInWarenkorb(Kunde kunde, Artikel artikel, int anz) throws FehlerException{
 		
 		if(artikel.getBestand()>=anz){
@@ -31,6 +33,7 @@ public class ShoppingServices {
 		}
 	}
 	
+	// Ein Massengutartikel wird in den Warenkorb gelegt z.B. ein 6er sprich 6 einzelne Flaschen Bier
 	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz) throws FalschePackungsgroeßeException{
 		
 		int packungsgroeße = ma.getPackungsgroeße();
@@ -45,6 +48,7 @@ public class ShoppingServices {
 	
 	
 	
+	// Aendert die Stueckzahl im Warenkorb
 	public void warenkorbAendern(Kunde kunde, Artikel artikel, int anz){
 		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
 		if(kunde.getCart().getEintraege().contains(artikel)){
@@ -56,11 +60,12 @@ public class ShoppingServices {
 	}
 	
 	
-//	Warenkorb wird geleert und reservierte Artikel wieder freigegeben.
+	//Warenkorb wird geleert und reservierte Artikel wieder freigegeben.
 	public void warenkorbLeeren(Kunde kunde){
 		kunde.getCart().getEintraege().clear();
 	}
 	
+	//
 	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand, int preisinfo, int gesamt){
 		int summe = 0;
 		rechnung.setKunde(kunde);
