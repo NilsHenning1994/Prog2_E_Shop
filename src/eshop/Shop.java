@@ -18,6 +18,7 @@ import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
+import eshop.Exceptions.EinloggenFehlgeschlagenException;
 import persistence.FilePersistenceManager;
 
 public class Shop implements Serializable {
@@ -86,7 +87,7 @@ public class Shop implements Serializable {
 		return mv.registrieren(vorname, nachname, mail, passwort);
 	}
 	// Mitarbeiter einloggen
-	public Mitarbeiter mitarbeiterEinloggen(String mail, String passwort){
+	public Mitarbeiter mitarbeiterEinloggen(String mail, String passwort) throws EinloggenFehlgeschlagenException{
 		return mv.einloggen(mail, passwort);
 	}
 
@@ -95,25 +96,18 @@ public class Shop implements Serializable {
 		mv.ausloggen(mitarbeiter);
 	}
 	public boolean mitarbeiterVorhanden(String mail, String pw){
-		List<Mitarbeiter> ml = mv.getMitarbeiterliste();
-		for(int i = 0; i< ml.size(); i++){
-			if(ml.get(i).getEmail().equals(mail) && ml.get(i).getPasswort().equals(pw)){
-				return true;
-			}
-		}
-		return false;
-		
-		mv.mitarbeiterVorhanden(mail, pw)
+		boolean success = mv.mitarbeiterVorhanden(mail, pw);
+		return success;
 	}
 
 	//	 Kunden Methoden ----->
 
 	// Kunde registrieren
-	public boolean kundeRegi(String vorname, String nachname, String mail, String passwort, Adresse adresse){
+	public boolean kundeRegi(String vorname, String nachname, String mail, String passwort, Adresse adresse) throws BenutzerExistiertBereitsException{
 		return kv.registrieren(vorname, nachname, mail, passwort, adresse);
 	}
 	// Kunde einloggen
-	public Kunde kundeEinloggen(String mail, String passwort){
+	public Kunde kundeEinloggen(String mail, String passwort) throws EinloggenFehlgeschlagenException{
 		return kv.einloggen(mail, passwort);
 	}
 	// Kunde ausloggen

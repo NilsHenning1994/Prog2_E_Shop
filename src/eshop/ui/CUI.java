@@ -15,6 +15,7 @@ import eshop.Datenstrukturen.Mitarbeiter;
 import persistence.ObjectPersistenceManager;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EingabeException;
+import eshop.Exceptions.EinloggenFehlgeschlagenException;
 
 
 public class CUI {
@@ -56,7 +57,7 @@ public class CUI {
 
 
 	// Methode zum Starten des EShops
-	public void run() throws IOException, BenutzerExistiertBereitsException{
+	public void run() throws IOException, BenutzerExistiertBereitsException, EinloggenFehlgeschlagenException{
 
 
 
@@ -128,10 +129,13 @@ public class CUI {
 							System.out.println("Passwort:");
 							input = br.readLine();					
 							String passwort = input;
-
-
+							
+							if(shop.mitarbeiterVorhanden(mail, passwort) == false){
+								System.out.println("LOGIN FEHLGESCHLAGEN. LOGINDATEN FALSCH");
+								return;
+							}					
+							
 							eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
-
 							do{
 								System.out.println("Bestand von Artikel aendern  	-> BA");
 								System.out.println("Neuen Artikel anlegen  		-> AA");

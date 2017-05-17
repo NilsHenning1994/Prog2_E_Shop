@@ -1,10 +1,5 @@
 1
-Nicholas
-Amberge
-namberge@stud.hs-bremen.de
-false
-2
-Nils
-Henning
-nhenning@stud.hs-bremen.de
+123
+123
+123
 false

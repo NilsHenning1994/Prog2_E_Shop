@@ -19,9 +19,9 @@ public class MitarbeiterVerwaltung {
 	private List<Mitarbeiter> mitarbeiterliste = new ArrayList<Mitarbeiter>();
 	private PersistenceManager pm = null;
 
-public MitarbeiterVerwaltung(PersistenceManager pm) {
-    this.pm = pm;
-}
+	public MitarbeiterVerwaltung(PersistenceManager pm) {
+		this.pm = pm;
+	}
 
 	//  Mitarbeiter wird eingeloggt mittels E-Mail und Passwort
 	public Mitarbeiter einloggen(String mail, String passwort) throws EinloggenFehlgeschlagenException{
@@ -34,20 +34,20 @@ public MitarbeiterVerwaltung(PersistenceManager pm) {
 			}
 		} throw new EinloggenFehlgeschlagenException();
 	}
-	
+
 
 	//  Mitarbeiter wird ausgeloggt
 	public void ausloggen(Benutzer mitarbeiter){
 		mitarbeiter.setLogin(false);
 	}
-	
+
 
 	//  Mitarbeiter wird registriert ---> TODO Abfrage  oder feste Anzahl von Mitarbeitern 
 	//  damit sich nicht einfach so ein neuer Mitarbeiter registrieren kann
 	public boolean registrieren(String vorname, String nachname, String mail, String passwort) throws BenutzerExistiertBereitsException{
 		int id = mitarbeiterliste.size() + 1;
 		Mitarbeiter ma = new Mitarbeiter(id, vorname, nachname, mail, passwort, false);
-		
+
 		if (!mitarbeiterliste.contains(ma)) {
 			mitarbeiterliste.add(ma);		
 			return true;
@@ -60,6 +60,15 @@ public MitarbeiterVerwaltung(PersistenceManager pm) {
 		return mitarbeiterliste;
 	}
 
+	public boolean mitarbeiterVorhanden(String mail, String pw){
+
+		for(int i = 0; i< mitarbeiterliste.size(); i++){
+			if(mitarbeiterliste.get(i).getEmail().equals(mail) && mitarbeiterliste.get(i).getPasswort().equals(pw)){
+				return true;
+			}
+		}
+		return false;
+	}
 	public void setMitarbeiterliste(List<Mitarbeiter> mitarbeiterliste) {
 		this.mitarbeiterliste = mitarbeiterliste;
 	}	
