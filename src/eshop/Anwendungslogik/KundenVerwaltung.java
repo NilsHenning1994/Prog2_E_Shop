@@ -13,7 +13,7 @@ public class KundenVerwaltung {
 
 	private List<Kunde> kundenliste = new ArrayList<Kunde>();
 	
-	// Kunde wird eingeloggt mittels E-Mail und Passwort
+	//  Kunde wird eingeloggt mittels E-Mail und Passwort
 	public Kunde einloggen(String mail, String passwort) throws EinloggenFehlgeschlagenException{
 		for(int i = 0; i< kundenliste.size();i++){
 			Kunde ku = kundenliste.get(i);
@@ -26,13 +26,13 @@ public class KundenVerwaltung {
 	}
 
 	
-	// Kunde wird ausgeloggt
+	//  Kunde wird ausgeloggt
 	public void ausloggen(Benutzer kunde){
 		kunde.setLogin(false);
 	}
 	
 	
-	// Kunde wird registriert mittels Vorname, Nachname, E-Mail, Passwort und Adresse
+	//  Kunde wird registriert mittels Vorname, Nachname, E-Mail, Passwort und Adresse
 	public boolean registrieren(String vorname, String nachname, String mail, String passwort, Adresse adresse) throws BenutzerExistiertBereitsException{
 		
 		int id = kundenliste.size()+1;
