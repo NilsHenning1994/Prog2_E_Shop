@@ -120,20 +120,20 @@ public class ArtikelVerwaltung {
 	}
 
 
-	//	Methode, um über die Shopklasse neue Artikel anzulegen.
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
-
-		for(int i = 0; i<artikelListe.size(); i++){
-			if(artikelListe.get(i).getBez().equals(bez)){
-				System.out.println("Dieser Artikel existiert bereits!");
-			}
-		}
-		int id = artikelListe.size() + 1;
-		Artikel artikel = new Artikel(bez, id, preis, bestand);
-		artikelListe.add(artikel);
-		System.out.println("Artikel wurde erfolgreich hinzugefï¿½gt!");
-
-	}
+//	//	Methode, um über die Shopklasse neue Artikel anzulegen.
+//	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
+//
+//		for(int i = 0; i<artikelListe.size(); i++){
+//			if(artikelListe.get(i).getBez().equals(bez)){
+//				System.out.println("Dieser Artikel existiert bereits!");
+//			}
+//		}
+//		int id = artikelListe.size() + 1;
+//		Artikel artikel = new Artikel(bez, id, preis, bestand);
+//		artikelListe.add(artikel);
+//		System.out.println("Artikel wurde erfolgreich hinzugefï¿½gt!");
+//
+//	}
 
 
 

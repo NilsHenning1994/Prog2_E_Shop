@@ -10,6 +10,18 @@ public class Warenkorb {
 		super();
 		this.eintraege = eintraege;
 	}
+	
+	public void warenkorbLeeren(){
+		
+	}
+	
+	public void warenkorbKaufen(){
+		
+	}
+	
+	
+	
+	
 
 	public List<WarenkorbEintrag> getEintraege() {
 		return eintraege;
