@@ -11,13 +11,14 @@ import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
 import eshop.Exceptions.FalschePackungsgroeßeException;
+import eshop.Exceptions.FehlerException;
 
 public class ShoppingServices {
 
 	private ArtikelVerwaltung av = null;
 	private Rechnung rechnung;
-//	
-	public void artikelInWarenkorb(Kunde kunde, Artikel artikel, int anz){
+	
+	public void artikelInWarenkorb(Kunde kunde, Artikel artikel, int anz) throws FehlerException{
 		
 		if(artikel.getBestand()>=anz){
 			artikel.setBestand(artikel.getBestand()-anz);
@@ -26,8 +27,7 @@ public class ShoppingServices {
 			
 			
 		}else{
-//			Fehlermeldung werfen
-			return;
+			throw new FehlerException();
 		}
 	}
 	
