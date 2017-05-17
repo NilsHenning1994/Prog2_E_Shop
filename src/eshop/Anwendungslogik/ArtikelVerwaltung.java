@@ -23,27 +23,10 @@ public class ArtikelVerwaltung {
 	//       private Map<Artikel, Integer> bestandsListe = null;
 
 	// Persistenz-Schnittstelle, die fuer die Details des Dateizugriffs verantwortlich ist
-		private PersistenceManager pm = null; // = new FilePersistenceManager();
+	private PersistenceManager pm = null; // = new FilePersistenceManager();
 
 
 
-//	/**
-//	 * Methode zum Schreiben eines Artikels in eine Liste.
-//	 * 
-//	 */
-//	public void schreibeArtikel(Artikel artikel)  {
-//
-//
-//		Artikel einArtikel = new Artikel("Test Nummer",11 ,4,3);
-//
-//		Iterator<Artikel> it = artikelListe.iterator();
-//		while (it.hasNext()) {
-//			einArtikel = it.next();
-//
-//		}
-//
-//
-//	}
 
 	public Vector<Artikel> getArtikelListe() {
 		return artikelListe;
@@ -89,8 +72,8 @@ public class ArtikelVerwaltung {
 		return suchErg;
 	}
 
-//	Methode, die einen Artikel aus der Artikelliste anhand einer genau uebereinstimmenden ID Nummer heraussucht.
-	
+	//	Methode, die einen Artikel aus der Artikelliste anhand einer genau uebereinstimmenden ID Nummer heraussucht.
+
 	public Artikel artikelNachID(int id) {
 		Artikel suchErg = null;
 
@@ -105,9 +88,26 @@ public class ArtikelVerwaltung {
 
 		return suchErg;
 	}
-	
-	
-	
+
+	// Artikel anhand Bezeichnung finden
+
+	public Artikel artikelNachBez(String bez) {
+		Artikel suchErg = null;
+
+		// Set<Artikel> artikelListe = bestandsListe.keySet();
+
+		Iterator<Artikel> it = artikelListe.iterator();
+		while (it.hasNext()) {
+			Artikel einArtikel = it.next();
+			if (einArtikel.equals(bez)){
+				suchErg = einArtikel;
+			}
+		}
+
+		return suchErg;
+	}
+
+
 	/**
 	 * Methode, die alle Artikel zurueck gibt.
 	 * 
@@ -120,20 +120,20 @@ public class ArtikelVerwaltung {
 	}
 
 
-	//	Methode, um ï¿½ber die Shopklasse neue Artikel anzulegen.
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
-
-		for(int i = 0; i<artikelListe.size(); i++){
-			if(artikelListe.get(i).getBez().equals(bez)){
-				System.out.println("Dieser Artikel existiert bereits!");
-			}
-		}
-		int id = artikelListe.size() + 1;
-		Artikel artikel = new Artikel(bez, id, preis, bestand);
-		artikelListe.add(artikel);
-		System.out.println("Artikel wurde erfolgreich hinzugefï¿½gt!");
-
-	}
+//	//	Methode, um über die Shopklasse neue Artikel anzulegen.
+//	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
+//
+//		for(int i = 0; i<artikelListe.size(); i++){
+//			if(artikelListe.get(i).getBez().equals(bez)){
+//				System.out.println("Dieser Artikel existiert bereits!");
+//			}
+//		}
+//		int id = artikelListe.size() + 1;
+//		Artikel artikel = new Artikel(bez, id, preis, bestand);
+//		artikelListe.add(artikel);
+//		System.out.println("Artikel wurde erfolgreich hinzugefï¿½gt!");
+//
+//	}
 
 
 
@@ -146,14 +146,29 @@ public class ArtikelVerwaltung {
 		}
 		artikel.setBestand(artikel.getBestand()+anz);
 	}
+
 	
-	public Artikel createArtikel(String bez, int nummer, int preis, int bestand){
-		Artikel ar = new Artikel(bez, nummer, preis, bestand);
-		return ar;
+	// Artikel erstellen
+	public void createArtikel(String bez, int preis, int bestand){
+		int id = 0;
+
+		// Set<Artikel> artikelListe = bestandsListe.keySet();
+
+		Iterator<Artikel> it = artikelListe.iterator();
+		while (it.hasNext()) {
+			Artikel einArtikel = it.next();
+			if (einArtikel.getNummer() > id){
+				id = einArtikel.getNummer();
+			}
+				
+		}
+		id ++;
+		Artikel ar = new Artikel(bez, id, preis, bestand);
+		artikelListe.add(ar);
 	}
-	
-	
-	
-	
+
+
+
+
 
 }

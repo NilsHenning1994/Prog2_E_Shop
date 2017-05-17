@@ -78,6 +78,39 @@ public class Shop implements Serializable {
 		fp.speichereMitarbeiterliste(newmitarbeiterliste);
 		fp.close();
 	}
+	public void speicherKunde() throws IOException{
+		List<Kunde> newkundenliste = new ArrayList<Kunde>();
+		newkundenliste = kv.getKundenliste();
+		fp.openForWriting("SHOP_K.txt");
+		fp.speichereKundeliste(newkundenliste);
+		fp.close();
+	}
+
+	public void speicherArtikel() throws IOException{
+		List<Artikel> newartikelliste = new ArrayList<Artikel>();
+		newartikelliste = av.getArtikelliste();
+		fp.openForWriting("SHOP_A.txt");
+		fp.speichereArtikelliste(newartikelliste);
+		fp.close();
+	}
+
+	public void ladeMitarbeiter() throws IOException{
+		fp.openForReading("SHOP_M.txt");
+		fp.ladeMitarbeiter();
+		fp.close();
+	}
+
+	public void ladeKunden() throws IOException{
+		fp.openForReading("SHOP_K.txt");
+		fp.ladeKunde();
+		fp.close();
+	}
+
+	public void ladeArtikel() throws IOException{	
+		fp.openForReading("SHOP_A.txt");
+		fp.ladeArtikel();
+		fp.close();
+	}
 
 
 
@@ -114,18 +147,18 @@ public class Shop implements Serializable {
 	}
 
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
-//		av.createArtikel(bez, nummer, preis, bestand);
+		//		av.createArtikel(bez, nummer, preis, bestand);
 		av.artikelAnlegen(mitarbeiter, bez, preis, bestand);
-//		ev.addEreignis(mitarbeiter, ar, anz);
+		//		ev.addEreignis(mitarbeiter, ar, anz);
 	}
 
-	
+
 	public Artikel artikelSuchenNachID(int id){
 		return av.artikelNachID(id);
 	}
 
-	
-	
+
+
 	public int getXnr() {
 		return xnr;
 	}
@@ -161,17 +194,17 @@ public class Shop implements Serializable {
 			System.out.println(kv.getKundenliste().get(i).getId() + " | " + kv.getKundenliste().get(i).getNachname()+", "+ kv.getKundenliste().get(i).getVorname());
 		}
 	}
-	
+
 	public void printEreignisListe(){
 		System.out.println("Ereignisliste: ");
 		for(int i = 0; i< ev.getEreignisListe().size();i++){
 
 			System.out.println("Der Bestand des Artikels  "+ 
-			ev.getEreignisListe().get(i).getArtikel().getBez() + " wurde am " + 
-			ev.getEreignisListe().get(i).getWann()+" von dem Mitarbeiter "+ 
-			ev.getEreignisListe().get(i).getUser().getVorname()+ " "+ 
-			ev.getEreignisListe().get(i).getUser().getNachname() + " auf " + 
-			ev.getEreignisListe().get(i).getAnz() + " geaendert.");
+					ev.getEreignisListe().get(i).getArtikel().getBez() + " wurde am " + 
+					ev.getEreignisListe().get(i).getWann()+" von dem Mitarbeiter "+ 
+					ev.getEreignisListe().get(i).getUser().getVorname()+ " "+ 
+					ev.getEreignisListe().get(i).getUser().getNachname() + " auf " + 
+					ev.getEreignisListe().get(i).getAnz() + " geaendert.");
 		}
 	}
 }

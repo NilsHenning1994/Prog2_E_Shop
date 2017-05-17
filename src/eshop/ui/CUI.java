@@ -61,7 +61,7 @@ public class CUI {
 		do{
 			try {
 				ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
-				//spiel = ladeManager.ladeSpiel("test");
+//				shop = ladeManager.ladeShop("test");
 				setXnr(shop.getXnr());
 
 
@@ -69,6 +69,10 @@ public class CUI {
 
 
 				do{
+					//shop.ladeArtikel();
+					//shop.ladeKunden();
+					//shop.ladeMitarbeiter();
+					
 					System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 					System.out.println("[S] um den aktuellen Stand zu speichern");
 					String input = br.readLine();
@@ -220,7 +224,7 @@ public class CUI {
 						String speichern = br.readLine();
 						if(speichern.equals("y")){
 							ObjectPersistenceManager objectPersistenceManager = new ObjectPersistenceManager();
-							//				objectPersistenceManager.speichereSpiel(spiel, "test");
+											objectPersistenceManager.speichereShop(shop, "test");
 
 							System.out.println("");
 							System.out.println("Spiel wurde gepeichert!");
@@ -282,6 +286,9 @@ public class CUI {
 								success = shop.kundeRegi(vorname, nachname, mail, passwort, adresse);
 								if (!success) {
 									System.out.println("Bittet noch mal!");
+								}
+								if(success){
+									shop.speicherKunde();
 								}
 							} while (!success);
 							System.out.println("Erfolgreich registriert");
@@ -389,26 +396,26 @@ public class CUI {
 	}
 
 
-	public boolean isAlpha(String text) throws EingabeException {
-		for (char c : text.toCharArray()) {
-
-			// a - z
-			if (c >= 'a' && c <= 'z')
-				continue;
-
-			// A - Z
-			if (c >= 'A' && c <= 'Z')
-				continue;
-
-			// �, �, �, �
-			if (c == '�' || c == '�' || c == '�' || c == '�')
-				continue;
-
-			throw new EingabeException(text);
-			//            return false;
-		}
-		return true;
-	}
+//	public boolean isAlpha(String text) throws EingabeException {
+//		for (char c : text.toCharArray()) {
+//
+//			// a - z
+//			if (c >= 'a' && c <= 'z')
+//				continue;
+//
+//			// A - Z
+//			if (c >= 'A' && c <= 'Z')
+//				continue;
+//
+//			// �, �, �, �
+//			if (c == '�' || c == '�' || c == '�' || c == '�')
+//				continue;
+//
+//			throw new EingabeException(text);
+//			//            return false;
+//		}
+//		return true;
+//	}
 
 
 
