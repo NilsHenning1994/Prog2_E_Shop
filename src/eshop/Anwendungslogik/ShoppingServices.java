@@ -91,6 +91,7 @@ public class ShoppingServices {
 			}
 		}
 		warenkorbLeeren(kunde);
+		return rechnung;
 //		Wie werden Werte übergeben???
 //		rechnungErstellen(kunde, Date date, kunde.getCart().getEintraege().getClass())
 	}
