@@ -316,6 +316,10 @@ public class CUI {
 
 
 								}
+								
+								//if(input.equals("MAW")){
+									//shop.MassengutartikelInWarenkorb(eingeloggterKunde, ma, anz);
+								//}
 
 								//								---- einzelnen Artikel kaufen ----
 
@@ -396,8 +400,8 @@ public class CUI {
 			if (c >= 'A' && c <= 'Z')
 				continue;
 
-			// ö, ü, ä, ß
-			if (c == 'ö' || c == 'ß' || c == 'ä' || c == 'ü')
+			// ï¿½, ï¿½, ï¿½, ï¿½
+			if (c == 'ï¿½' || c == 'ï¿½' || c == 'ï¿½' || c == 'ï¿½')
 				continue;
 
 			throw new EingabeException(text);

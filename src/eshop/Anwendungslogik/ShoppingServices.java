@@ -6,6 +6,7 @@ import java.util.List;
 
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
@@ -26,6 +27,16 @@ public class ShoppingServices {
 		}else{
 //			Fehlermeldung werfen
 			return;
+		}
+	}
+	
+	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz){
+		int packungsgroeÃŸe = ma.getPackungsgroeÃŸe();
+		if(anz % packungsgroeÃŸe != 0){
+			return; // TODO EXCEPTION
+		} else {
+			WarenkorbEintrag eintrag = new WarenkorbEintrag(ma, anz);
+			kunde.getCart().addEintrag(eintrag);
 		}
 	}
 	
@@ -63,10 +74,10 @@ public class ShoppingServices {
 	
 	
 	
-//	Kunden können im Warenkorb enthaltene Artikel kaufen, wobei der Warenkorb geleert wird und
+//	Kunden kï¿½nnen im Warenkorb enthaltene Artikel kaufen, wobei der Warenkorb geleert wird und
 //	die Artikel aus dem Bestand genommen werden. Es wird ein Rechnungsobjekt erzeugt und auf
-//	dem Bildschirm ausgegeben. Das Rechnungsobjekt enthält u.a. Kunde, Datum, die gekauften
-//	Artikel inkl. Stückzahl und Preisinformation sowie den Gesamtpreis. 
+//	dem Bildschirm ausgegeben. Das Rechnungsobjekt enthï¿½lt u.a. Kunde, Datum, die gekauften
+//	Artikel inkl. Stï¿½ckzahl und Preisinformation sowie den Gesamtpreis. 
 	
 	public Rechnung artikelKaufen(Kunde kunde){
 		Rechnung rechnung = null;
@@ -92,7 +103,7 @@ public class ShoppingServices {
 		}
 		warenkorbLeeren(kunde);
 		return rechnung;
-//		Wie werden Werte übergeben???
+//		Wie werden Werte ï¿½bergeben???
 //		rechnungErstellen(kunde, Date date, kunde.getCart().getEintraege().getClass())
 	}
 }
