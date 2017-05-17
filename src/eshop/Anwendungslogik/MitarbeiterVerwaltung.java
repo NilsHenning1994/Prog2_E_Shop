@@ -8,11 +8,9 @@ import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
-<<<<<<< HEAD
 import persistence.PersistenceManager;
-=======
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
->>>>>>> db051e542021e92ceaf527ffc138fa7db280be51
+
 
 public class MitarbeiterVerwaltung {
 
