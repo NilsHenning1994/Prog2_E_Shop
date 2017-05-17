@@ -81,30 +81,14 @@ public class ShoppingServices {
 	
 	public Rechnung artikelKaufen(Kunde kunde){
 		Rechnung rechnung = null;
-		int stueck;
-		int bestand;
-		int id;
-		
 		Warenkorb cart = kunde.getCart();
 		List<WarenkorbEintrag> eintraege = cart.getEintraege();
-		for (WarenkorbEintrag eintrag: eintraege) {
-			// eintrag auslesen
-		}
 		
-		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
-			stueck = kunde.getCart().getEintraege().get(i).getStueckzahl();
-			id = kunde.getCart().getEintraege().get(i).getArtikel().getNummer();
-			for(int j = 0; j< av.getArtikelListe().size();j++){
-				if(av.getArtikelListe().get(j).getNummer() == id){
-					bestand = av.getArtikelListe().get(j).getBestand();
-					av.getArtikelListe().get(j).setBestand(bestand-stueck);
-				}
-			}
+		for (WarenkorbEintrag eintrag: eintraege) {
+			av.g// eintrag auslesen
 		}
 		warenkorbLeeren(kunde);
 		return rechnung;
-//		Wie werden Werte �bergeben???
-//		rechnungErstellen(kunde, Date date, kunde.getCart().getEintraege().getClass())
 	}
 }
 

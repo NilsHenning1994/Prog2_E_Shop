@@ -8,12 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Vector;
 
 import eshop.Shop;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Datenstrukturen.Warenkorb;
 
 /**
  * @author teschke
@@ -148,28 +150,78 @@ public class FilePersistenceManager implements PersistenceManager {
 		return true;
 
 	}
-	
+
 	public boolean speichereArtikelliste(List<Artikel> a) throws IOException {
 		System.out.println("List size:" + a.size());
 
 		for(int i = 0; i < a.size(); i++){
-			
+
 			schreibeZeile(a.get(i).getBez());
-			
+
 			String nummer = Integer.toString(a.get(i).getNummer());
 			schreibeZeile(nummer);
-			
+
 			String preis = Float.toString(a.get(i).getPreis());
 			schreibeZeile(preis);
-			
+
 			String bestand = Integer.toString(a.get(i).getBestand());
 			schreibeZeile(bestand);
-			
+
 
 		}
 
 		return true;
 
+	}
+
+
+
+	// Warenkorb
+
+	/**
+	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
+	 * 
+	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
+	 * @throws java.io.IOException
+	 */
+
+	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
+		Vector<Artikel> artikel = artikelListe;
+		List<Kunde> kunden = kundenListe;
+		Kunde kunde = null;
+		Vector<Artikel> artikels = null;
+
+		String wknr = liesZeile();
+		if (wknr == null) {
+			// keine Daten mehr vorhanden
+			return null;
+		}
+		String kundennr = liesZeile();
+		if (kundennr == null) {
+			// keine Daten mehr vorhanden
+			return null;
+		}
+
+		int knr = Integer.parseInt(kundennr);
+		for (Kunde k : kunden) {
+			if (k.getId() == knr) {
+				kunde = k;
+				break;
+			}
+		}
+		int lel;
+		while(liesZeile() != null){
+			String artikelnr = liesZeile();
+			for(Artikel a : artikel){
+				lel = Integer.parseInt(artikelnr);
+				if(a.getNummer() ==(lel)){
+					artikels.add(a);
+				}
+
+			}
+		}
+
+		return new Warenkorb(wknr, kunde, artikels);
 	}
 
 	private String liesZeile() throws IOException {
@@ -194,5 +246,17 @@ public class FilePersistenceManager implements PersistenceManager {
 	public void speichereShop(Shop s, String datenQuelle) throws IOException {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean speichereWarenkorb(Warenkorb w) throws IOException {
+		// Titel, Nummer und Verfuegbarkeit schreiben
+		schreibeZeile(w.getWarenkorbNr());
+		schreibeZeile("" + w.getKunde().getId());
+		for(int i = 0; i<w.getEintraege().size(); i++){
+			schreibeZeile("" + w.getEintraege().get(i));
+		}
+
+		return true;
 	}
 }
