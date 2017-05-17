@@ -61,7 +61,7 @@ public class CUI {
 		do{
 			try {
 				ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
-				//spiel = ladeManager.ladeSpiel("test");
+				shop = ladeManager.ladeShop("test");
 				setXnr(shop.getXnr());
 
 
@@ -216,7 +216,7 @@ public class CUI {
 						String speichern = br.readLine();
 						if(speichern.equals("y")){
 							ObjectPersistenceManager objectPersistenceManager = new ObjectPersistenceManager();
-							//				objectPersistenceManager.speichereSpiel(spiel, "test");
+											objectPersistenceManager.speichereShop(shop, "test");
 
 							System.out.println("");
 							System.out.println("Spiel wurde gepeichert!");
