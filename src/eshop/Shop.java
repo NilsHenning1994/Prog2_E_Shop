@@ -7,20 +7,23 @@ import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.EreignisVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
+import eshop.Anwendungslogik.ShoppingServices;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 
-public class Shop implements Serializable, ShopInterface {
+public class Shop implements Serializable {
 
 	private ArtikelVerwaltung av;
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	private EreignisVerwaltung ev;
+	private ShoppingServices ss;
 	private int xnr = -1;
 
 	Artikel testArtikel = new Artikel("Apfel",1,2,10);
@@ -34,6 +37,7 @@ public class Shop implements Serializable, ShopInterface {
 		mv = new MitarbeiterVerwaltung();
 		kv = new KundenVerwaltung();
 		ev = new EreignisVerwaltung();
+		ss = new ShoppingServices();
 	}
 
 	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
@@ -111,6 +115,9 @@ public class Shop implements Serializable, ShopInterface {
 		return av.artikelNachID(id);
 	}
 
+	public void MassengutartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz){
+		ss.MartikelInWarenkorb(kunde, ma, anz);
+	}
 	
 	
 	public int getXnr() {
