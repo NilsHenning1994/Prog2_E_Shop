@@ -16,8 +16,7 @@ public class FalschePackungsgroeßeException extends Exception {
 	 * @param artikel Das bereits existierende Artikel
 	 * @param zusatzMsg zusätzlicher Text für die Fehlermeldung
 	 */
-	public FalschePackungsgroeßeException(Massengutartikel ma, String zusatzMsg) {
-		super("Artikel mit Titel " + ma.getBez() + " und Artikelnr " + ma.getNummer()
-				+ " ist nur in einer anderen Packungsgroeße vorhanden. " + zusatzMsg);
+	public FalschePackungsgroeßeException() {
+		super("Dieser Artikel existiert nicht in der gewünschten Packungsgroeße!");
 	}
 }
