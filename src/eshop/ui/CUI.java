@@ -61,7 +61,7 @@ public class CUI {
 		do{
 			try {
 				ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
-				shop = ladeManager.ladeShop("test");
+//				shop = ladeManager.ladeShop("test");
 				setXnr(shop.getXnr());
 
 
