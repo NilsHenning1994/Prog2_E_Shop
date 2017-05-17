@@ -10,6 +10,7 @@ import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
+import eshop.Exceptions.FalschePackungsgroeßeException;
 
 public class ShoppingServices {
 
@@ -30,17 +31,19 @@ public class ShoppingServices {
 		}
 	}
 	
-	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz){
+	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz) throws FalschePackungsgroeßeException{
+		
 		int packungsgroeße = ma.getPackungsgroeße();
 		if(anz % packungsgroeße != 0){
-			return; // TODO EXCEPTION
+			throw new FalschePackungsgroeßeException();
 		} else {
 			WarenkorbEintrag eintrag = new WarenkorbEintrag(ma, anz);
 			kunde.getCart().addEintrag(eintrag);
 		}
+		
 	}
 	
-
+	
 	
 	public void warenkorbAendern(Kunde kunde, Artikel artikel, int anz){
 		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){

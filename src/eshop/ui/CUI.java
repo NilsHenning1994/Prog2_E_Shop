@@ -69,6 +69,10 @@ public class CUI {
 
 
 				do{
+					//shop.ladeArtikel();
+					//shop.ladeKunden();
+					//shop.ladeMitarbeiter();
+					
 					System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 					System.out.println("[S] um den aktuellen Stand zu speichern");
 					String input = br.readLine();
@@ -283,6 +287,9 @@ public class CUI {
 								if (!success) {
 									System.out.println("Bittet noch mal!");
 								}
+								if(success){
+									shop.speicherKunde();
+								}
 							} while (!success);
 							System.out.println("Erfolgreich registriert");
 							shop.printKundenListe();
@@ -389,26 +396,26 @@ public class CUI {
 	}
 
 
-	public boolean isAlpha(String text) throws EingabeException {
-		for (char c : text.toCharArray()) {
-
-			// a - z
-			if (c >= 'a' && c <= 'z')
-				continue;
-
-			// A - Z
-			if (c >= 'A' && c <= 'Z')
-				continue;
-
-			// �, �, �, �
-			if (c == '�' || c == '�' || c == '�' || c == '�')
-				continue;
-
-			throw new EingabeException(text);
-			//            return false;
-		}
-		return true;
-	}
+//	public boolean isAlpha(String text) throws EingabeException {
+//		for (char c : text.toCharArray()) {
+//
+//			// a - z
+//			if (c >= 'a' && c <= 'z')
+//				continue;
+//
+//			// A - Z
+//			if (c >= 'A' && c <= 'Z')
+//				continue;
+//
+//			// �, �, �, �
+//			if (c == '�' || c == '�' || c == '�' || c == '�')
+//				continue;
+//
+//			throw new EingabeException(text);
+//			//            return false;
+//		}
+//		return true;
+//	}
 
 
 
