@@ -1,5 +1,10 @@
 1
 Nicholas
 Amberge
-nico.amberge@gmail.com
+namberge@stud.hs-bremen.de
+false
+2
+Nils
+Henning
+nhenning@stud.hs-bremen.de
 false

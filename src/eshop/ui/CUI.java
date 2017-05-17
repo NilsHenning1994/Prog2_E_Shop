@@ -12,7 +12,6 @@ import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
-import eshop.Exceptions.TestException;
 import persistence.ObjectPersistenceManager;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EingabeException;
@@ -25,7 +24,7 @@ public class CUI {
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
 	private int xnr = -1;
-	
+
 
 
 
@@ -46,6 +45,9 @@ public class CUI {
 	public int getInputInt(){
 		return Integer.parseInt(getInputLine());
 	}
+	public float getInputFloat(){
+		return Float.parseFloat(getInputLine());
+	}
 
 
 
@@ -60,21 +62,13 @@ public class CUI {
 
 		do{
 			try {
-				ObjectPersistenceManager ladeManager = new ObjectPersistenceManager();
-//				shop = ladeManager.ladeShop("test");
-				setXnr(shop.getXnr());
-
-
-
-
 
 				do{
 					//shop.ladeArtikel();
 					//shop.ladeKunden();
 					//shop.ladeMitarbeiter();
-					
+
 					System.out.println("Mitarbeiter[M] oder Kunde[K]?");
-					System.out.println("[S] um den aktuellen Stand zu speichern");
 					String input = br.readLine();
 
 					//					---- Mitarbeiter ----
@@ -111,7 +105,7 @@ public class CUI {
 								String passwort = input;
 
 								success = shop.mitarbeiterRegi(vorname, nachname, mail, passwort);
-								
+
 								if (!success) {
 									System.out.println("Bittet noch mal!");
 								}
@@ -189,11 +183,11 @@ public class CUI {
 									String bez = input;
 
 									System.out.println("Preis:");
-									int inputt = getInputInt();				
-									int preis = inputt;
+									float fl = getInputFloat();				
+									float preis = fl;
 
 									System.out.println("Bestand:");
-									inputt = getInputInt();					
+									int inputt = getInputInt();					
 									int bestand = inputt;
 									shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
 									shop.printArtikelListe();
@@ -218,19 +212,7 @@ public class CUI {
 						}
 					}
 
-					if(input.equals("S")){
-						System.out.println("Spiel Speichern? (y/n)");
-						//						BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-						String speichern = br.readLine();
-						if(speichern.equals("y")){
-							ObjectPersistenceManager objectPersistenceManager = new ObjectPersistenceManager();
-											objectPersistenceManager.speichereShop(shop, "test");
-
-							System.out.println("");
-							System.out.println("Spiel wurde gepeichert!");
-							System.out.println("");
-						}
-					}
+					
 
 					//					---- Kunde ----
 
@@ -321,11 +303,10 @@ public class CUI {
 
 								if(input.equals("AW")){
 
-
 								}
-								
+
 								//if(input.equals("MAW")){
-									//shop.MassengutartikelInWarenkorb(eingeloggterKunde, ma, anz);
+								//shop.MassengutartikelInWarenkorb(eingeloggterKunde, ma, anz);
 								//}
 
 								//								---- einzelnen Artikel kaufen ----
@@ -333,6 +314,7 @@ public class CUI {
 								if(input.equals("AK")){
 
 								}
+							
 
 								//								---- Warenkorb leeren ----
 
@@ -344,7 +326,8 @@ public class CUI {
 								//								---- Warenkorb aendern (Artikel entfernen/ Anzahl von Artikeln aendern) ----
 
 								if(input.equals("WA")){
-
+									// Artikel in den Warenkorb legen:
+//									shop.artikelInWarenkorb(k, a, anz);
 									//										next operation
 								}
 
@@ -352,7 +335,7 @@ public class CUI {
 
 								if(input.equals("WK")){
 
-									//										next operation
+//									shop.warenkorbKaufen(k);
 								}
 
 								//								---- Kunden ausloggen ----
@@ -396,26 +379,26 @@ public class CUI {
 	}
 
 
-//	public boolean isAlpha(String text) throws EingabeException {
-//		for (char c : text.toCharArray()) {
-//
-//			// a - z
-//			if (c >= 'a' && c <= 'z')
-//				continue;
-//
-//			// A - Z
-//			if (c >= 'A' && c <= 'Z')
-//				continue;
-//
-//			// �, �, �, �
-//			if (c == '�' || c == '�' || c == '�' || c == '�')
-//				continue;
-//
-//			throw new EingabeException(text);
-//			//            return false;
-//		}
-//		return true;
-//	}
+	//	public boolean isAlpha(String text) throws EingabeException {
+	//		for (char c : text.toCharArray()) {
+	//
+	//			// a - z
+	//			if (c >= 'a' && c <= 'z')
+	//				continue;
+	//
+	//			// A - Z
+	//			if (c >= 'A' && c <= 'Z')
+	//				continue;
+	//
+	//			// �, �, �, �
+	//			if (c == '�' || c == '�' || c == '�' || c == '�')
+	//				continue;
+	//
+	//			throw new EingabeException(text);
+	//			//            return false;
+	//		}
+	//		return true;
+	//	}
 
 
 

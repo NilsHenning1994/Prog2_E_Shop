@@ -13,12 +13,6 @@ import java.util.List;
 import java.util.Vector;
 
 
-
-/**
- * Klasse zur Verwaltung von Büchern.
- * 
- * @Gruppe A4(Patrick, Oleksandra, Walter)
- */
 public class WarenkorbVerwaltung {
 
 	// Verwaltung des Buchbestands
@@ -96,7 +90,7 @@ public class WarenkorbVerwaltung {
 	}
 
 	/**
-	 * Methode zum Löschen eines Warenkorbs 
+	 * Methode zum Loeschen eines Warenkorbs 
 	 * 
 	 * @param einWarenkorb das löschende Warenkorb
 	 */
@@ -105,8 +99,8 @@ public class WarenkorbVerwaltung {
 	}
 
 	/**
-	 * Methode, die anhand eines Titels nach Büchern sucht. Es wird eine Liste von Büchern
-	 * zurückgegeben, die alle Bücher mit exakt übereinstimmendem Titel enthält.
+	 * Methode, die anhand einer Bezeichnung nach Artikeln sucht. Es wird eine Liste von Artikeln
+	 * zurueckgegeben, die alle Artikel mit exakt Uebereinstimmendem Titel enthaelt.
 	 * 
 	 * @param wknr warenkorbnummer
 	 * @return Warenkorb mit den dementsprechenden wknr.(Kann leer sein!)
@@ -117,7 +111,7 @@ public class WarenkorbVerwaltung {
 		Iterator<Warenkorb> it = warenkorbListe.iterator();
 		while (it.hasNext()) {
 			Warenkorb einWarenkorb = it.next();
-			if (einWarenkorb.getWknr().equals(wknr))
+			if (einWarenkorb.getWarenkorbNr().equals(wknr))
 				suchErg.add(einWarenkorb);
 		}
 
@@ -131,6 +125,11 @@ public class WarenkorbVerwaltung {
 		return warenkorbListe;
 	}
 	
-	// TODO: Weitere Methoden, z.B. zum Auslesen und Entfernen von Büchern
-	// ...
+	public void warenkorbLeeren(){
+		//TODO
+	}
+	
+	public void warenkorbKaufen(){
+		//TODO
+	}
 }

@@ -20,13 +20,7 @@ public class Warenkorb {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void warenkorbLeeren(){
-		
-	}
-	
-	public void warenkorbKaufen(){
-		
-	}
+
 	
 	
 	

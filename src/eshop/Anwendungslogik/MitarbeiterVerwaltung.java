@@ -8,6 +8,7 @@ import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
+import persistence.PersistenceManager;
 
 public class MitarbeiterVerwaltung {
 
@@ -16,7 +17,11 @@ public class MitarbeiterVerwaltung {
 
 
 	private List<Mitarbeiter> mitarbeiterliste = new ArrayList<Mitarbeiter>();
+	private PersistenceManager pm = null;
 
+public MitarbeiterVerwaltung(PersistenceManager pm) {
+    this.pm = pm;
+}
 
 	//	Methode, um sich als Mitarbeiter einzuloggen
 	public Mitarbeiter einloggen(String mail, String passwort){

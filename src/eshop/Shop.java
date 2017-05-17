@@ -10,6 +10,7 @@ import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.EreignisVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
+import eshop.Anwendungslogik.WarenkorbVerwaltung;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
@@ -25,52 +26,22 @@ public class Shop implements Serializable {
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	private EreignisVerwaltung ev;
+	private WarenkorbVerwaltung wv;
 	private FilePersistenceManager fp;
-	private int xnr = -1;
-
-	Artikel testArtikel = new Artikel("Apfel",1,2,10);
-	Artikel testArtikel1 = new Artikel("Birne",1,3,11);
-	Artikel testArtikel2 = new Artikel("Kokusnuss",4,5,6);
-	Artikel testArtikel3 = new Artikel("Banane",6,7,4);
-
 
 	public Shop() {
-		av = new ArtikelVerwaltung();
-		mv = new MitarbeiterVerwaltung();
+		av = new ArtikelVerwaltung(null);
+		mv = new MitarbeiterVerwaltung(null);
 		kv = new KundenVerwaltung();
 		ev = new EreignisVerwaltung();
+		wv = new WarenkorbVerwaltung(null);
 		fp = new FilePersistenceManager();
 	}
 
-	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
-
-	}
-
-	public Rechnung warenkorbKaufen(Kunde k){
-
-		return null;
-	}
 
 
 
-
-	//	Mitarbeiter Methoden ----->
-
-	// Mitarbeiter Registrieren 
-	public boolean mitarbeiterRegi(String vorname,String nachname,String mail,String passwort) throws BenutzerExistiertBereitsException{
-		return mv.registrieren(vorname, nachname, mail, passwort);
-	}
-
-	// Mitarbeiter einloggen
-	public Mitarbeiter mitarbeiterEinloggen(String mail, String passwort){
-		return mv.einloggen(mail, passwort);
-	}
-
-	// Mitarbeiter ausloggen
-	public void mitarbeiterAusloggen(Benutzer mitarbeiter){
-		mv.ausloggen(mitarbeiter);
-	}
-
+	//speichern
 	public void speicherMitarbeiter() throws IOException{
 		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
 		newmitarbeiterliste = mv.getMitarbeiterliste();
@@ -85,7 +56,6 @@ public class Shop implements Serializable {
 		fp.speichereKundeliste(newkundenliste);
 		fp.close();
 	}
-
 	public void speicherArtikel() throws IOException{
 		List<Artikel> newartikelliste = new ArrayList<Artikel>();
 		newartikelliste = av.getArtikelliste();
@@ -94,26 +64,47 @@ public class Shop implements Serializable {
 		fp.close();
 	}
 
+	//laden
 	public void ladeMitarbeiter() throws IOException{
 		fp.openForReading("SHOP_M.txt");
 		fp.ladeMitarbeiter();
 		fp.close();
 	}
-
 	public void ladeKunden() throws IOException{
 		fp.openForReading("SHOP_K.txt");
 		fp.ladeKunde();
 		fp.close();
 	}
 
-	public void ladeArtikel() throws IOException{	
-		fp.openForReading("SHOP_A.txt");
-		fp.ladeArtikel();
-		fp.close();
+
+
+
+	//	Mitarbeiter Methoden ----->
+
+	// Mitarbeiter Registrieren 
+	public boolean mitarbeiterRegi(String vorname,String nachname,String mail,String passwort) throws BenutzerExistiertBereitsException{
+		return mv.registrieren(vorname, nachname, mail, passwort);
+	}
+	// Mitarbeiter einloggen
+	public Mitarbeiter mitarbeiterEinloggen(String mail, String passwort){
+		return mv.einloggen(mail, passwort);
 	}
 
-
-
+	// Mitarbeiter ausloggen
+	public void mitarbeiterAusloggen(Benutzer mitarbeiter){
+		mv.ausloggen(mitarbeiter);
+	}
+	public boolean mitarbeiterVorhanden(String mail, String pw){
+		List<Mitarbeiter> ml = mv.getMitarbeiterliste();
+		for(int i = 0; i< ml.size(); i++){
+			if(ml.get(i).getEmail().equals(mail) && ml.get(i).getPasswort().equals(pw)){
+				return true;
+			}
+		}
+		return false;
+		
+		mv.mitarbeiterVorhanden(mail, pw)
+	}
 
 	//	 Kunden Methoden ----->
 
@@ -121,12 +112,10 @@ public class Shop implements Serializable {
 	public boolean kundeRegi(String vorname, String nachname, String mail, String passwort, Adresse adresse){
 		return kv.registrieren(vorname, nachname, mail, passwort, adresse);
 	}
-
 	// Kunde einloggen
 	public Kunde kundeEinloggen(String mail, String passwort){
 		return kv.einloggen(mail, passwort);
 	}
-
 	// Kunde ausloggen
 	public void kundeAusloggen(Benutzer user){
 		kv.ausloggen(user);
@@ -145,26 +134,21 @@ public class Shop implements Serializable {
 
 		return ar;
 	}
-
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand){
 		//		av.createArtikel(bez, nummer, preis, bestand);
-		av.artikelAnlegen(mitarbeiter, bez, preis, bestand);
+		av.createArtikel(bez, preis, bestand);
 		//		ev.addEreignis(mitarbeiter, ar, anz);
 	}
-
-
 	public Artikel artikelSuchenNachID(int id){
 		return av.artikelNachID(id);
 	}
-
-
-
-	public int getXnr() {
-		return xnr;
+	//TODO
+	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
+		av.artikelInWarenkorb();
 	}
-
-	public void setXnr(int xnr) {
-		this.xnr = xnr;
+	//TODO
+	public void warenkorbKaufen(Kunde k){
+		av.warenkorbKaufen();
 	}
 
 

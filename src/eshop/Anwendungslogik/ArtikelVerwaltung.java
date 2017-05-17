@@ -5,7 +5,6 @@ import eshop.Datenstrukturen.Mitarbeiter;
 import persistence.PersistenceManager;
 import java.util.Iterator;
 import java.util.Vector;
-import java.io.Serializable;
 
 
 
@@ -16,6 +15,9 @@ import java.io.Serializable;
  */
 public class ArtikelVerwaltung {
 
+	public ArtikelVerwaltung (PersistenceManager pm) {
+		this.pm = pm;
+	}
 
 
 
@@ -120,22 +122,6 @@ public class ArtikelVerwaltung {
 	}
 
 
-//	//	Methode, um über die Shopklasse neue Artikel anzulegen.
-//	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, int preis, int bestand){
-//
-//		for(int i = 0; i<artikelListe.size(); i++){
-//			if(artikelListe.get(i).getBez().equals(bez)){
-//				System.out.println("Dieser Artikel existiert bereits!");
-//			}
-//		}
-//		int id = artikelListe.size() + 1;
-//		Artikel artikel = new Artikel(bez, id, preis, bestand);
-//		artikelListe.add(artikel);
-//		System.out.println("Artikel wurde erfolgreich hinzugefï¿½gt!");
-//
-//	}
-
-
 
 	//	Methode, um den Bestand eines Artikels zu erhï¿½hen.
 	public void bestandErhoehen(Mitarbeiter ma, Artikel artikel, int anz){
@@ -147,9 +133,9 @@ public class ArtikelVerwaltung {
 		artikel.setBestand(artikel.getBestand()+anz);
 	}
 
-	
+
 	// Artikel erstellen
-	public void createArtikel(String bez, int preis, int bestand){
+	public void createArtikel(String bez, float preis, int bestand){
 		int id = 0;
 
 		// Set<Artikel> artikelListe = bestandsListe.keySet();
@@ -160,15 +146,20 @@ public class ArtikelVerwaltung {
 			if (einArtikel.getNummer() > id){
 				id = einArtikel.getNummer();
 			}
-				
+
 		}
 		id ++;
 		Artikel ar = new Artikel(bez, id, preis, bestand);
 		artikelListe.add(ar);
 	}
 
-
-
+	public void artikelInWarenkorb(){
+		
+	}
+	
+	public void warenkorbKaufen(){
+		
+	}
 
 
 }
