@@ -6,4 +6,4 @@ bla
 21391
 Reppenstedt
 namberge@stud.hs-bremen.de
-false
+pwd

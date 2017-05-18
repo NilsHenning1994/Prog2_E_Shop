@@ -22,7 +22,7 @@ public interface PersistenceManager {
 	public Shop ladeShop(String datenQuelle) throws IOException;
 	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException;
 
-
+	public Kunde ladeKunde() throws IOException;
 	
 	public void  speichereShop(Shop s, String datenQuelle) throws IOException;
 	public boolean speichereWarenkorb(Warenkorb w) throws IOException;

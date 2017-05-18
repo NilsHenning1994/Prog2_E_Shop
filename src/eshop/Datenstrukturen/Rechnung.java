@@ -14,17 +14,16 @@ public class Rechnung {
 	private List<Artikel> artikelListe;
 	private Artikel artikel;
 	private int bestand;
-	private int preisinfo;
-	private int gesamtpreis;
+	private float preisinfo;
+	private float gesamtpreis;
 	
 	
 	
-	public Rechnung(Kunde kunde, Warenkorb warenkorb, WarenkorbEintrag we, Date datum, List<Artikel> artikelListe,
-			Artikel artikel, int bestand, int preisinfo, int gesamtpreis) {
+	public Rechnung(Kunde kunde, Warenkorb warenkorb, Date datum, List<Artikel> artikelListe,
+			Artikel artikel, int bestand, float preisinfo, float gesamtpreis) {
 		super();
 		this.kunde = kunde;
 		this.warenkorb = warenkorb;
-		this.we = we;
 		this.datum = datum;
 		this.artikelListe = artikelListe;
 		this.artikel = artikel;
@@ -46,12 +45,6 @@ public class Rechnung {
 	}
 	public void setWarenkorb(Warenkorb warenkorb) {
 		this.warenkorb = warenkorb;
-	}
-	public WarenkorbEintrag getWe() {
-		return we;
-	}
-	public void setWe(WarenkorbEintrag we) {
-		this.we = we;
 	}
 	public Date getDatum() {
 		return datum;
@@ -80,13 +73,13 @@ public class Rechnung {
 	public float getPreisinfo() {
 		return preisinfo;
 	}
-	public void setPreisinfo(int preisinfo) {
+	public void setPreisinfo(float preisinfo) {
 		this.preisinfo = preisinfo;
 	}
 	public float getGesamtpreis() {
 		return gesamtpreis;
 	}
-	public void setGesamtpreis(int gesamtpreis) {
+	public void setGesamtpreis(float gesamtpreis) {
 		this.gesamtpreis = gesamtpreis;
 	}
 	

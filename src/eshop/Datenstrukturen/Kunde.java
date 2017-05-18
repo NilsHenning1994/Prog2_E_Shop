@@ -9,7 +9,7 @@ public class Kunde extends Benutzer {
 	public Kunde(int id, String vorname, String nachname, String email, Adresse adresse, String passwort, boolean login) {
 		super(id, vorname, nachname, email, passwort, login);
 		this.adresse = adresse;
-		this.cart = new Warenkorb(null);
+		this.cart = new Warenkorb(this);
 
 	}
 	

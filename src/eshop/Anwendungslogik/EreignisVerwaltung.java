@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Mitarbeiter;
 
@@ -14,9 +15,9 @@ public class EreignisVerwaltung {
 	
 	
 	
-	public void addEreignis(Mitarbeiter ma, Artikel ar, int anz){
+	public void addEreignis(Benutzer be, Artikel ar, int anz){
 		Date date = new Date();
-		Ereignis er = new Ereignis(date, ar,anz, ma);
+		Ereignis er = new Ereignis(date, ar,anz, be);
 		ereignisListe.add(er);
 	}
 	

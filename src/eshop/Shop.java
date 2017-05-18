@@ -10,6 +10,7 @@ import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.EreignisVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
+import eshop.Anwendungslogik.ShoppingServices;
 import eshop.Anwendungslogik.WarenkorbVerwaltung;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
@@ -17,11 +18,12 @@ import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
+import eshop.Datenstrukturen.Warenkorb;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
 import persistence.FilePersistenceManager;
 
-public class Shop implements Serializable {
+public class Shop {
 
 	private ArtikelVerwaltung av;
 	private MitarbeiterVerwaltung mv;
@@ -29,14 +31,16 @@ public class Shop implements Serializable {
 	private EreignisVerwaltung ev;
 	private WarenkorbVerwaltung wv;
 	private FilePersistenceManager fp;
+	private ShoppingServices ss;
 
-	public Shop() {
-		av = new ArtikelVerwaltung(null);
-		mv = new MitarbeiterVerwaltung(null);
-		kv = new KundenVerwaltung();
-		ev = new EreignisVerwaltung();
-		wv = new WarenkorbVerwaltung(null);
+	public Shop() throws IOException {
 		fp = new FilePersistenceManager();
+		av = new ArtikelVerwaltung(fp);
+		mv = new MitarbeiterVerwaltung(fp);
+		kv = new KundenVerwaltung(fp);
+		ev = new EreignisVerwaltung();
+		wv = new WarenkorbVerwaltung(fp);
+		ss = new ShoppingServices();
 	}
 
 
@@ -71,11 +75,7 @@ public class Shop implements Serializable {
 		fp.ladeMitarbeiter();
 		fp.close();
 	}
-	public void ladeKunden() throws IOException{
-		fp.openForReading("SHOP_K.txt");
-		fp.ladeKunde();
-		fp.close();
-	}
+
 
 
 
@@ -120,10 +120,10 @@ public class Shop implements Serializable {
 
 
 	//	Artikel Methoden ---->
-
+	
 	// Mitarbeiter Bestand von Artikel erhoehen
 	public Artikel bestandAendern(Mitarbeiter ma, Artikel ar, int anz){
-		av.bestandErhoehen(ma, ar, anz);
+		av.bestandAendern(ma, ar, anz);
 		ev.addEreignis(ma, ar, anz);
 
 		return ar;
@@ -141,8 +141,20 @@ public class Shop implements Serializable {
 		av.artikelInWarenkorb();
 	}
 	//TODO
-	public void warenkorbKaufen(Kunde k){
-		av.warenkorbKaufen();
+	public void artikelKaufen(Kunde ku, Artikel ar, int anz){
+		
+		av.bestandAendern(ku, ar, anz);
+		ss.warenkorbAendern(ku, ar, anz);
+		ev.addEreignis(ku, ar, anz);
+	}
+	public void warenkorbLeeren(Kunde ku){
+		ss.warenkorbLeeren(ku);
+	}
+	public Warenkorb getWarenkorb(Kunde ku){
+		return ku.getCart();
+	}
+	public void setWarenkorb(Kunde ku, Warenkorb wa){
+		ku.setCart(wa);
 	}
 
 

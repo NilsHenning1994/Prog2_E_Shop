@@ -1,6 +1,7 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
+import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Mitarbeiter;
 import persistence.PersistenceManager;
 import java.util.Iterator;
@@ -124,8 +125,8 @@ public class ArtikelVerwaltung {
 
 
 	//	Methode, um den Bestand eines Artikels zu erh�hen.
-	public void bestandErhoehen(Mitarbeiter ma, Artikel artikel, int anz){
-		artikel.getBestand();
+	public void bestandAendern(Benutzer be, Artikel artikel, int anz){
+		// artikel.getBestand();
 		if(artikel.getBestand()-anz < 0){
 			System.out.println("Es sind nicht ausreichend Artikel vorhanden!");
 			return; // besser Exception

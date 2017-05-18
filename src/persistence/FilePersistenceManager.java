@@ -76,12 +76,12 @@ public class FilePersistenceManager implements PersistenceManager {
 	public Kunde ladeKunde() throws IOException {
 		// id einlesen
 		String id = liesZeile();
-		// ... und von String in int konvertieren
-		int intid = Integer.parseInt(id);
 		if (id == null) {
 			// keine Daten mehr vorhanden
 			return null;
 		}
+		// ... und von String in int konvertieren
+		int intid = Integer.parseInt(id);
 		String Name = liesZeile();	
 		String Nachname = liesZeile();
 		String strasse = liesZeile();
@@ -143,7 +143,7 @@ public class FilePersistenceManager implements PersistenceManager {
 			schreibeZeile(k.get(i).getAdresse().getPlz());
 			schreibeZeile(k.get(i).getAdresse().getStadt());
 			schreibeZeile(k.get(i).getEmail());
-			schreibeZeile("false");
+			schreibeZeile(k.get(i).getPasswort());
 
 		}
 
