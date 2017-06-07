@@ -10,3 +10,7 @@ JPS Zigaretten
 3
 7.0
 4
+Duschgel
+4
+1.99
+10
