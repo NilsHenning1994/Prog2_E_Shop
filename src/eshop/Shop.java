@@ -38,23 +38,15 @@ public class Shop {
 		av = new ArtikelVerwaltung(fp);
 		mv = new MitarbeiterVerwaltung(fp);
 		kv = new KundenVerwaltung(fp);
-		ev = new EreignisVerwaltung();
+		ev = new EreignisVerwaltung(fp);
 		wv = new WarenkorbVerwaltung();
 		ss = new ShoppingServices();
 	}
-
-
 
 	// Getter
 	public Vector<Artikel> getArtikelListe(){
 		return av.getArtikelListe();
 	}
-
-
-
-
-
-
 	//speichern
 	public void speicherMitarbeiter() throws IOException{
 		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
@@ -63,6 +55,7 @@ public class Shop {
 		fp.speichereMitarbeiterliste(newmitarbeiterliste);
 		fp.close();
 	}
+	
 	public void speicherKunde() throws IOException{
 		List<Kunde> newkundenliste = new ArrayList<Kunde>();
 		newkundenliste = kv.getKundenliste();
@@ -70,6 +63,7 @@ public class Shop {
 		fp.speichereKundeliste(newkundenliste);
 		fp.close();
 	}
+	
 	public void speicherArtikel() throws IOException{
 		List<Artikel> newartikelliste = new ArrayList<Artikel>();
 		newartikelliste = av.getArtikelliste();
@@ -77,7 +71,14 @@ public class Shop {
 		fp.speichereArtikelliste(newartikelliste);
 		fp.close();
 	}
-
+	
+	public void speicherLog() throws IOException{
+		List<String> newLogListe = new ArrayList<String>();
+		newLogListe = ev.getLog();
+		fp.openForWriting("SHOP_E.txt");
+		fp.speichereLog(newLogListe);
+		fp.close();
+	}
 	//laden
 	public void ladeMitarbeiter() throws IOException{
 		//		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
@@ -86,24 +87,27 @@ public class Shop {
 		fp.close();
 		//		mv.setMitarbeiterliste(newmitarbeiterliste);
 	}
+	
 	public void ladeKunden() throws IOException{
 		fp.openForReading("SHOP_K.txt");
 		kv.ladeKunden();
 		fp.close();
 	}
+	
 	public void ladeArtikel() throws IOException{
 		fp.openForReading("SHOP_A.txt");
 		av.ladeArtikel();
 		fp.close();
 	}
-
-
-
-
-
+	
+	public void ladeLog() throws IOException{
+		fp.openForReading("SHOP_E.txt");
+		ev.ladeLog();
+		fp.close();
+	}
 	//	Mitarbeiter Methoden ----->
 
-	// Mitarbeiter Registrieren 
+	// Mitarbeiter registrieren 
 	public boolean mitarbeiterRegi(String vorname,String nachname,String mail,String passwort) throws BenutzerExistiertBereitsException{
 		return mv.registrieren(vorname, nachname, mail, passwort);
 	}
@@ -111,16 +115,15 @@ public class Shop {
 	public Mitarbeiter mitarbeiterEinloggen(String mail, String passwort) throws EinloggenFehlgeschlagenException{
 		return mv.einloggen(mail, passwort);
 	}
-
 	// Mitarbeiter ausloggen
 	public void mitarbeiterAusloggen(Benutzer mitarbeiter){
 		mv.ausloggen(mitarbeiter);
 	}
+	// Mitarbeiter vorhanden
 	public boolean mitarbeiterVorhanden(String mail, String pw){
 		boolean success = mv.mitarbeiterVorhanden(mail, pw);
 		return success;
 	}
-
 	//	 Kunden Methoden ----->
 
 	// Kunde registrieren
@@ -135,18 +138,12 @@ public class Shop {
 	public void kundeAusloggen(Benutzer user){
 		kv.ausloggen(user);
 	}
-
-
-
-
-
 	//	Artikel Methoden ---->
 
 	// Mitarbeiter Bestand von Artikel erhoehen
 	public Artikel bestandAendern(Mitarbeiter ma, Artikel ar, int anz){
 		av.bestandAendern(ma, ar, anz);
 		ev.addEreignis(ma, ar, anz);
-
 		return ar;
 	}
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand){
@@ -154,39 +151,37 @@ public class Shop {
 		Artikel art = av.createArtikel(bez, preis, bestand);
 		ev.addEreignisArtikelAnlegen(mitarbeiter, art, bestand);
 	}
+	// Artikel anhand der ID Suchen
 	public Artikel artikelSuchenNachID(int id){
 		return av.artikelNachID(id);
 	}
-	//TODO
+	// Artikel in den Warenkorb
 	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
 		av.artikelInWarenkorb();
 	}
-	//TODO
+	// Artikel kaufen
 	public void artikelKaufen(Kunde ku, Artikel ar, int anz){
-
 		av.bestandAendern(ku, ar, anz);
 		ss.warenkorbAendern(ku, ar, anz);
 		ev.addEreignis(ku, ar, anz);
 	}
+	// Warenkorb leeren
 	public void warenkorbLeeren(Kunde ku){
 		ss.warenkorbLeeren(ku);
 	}
+	// get Warenkorb
 	public Warenkorb getWarenkorb(Kunde ku){
 		return ku.getCart();
 	}
+	// set Warenkorb
 	public void setWarenkorb(Kunde ku, Warenkorb wa){
 		ku.setCart(wa);
 	}
-
-
 	// Ereignismethoden??
-
-
-
-
-
+	
+	//  ---------------------------------
 	//	---------- test/print -----------
-
+	//  ---------------------------------
 	public void printArtikelListe(){
 		for(int i = 0; i< av.getArtikelListe().size();i++){
 			System.out.println(av.getArtikelListe().get(i).getNummer() + " | "+ av.getArtikelListe().get(i).getBez()+ " | "+ av.getArtikelliste().get(i).getBestand());
@@ -212,13 +207,39 @@ public class Shop {
 	public void printEreignisListe(){
 		System.out.println("Ereignisliste: ");
 		for(int i = 0; i< ev.getEreignisListe().size();i++){
-
-			System.out.println("Der Bestand des Artikels  "+ 
+			String zeile ;
+			
+					zeile = ("Der Bestand des Artikels  "+ 
 					ev.getEreignisListe().get(i).getArtikel().getBez() + " wurde am " + 
 					ev.getEreignisListe().get(i).getWann()+" von dem Mitarbeiter "+ 
 					ev.getEreignisListe().get(i).getUser().getVorname()+ " "+ 
 					ev.getEreignisListe().get(i).getUser().getNachname() + " auf " + 
 					ev.getEreignisListe().get(i).getAnz() + " geaendert.");
+			
+			System.out.println(zeile);
 		}
 	}
+
+	public void printLog(){
+		String zeile ;
+		for(int i = 0; i< ev.getLog().size();i++){
+			
+			zeile = ("Der Bestand des Artikels  "+ 
+			ev.getEreignisListe().get(i).getArtikel().getBez() + " wurde am " + 
+			ev.getEreignisListe().get(i).getWann()+" von dem Mitarbeiter "+ 
+			ev.getEreignisListe().get(i).getUser().getVorname()+ " "+ 
+			ev.getEreignisListe().get(i).getUser().getNachname() + " auf " + 
+			ev.getEreignisListe().get(i).getAnz() + " geaendert.");
+	
+	System.out.println(zeile);
+			System.out.println(ev.getLog().get(i));
+		}
+	}
+
+
+
+	
+
+
+
 }
