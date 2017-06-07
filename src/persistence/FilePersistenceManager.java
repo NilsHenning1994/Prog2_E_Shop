@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -56,24 +57,34 @@ public class FilePersistenceManager implements PersistenceManager {
 	}
 
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
-		// id einlesen
-		String id = liesZeile();
-		// ... und von String in int konvertieren
-		int intid = Integer.parseInt(id);
-		if (id == null) {
-			// keine Daten mehr vorhanden
-			return null;
-		}
-		String Name = liesZeile();	
-		String Nachname = liesZeile();
-		String Mail = liesZeile();
-		String Passwort = liesZeile();
+//		List<Mitarbeiter> newMList = new ArrayList<Mitarbeiter>();
+//		while(!liesZeile().equals("")){
+
+			// id einlesen
+			String id = liesZeile();
+			// ... und von String in int konvertieren
+			int intid = Integer.parseInt(id);
+			if (id == null) {
+				// keine Daten mehr vorhanden
+				return null;
+			}
+			String Name = liesZeile();	
+			String Nachname = liesZeile();
+			String Mail = liesZeile();
+			String Passwort = liesZeile();
+			liesZeile();
 
 
-		return new Mitarbeiter(intid, Name, Nachname,Mail,Passwort,true);
+//			newMList.add(new Mitarbeiter(intid, Name, Nachname,Mail,Passwort,false));
+//		}
+//		return newMList;
+
+				return new Mitarbeiter(intid, Name, Nachname,Mail,Passwort,false);
 	}
 
 	public Kunde ladeKunde() throws IOException {
+//		List<Kunde> newKList = new ArrayList<Kunde>();
+//		while(id != null){
 		// id einlesen
 		String id = liesZeile();
 		if (id == null) {
@@ -92,6 +103,11 @@ public class FilePersistenceManager implements PersistenceManager {
 		String Mail = liesZeile();
 		String Passwort = liesZeile();
 
+//		newKList.add(new Kunde(intid, Name, Nachname,Passwort, adress,Mail,false));
+//		id = liesZeile();
+//		}
+//		return newKList;
+		
 		return new Kunde(intid, Name, Nachname,Mail,adress,Passwort,true);
 	}
 
@@ -121,6 +137,7 @@ public class FilePersistenceManager implements PersistenceManager {
 			schreibeZeile(m.get(i).getVorname());
 			schreibeZeile(m.get(i).getNachname());
 			schreibeZeile(m.get(i).getEmail());
+			schreibeZeile(m.get(i).getPasswort());
 			schreibeZeile("false");
 
 		}
@@ -176,53 +193,7 @@ public class FilePersistenceManager implements PersistenceManager {
 
 
 
-	// Warenkorb
 
-	/**
-	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
-	 * 
-	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
-	 * @throws java.io.IOException
-	 */
-
-	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
-		Vector<Artikel> artikel = artikelListe;
-		List<Kunde> kunden = kundenListe;
-		Kunde kunde = null;
-		Vector<Artikel> artikels = null;
-
-		String wknr = liesZeile();
-		if (wknr == null) {
-			// keine Daten mehr vorhanden
-			return null;
-		}
-		String kundennr = liesZeile();
-		if (kundennr == null) {
-			// keine Daten mehr vorhanden
-			return null;
-		}
-
-		int knr = Integer.parseInt(kundennr);
-		for (Kunde k : kunden) {
-			if (k.getId() == knr) {
-				kunde = k;
-				break;
-			}
-		}
-		int lel;
-		while(liesZeile() != null){
-			String artikelnr = liesZeile();
-			for(Artikel a : artikel){
-				lel = Integer.parseInt(artikelnr);
-				if(a.getNummer() ==(lel)){
-					artikels.add(a);
-				}
-
-			}
-		}
-
-		return new Warenkorb(wknr, kunde, artikels);
-	}
 
 	private String liesZeile() throws IOException {
 		if (reader != null)
@@ -251,7 +222,6 @@ public class FilePersistenceManager implements PersistenceManager {
 	@Override
 	public boolean speichereWarenkorb(Warenkorb w) throws IOException {
 		// Titel, Nummer und Verfuegbarkeit schreiben
-		schreibeZeile(w.getWarenkorbNr());
 		schreibeZeile("" + w.getKunde().getId());
 		for(int i = 0; i<w.getEintraege().size(); i++){
 			schreibeZeile("" + w.getEintraege().get(i));
@@ -259,4 +229,58 @@ public class FilePersistenceManager implements PersistenceManager {
 
 		return true;
 	}
+
+
+
+
+
+	//	// Warenkorb
+	//
+	//	/**
+	//	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
+	//	 * 
+	//	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
+	//	 * @throws java.io.IOException
+	//	 */
+	//
+	//	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
+	//		Vector<Artikel> artikel = artikelListe;
+	//		List<Kunde> kunden = kundenListe;
+	//		Kunde kunde = null;
+	//		Vector<Artikel> artikels = null;
+	//
+	//		String wknr = liesZeile();
+	//		if (wknr == null) {
+	//			// keine Daten mehr vorhanden
+	//			return null;
+	//		}
+	//		String kundennr = liesZeile();
+	//		if (kundennr == null) {
+	//			// keine Daten mehr vorhanden
+	//			return null;
+	//		}
+	//
+	//		int knr = Integer.parseInt(kundennr);
+	//		for (Kunde k : kunden) {
+	//			if (k.getId() == knr) {
+	//				kunde = k;
+	//				break;
+	//			}
+	//		}
+	//		int lel;
+	//		while(liesZeile() != null){
+	//			String artikelnr = liesZeile();
+	//			for(Artikel a : artikel){
+	//				lel = Integer.parseInt(artikelnr);
+	//				if(a.getNummer() ==(lel)){
+	//					artikels.add(a);
+	//				}
+	//
+	//			}
+	//		}
+	//
+	//		return new Warenkorb(kunde);
+	//	}
+
+
 }

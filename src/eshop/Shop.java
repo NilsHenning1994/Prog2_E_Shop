@@ -39,9 +39,18 @@ public class Shop {
 		mv = new MitarbeiterVerwaltung(fp);
 		kv = new KundenVerwaltung(fp);
 		ev = new EreignisVerwaltung();
-		wv = new WarenkorbVerwaltung(fp);
+		wv = new WarenkorbVerwaltung();
 		ss = new ShoppingServices();
 	}
+	
+	
+	
+	// Getter
+	public Vector<Artikel> getArtikelListe(){
+		return av.getArtikelListe();
+	}
+	
+	
 
 
 
@@ -71,8 +80,20 @@ public class Shop {
 
 	//laden
 	public void ladeMitarbeiter() throws IOException{
+//		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
 		fp.openForReading("SHOP_M.txt");
-		fp.ladeMitarbeiter();
+		mv.ladeMitarbeiter();
+		fp.close();
+//		mv.setMitarbeiterliste(newmitarbeiterliste);
+	}
+	public void ladeKunden() throws IOException{
+		fp.openForReading("SHOP_K.txt");
+		kv.ladeKunden();
+		fp.close();
+	}
+	public void ladeArtikel() throws IOException{
+		fp.openForReading("SHOP_A.txt");
+		fp.ladeArtikel();
 		fp.close();
 	}
 

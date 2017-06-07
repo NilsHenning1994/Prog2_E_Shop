@@ -8,6 +8,7 @@ import java.util.Vector;
 import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Warenkorb;
 
 
@@ -20,9 +21,9 @@ public interface PersistenceManager {
 		
 	
 	public Shop ladeShop(String datenQuelle) throws IOException;
-	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException;
 
 	public Kunde ladeKunde() throws IOException;
+	public Mitarbeiter ladeMitarbeiter() throws IOException;
 	
 	public void  speichereShop(Shop s, String datenQuelle) throws IOException;
 	public boolean speichereWarenkorb(Warenkorb w) throws IOException;

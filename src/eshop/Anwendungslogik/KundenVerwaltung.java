@@ -19,7 +19,7 @@ public class KundenVerwaltung {
 	
 	public KundenVerwaltung(FilePersistenceManager fp) throws IOException {
 		this.fp = fp;
-		ladeKunden();
+//		ladeKunden();
 	}
 
 	public void ladeKunden() throws IOException {

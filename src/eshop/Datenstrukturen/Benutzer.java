@@ -16,7 +16,7 @@ public abstract class Benutzer {
 		this.nachname = nachname;
 		this.email = email;
 		this.passwort = passwort;
-		this.login = login;
+		this.login = false;
 	}
 
 	public String getVorname() {

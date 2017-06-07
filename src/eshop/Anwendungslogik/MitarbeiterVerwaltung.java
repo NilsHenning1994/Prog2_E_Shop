@@ -1,13 +1,16 @@
 package eshop.Anwendungslogik;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
+import persistence.FilePersistenceManager;
 import persistence.PersistenceManager;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
 
@@ -17,14 +20,27 @@ public class MitarbeiterVerwaltung {
 	//  Mitarbeiter (mit Name und eindeutiger Nummer) koennen neue Artikel anlegen und den Bestand
 	//  existierender Artikel erhoehen
 	private List<Mitarbeiter> mitarbeiterliste = new ArrayList<Mitarbeiter>();
-	private PersistenceManager pm = null;
+	private PersistenceManager fp = null;
 
-	public MitarbeiterVerwaltung(PersistenceManager pm) {
-		this.pm = pm;
+	public MitarbeiterVerwaltung(FilePersistenceManager fp) {
+		this.fp = fp;
 	}
+	
+	// Mitarbeiter laden
+	public void ladeMitarbeiter() throws IOException {
+		fp.openForReading("SHOP_M.txt");
+		Mitarbeiter m = null;
+		do {
+			m = fp.ladeMitarbeiter();
+			if (m != null)
+				mitarbeiterliste.add(m);
+		} while (m != null);
+		fp.close();
+	}
+	
 
 	//  Mitarbeiter wird eingeloggt mittels E-Mail und Passwort
-	public Mitarbeiter einloggen(String mail, String passwort) throws EinloggenFehlgeschlagenException{
+	public Mitarbeiter einloggen(String mail, String passwort){ //throws EinloggenFehlgeschlagenException{
 		for(int i = 0; i< mitarbeiterliste.size(); i++){
 			Mitarbeiter ma = mitarbeiterliste.get(i);
 			//			if(mitarbeiterliste.contains(mail)){
@@ -32,7 +48,9 @@ public class MitarbeiterVerwaltung {
 				ma.setLogin(true);
 				return ma;
 			}
-		} throw new EinloggenFehlgeschlagenException();
+		}  
+		return null;
+//		throw new EinloggenFehlgeschlagenException();
 	}
 
 

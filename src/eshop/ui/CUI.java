@@ -54,6 +54,14 @@ public class CUI {
 
 		do{
 			try {
+				shop.ladeMitarbeiter();
+				shop.ladeKunden();
+				shop.ladeArtikel();
+			}
+			catch(IOException e){
+				e.printStackTrace();
+			}
+			try {
 				System.out.println("Mitarbeiter[M] oder Kunde[K]?");
 				String input = br.readLine();
 
@@ -139,13 +147,20 @@ public class CUI {
 				//							}					
 
 				try {
+					
 					eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
+					if(eingeloggterMitarbeiter == null){
+						System.out.println("Einloggen Fehlgeschlagen ...");
+						System.out.println("Versuchen Sie es erneut");
+						break;
+					}
+					input = mitarbeiterMenü();
 				} catch (EinloggenFehlgeschlagenException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
-				input = mitarbeiterMenü();
+				
 
 			}
 
@@ -156,9 +171,12 @@ public class CUI {
 			}		
 		} while (true);
 	}
+	
 	private String mitarbeiterMenü() throws IOException {
 		String input;
 		do{
+			
+			System.out.println("Hallo " + eingeloggterMitarbeiter.getVorname());
 			System.out.println("Bestand von Artikel aendern  	-> BA");
 			System.out.println("Neuen Artikel anlegen  		-> AA");
 			System.out.println("Ereignisliste anzeigen 		-> EA");
@@ -175,6 +193,7 @@ public class CUI {
 
 			//								---- Bestand von Artikel aendern ----
 			if(input.equals("BA")){
+				System.out.println(shop.getArtikelListe());
 				System.out.println("Von welchem Artikel den Bestand aendern?");
 				shop.printArtikelListe();
 				System.out.println("Waehlen Sie den Artikel anhand der ID aus");
@@ -217,6 +236,7 @@ public class CUI {
 				int bestand = inputt;
 				shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
 				shop.printArtikelListe();
+				shop.speicherArtikel();
 			}
 
 
@@ -228,7 +248,6 @@ public class CUI {
 		}while(eingeloggterMitarbeiter.isLogin() == true);
 		return input;
 	}
-
 	private void kundenStartMenü() throws IOException {
 		String input;
 		do {
@@ -321,10 +340,10 @@ public class CUI {
 			}
 		} while (true);
 	}
-
 	private void kundenMenü() throws IOException {
 		String input;
 		do{
+			System.out.println("Hallo " + eingeloggterKunde.getVorname());
 			System.out.println("Artikel in den Warenkorb legen  	-> AW");
 			System.out.println("Artikel kaufen  		-> AK");
 			System.out.println("Warenkorb leeren  		-> WL");
@@ -359,7 +378,6 @@ public class CUI {
 			//
 		}while(eingeloggterKunde.isLogin() == true);
 	}
-
 	public CUI() {
 
 		this.br =  new BufferedReader(new InputStreamReader(System.in));
@@ -372,31 +390,6 @@ public class CUI {
 
 
 	}
-
-
-	//	public boolean isAlpha(String text) throws EingabeException {
-	//		for (char c : text.toCharArray()) {
-	//
-	//			// a - z
-	//			if (c >= 'a' && c <= 'z')
-	//				continue;
-	//
-	//			// A - Z
-	//			if (c >= 'A' && c <= 'Z')
-	//				continue;
-	//
-	//			// ï¿½, ï¿½, ï¿½, ï¿½
-	//			if (c == 'ï¿½' || c == 'ï¿½' || c == 'ï¿½' || c == 'ï¿½')
-	//				continue;
-	//
-	//			throw new EingabeException(text);
-	//			//            return false;
-	//		}
-	//		return true;
-	//	}
-
-
-
 	public static void main(String[] args) {
 
 		CUI cui = new CUI();
