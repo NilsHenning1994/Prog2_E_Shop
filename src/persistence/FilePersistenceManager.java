@@ -57,34 +57,34 @@ public class FilePersistenceManager implements PersistenceManager {
 	}
 
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
-//		List<Mitarbeiter> newMList = new ArrayList<Mitarbeiter>();
-//		while(!liesZeile().equals("")){
 
 			// id einlesen
 			String id = liesZeile();
+			
 			// ... und von String in int konvertieren
-			int intid = Integer.parseInt(id);
+			
 			if (id == null) {
 				// keine Daten mehr vorhanden
 				return null;
 			}
+			int intid = Integer.parseInt(id);
 			String Name = liesZeile();	
 			String Nachname = liesZeile();
 			String Mail = liesZeile();
 			String Passwort = liesZeile();
 			liesZeile();
 
-
-//			newMList.add(new Mitarbeiter(intid, Name, Nachname,Mail,Passwort,false));
-//		}
-//		return newMList;
-
-				return new Mitarbeiter(intid, Name, Nachname,Mail,Passwort,false);
+			Mitarbeiter m = new Mitarbeiter(intid, Name, Nachname, Mail, Passwort, false);
+			if(reader != null){
+				return m;
+			}
+			else{
+				return m;
+			}
+			
 	}
 
 	public Kunde ladeKunde() throws IOException {
-//		List<Kunde> newKList = new ArrayList<Kunde>();
-//		while(id != null){
 		// id einlesen
 		String id = liesZeile();
 		if (id == null) {
@@ -102,11 +102,6 @@ public class FilePersistenceManager implements PersistenceManager {
 		Adresse adress = new Adresse(strasse,hausnummer,plz,stadt);
 		String Mail = liesZeile();
 		String Passwort = liesZeile();
-
-//		newKList.add(new Kunde(intid, Name, Nachname,Passwort, adress,Mail,false));
-//		id = liesZeile();
-//		}
-//		return newKList;
 		
 		return new Kunde(intid, Name, Nachname,Mail,adress,Passwort,true);
 	}
