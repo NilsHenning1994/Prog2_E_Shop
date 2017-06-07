@@ -57,6 +57,7 @@ public class CUI {
 				shop.ladeMitarbeiter();
 				shop.ladeKunden();
 				shop.ladeArtikel();
+				shop.ladeEreignis();
 			}
 			catch(IOException e){
 				e.printStackTrace();
@@ -188,6 +189,7 @@ public class CUI {
 
 			if(input.equals("EA")){
 				shop.printEreignisListe();
+				
 			}
 
 
@@ -210,6 +212,7 @@ public class CUI {
 					System.out.println("Artikel wurde erfolgreich geaendert!");
 					shop.printArtikelListe();
 					shop.speicherArtikel();
+					shop.speicherEreignis();
 				}else{
 					//System.out.println("Artikelnummer existiert nicht"); // besser Exception
 				}
@@ -239,6 +242,7 @@ public class CUI {
 				shop.printArtikelListe();
 				
 				shop.speicherArtikel();
+				shop.speicherEreignis();
 			}
 
 
