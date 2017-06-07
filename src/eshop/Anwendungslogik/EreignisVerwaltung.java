@@ -31,6 +31,11 @@ public class EreignisVerwaltung {
 	public void setEreignisListe(List<Ereignis> ereignisListe) {
 		this.ereignisListe = ereignisListe;
 	}
+	public void addEreignisArtikelAnlegen(Mitarbeiter m, Artikel ar,int anz ){
+		Date date = new Date();
+		Ereignis er = new Ereignis(date, ar, anz, m );
+		ereignisListe.add(er);
+	}
 	
 	
 	

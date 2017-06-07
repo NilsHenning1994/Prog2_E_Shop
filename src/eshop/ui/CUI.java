@@ -195,7 +195,7 @@ public class CUI {
 			if(input.equals("BA")){
 				System.out.println(shop.getArtikelListe());
 				System.out.println("Von welchem Artikel den Bestand aendern?");
-				shop.printArtikelListe();
+//				shop.printArtikelListe();
 				System.out.println("Waehlen Sie den Artikel anhand der ID aus");
 				int inputt =  getInputInt();
 				int id = inputt;
@@ -209,6 +209,7 @@ public class CUI {
 					shop.bestandAendern(eingeloggterMitarbeiter, ar, anz);
 					System.out.println("Artikel wurde erfolgreich geaendert!");
 					shop.printArtikelListe();
+					shop.speicherArtikel();
 				}else{
 					//System.out.println("Artikelnummer existiert nicht"); // besser Exception
 				}
@@ -236,6 +237,7 @@ public class CUI {
 				int bestand = inputt;
 				shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
 				shop.printArtikelListe();
+				
 				shop.speicherArtikel();
 			}
 

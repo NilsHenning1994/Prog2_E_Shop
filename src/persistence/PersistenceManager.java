@@ -24,6 +24,7 @@ public interface PersistenceManager {
 
 	public Kunde ladeKunde() throws IOException;
 	public Mitarbeiter ladeMitarbeiter() throws IOException;
+	public Artikel ladeArtikel() throws IOException;
 	
 	public void  speichereShop(Shop s, String datenQuelle) throws IOException;
 	public boolean speichereWarenkorb(Warenkorb w) throws IOException;

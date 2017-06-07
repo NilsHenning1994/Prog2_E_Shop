@@ -109,17 +109,21 @@ public class FilePersistenceManager implements PersistenceManager {
 	public Artikel ladeArtikel() throws IOException {
 		// Bezeichnung des Artikels
 		String bez = liesZeile();
+		if (bez == null) {
+			// keine Daten mehr vorhanden
+			return null;
+		}
 		// Nummer des Artikels mit parse
 		String nr = liesZeile(); 
 		int intnr = Integer.parseInt(nr);
 		// Preis des Artikels mit parse
 		String preis = liesZeile();
-		int intpreis = Integer.parseInt(preis);
+		float floatpreis = Float.parseFloat(preis);
 		// Bestand des Artikels mit parse
 		String bestand = liesZeile();
 		int intbestand = Integer.parseInt(bestand);
 
-		return new Artikel(bez,intnr,intpreis,intbestand);
+		return new Artikel(bez,intnr,floatpreis,intbestand);
 	}
 
 	public boolean speichereMitarbeiterliste(List<Mitarbeiter> m) throws IOException {

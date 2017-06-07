@@ -42,15 +42,15 @@ public class Shop {
 		wv = new WarenkorbVerwaltung();
 		ss = new ShoppingServices();
 	}
-	
-	
-	
+
+
+
 	// Getter
 	public Vector<Artikel> getArtikelListe(){
 		return av.getArtikelListe();
 	}
-	
-	
+
+
 
 
 
@@ -80,11 +80,11 @@ public class Shop {
 
 	//laden
 	public void ladeMitarbeiter() throws IOException{
-//		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
+		//		List<Mitarbeiter> newmitarbeiterliste = new ArrayList<Mitarbeiter>();
 		fp.openForReading("SHOP_M.txt");
 		mv.ladeMitarbeiter();
 		fp.close();
-//		mv.setMitarbeiterliste(newmitarbeiterliste);
+		//		mv.setMitarbeiterliste(newmitarbeiterliste);
 	}
 	public void ladeKunden() throws IOException{
 		fp.openForReading("SHOP_K.txt");
@@ -93,7 +93,7 @@ public class Shop {
 	}
 	public void ladeArtikel() throws IOException{
 		fp.openForReading("SHOP_A.txt");
-		fp.ladeArtikel();
+		av.ladeArtikel();
 		fp.close();
 	}
 
@@ -141,7 +141,7 @@ public class Shop {
 
 
 	//	Artikel Methoden ---->
-	
+
 	// Mitarbeiter Bestand von Artikel erhoehen
 	public Artikel bestandAendern(Mitarbeiter ma, Artikel ar, int anz){
 		av.bestandAendern(ma, ar, anz);
@@ -151,8 +151,8 @@ public class Shop {
 	}
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand){
 		//		av.createArtikel(bez, nummer, preis, bestand);
-		av.createArtikel(bez, preis, bestand);
-		//		ev.addEreignis(mitarbeiter, ar, anz);
+		Artikel art = av.createArtikel(bez, preis, bestand);
+		ev.addEreignisArtikelAnlegen(mitarbeiter, art, bestand);
 	}
 	public Artikel artikelSuchenNachID(int id){
 		return av.artikelNachID(id);
@@ -163,7 +163,7 @@ public class Shop {
 	}
 	//TODO
 	public void artikelKaufen(Kunde ku, Artikel ar, int anz){
-		
+
 		av.bestandAendern(ku, ar, anz);
 		ss.warenkorbAendern(ku, ar, anz);
 		ev.addEreignis(ku, ar, anz);
@@ -177,6 +177,9 @@ public class Shop {
 	public void setWarenkorb(Kunde ku, Warenkorb wa){
 		ku.setCart(wa);
 	}
+
+
+	// Ereignismethoden??
 
 
 

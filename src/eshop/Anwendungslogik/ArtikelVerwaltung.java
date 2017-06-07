@@ -3,7 +3,10 @@ package eshop.Anwendungslogik;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Mitarbeiter;
+import persistence.FilePersistenceManager;
 import persistence.PersistenceManager;
+
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -16,8 +19,8 @@ import java.util.Vector;
  */
 public class ArtikelVerwaltung {
 
-	public ArtikelVerwaltung (PersistenceManager pm) {
-		this.pm = pm;
+	public ArtikelVerwaltung (FilePersistenceManager fp) throws IOException {
+		this.fp = fp;
 	}
 
 
@@ -26,9 +29,19 @@ public class ArtikelVerwaltung {
 	//       private Map<Artikel, Integer> bestandsListe = null;
 
 	// Persistenz-Schnittstelle, die fuer die Details des Dateizugriffs verantwortlich ist
-	private PersistenceManager pm = null; // = new FilePersistenceManager();
+	private PersistenceManager fp = null; // = new FilePersistenceManager();
 
 
+	public void ladeArtikel() throws IOException {
+		fp.openForReading("SHOP_A.txt");
+		Artikel a = null;
+		do {
+			a = fp.ladeArtikel();
+			if (a != null)
+				artikelListe.add(a);
+		} while (a != null);
+		fp.close();
+	}
 
 
 	public Vector<Artikel> getArtikelListe() {
@@ -136,7 +149,7 @@ public class ArtikelVerwaltung {
 
 
 	// Artikel erstellen
-	public void createArtikel(String bez, float preis, int bestand){
+	public Artikel createArtikel(String bez, float preis, int bestand){
 		int id = 0;
 
 		// Set<Artikel> artikelListe = bestandsListe.keySet();
@@ -152,6 +165,7 @@ public class ArtikelVerwaltung {
 		id ++;
 		Artikel ar = new Artikel(bez, id, preis, bestand);
 		artikelListe.add(ar);
+		return ar;
 	}
 
 	public void artikelInWarenkorb(){

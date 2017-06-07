@@ -1,5 +1,6 @@
 package eshop.Anwendungslogik;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,11 +13,13 @@ import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
 import eshop.Exceptions.FalschePackungsgroeßeException;
 import eshop.Exceptions.FehlerException;
+import persistence.PersistenceManager;
 
 public class ShoppingServices {
 
 	private ArtikelVerwaltung av = null;
 	private Rechnung rechnung;
+
 
 
 	// Ein Artikel wird in den Warenkorb gelegt z.B. ein Buch
@@ -45,6 +48,8 @@ public class ShoppingServices {
 		}
 
 	}
+	
+	
 
 
 
@@ -99,7 +104,7 @@ public class ShoppingServices {
 		List<WarenkorbEintrag> eintraege = cart.getEintraege();
 
 		for (WarenkorbEintrag eintrag: eintraege) {
-			av.g// eintrag auslesen
+//			av.g// eintrag auslesen
 		}
 		warenkorbLeeren(kunde);
 		return rechnung;

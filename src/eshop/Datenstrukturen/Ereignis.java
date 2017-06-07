@@ -29,7 +29,6 @@ public class Ereignis {
 
 
 
-
 	public int getAnz() {
 		return anz;
 	}
