@@ -10,3 +10,15 @@ JPS Zigaretten
 3
 7.0
 4
+L&M Zigaretten
+4
+7.0
+300
+Marlboro Zigaretten
+5
+7.0
+30
+HB Zigaretten
+6
+5.2
+17

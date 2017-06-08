@@ -77,8 +77,8 @@ public class Artikel {
 		return preis;
 	}
 
-	public void setPreis(int preis) {
-		this.preis = preis;
+	public void setPreis(float preisinfo) {
+		this.preis = preisinfo;
 	}
 
 	public int getBestand() {

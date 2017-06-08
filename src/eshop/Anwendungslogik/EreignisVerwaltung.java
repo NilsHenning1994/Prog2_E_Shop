@@ -22,7 +22,7 @@ public class EreignisVerwaltung {
 	private List<String> log = new ArrayList<String>();
 	private PersistenceManager fp = null; // = new FilePersistenceManager();
 	
-	public void ladeLog() throws IOException {
+	/*public void ladeLog() throws IOException {
 		fp.openForReading("SHOP_E.txt");
 		String e = null;
 		do {
@@ -31,7 +31,7 @@ public class EreignisVerwaltung {
 				log.add(e);
 		} while (e != null);
 		fp.close();
-	}
+	}*/
 	
 	
 	

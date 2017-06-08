@@ -3,6 +3,7 @@ package eshop;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -11,10 +12,10 @@ import eshop.Anwendungslogik.EreignisVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
 import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Anwendungslogik.ShoppingServices;
-import eshop.Anwendungslogik.WarenkorbVerwaltung;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
@@ -29,7 +30,6 @@ public class Shop {
 	private MitarbeiterVerwaltung mv;
 	private KundenVerwaltung kv;
 	private EreignisVerwaltung ev;
-	private WarenkorbVerwaltung wv;
 	private FilePersistenceManager fp;
 	private ShoppingServices ss;
 
@@ -39,7 +39,6 @@ public class Shop {
 		mv = new MitarbeiterVerwaltung(fp);
 		kv = new KundenVerwaltung(fp);
 		ev = new EreignisVerwaltung(fp);
-		wv = new WarenkorbVerwaltung();
 		ss = new ShoppingServices();
 	}
 
@@ -66,17 +65,17 @@ public class Shop {
 	
 	public void speicherArtikel() throws IOException{
 		List<Artikel> newartikelliste = new ArrayList<Artikel>();
-		newartikelliste = av.getArtikelliste();
+		newartikelliste = av.getArtikelListe();
 		fp.openForWriting("SHOP_A.txt");
 		fp.speichereArtikelliste(newartikelliste);
 		fp.close();
 	}
 	
-	public void speicherLog() throws IOException{
-		List<String> newLogListe = new ArrayList<String>();
-		newLogListe = ev.getLog();
+	public void speicherEreignis() throws IOException{
+		List<Ereignis> newEreignisListe = new ArrayList<Ereignis>();
+		newEreignisListe = ev.getEreignisListe();
 		fp.openForWriting("SHOP_E.txt");
-		fp.speichereLog(newLogListe);
+		fp.speicherEreignis(newEreignisListe);
 		fp.close();
 	}
 	//laden
@@ -100,9 +99,9 @@ public class Shop {
 		fp.close();
 	}
 	
-	public void ladeLog() throws IOException{
+	public void ladeEreignis() throws IOException{
 		fp.openForReading("SHOP_E.txt");
-		ev.ladeLog();
+		fp.ladeEreignis();
 		fp.close();
 	}
 	//	Mitarbeiter Methoden ----->
@@ -160,7 +159,7 @@ public class Shop {
 		av.artikelInWarenkorb();
 	}
 	// Artikel kaufen
-	public void artikelKaufen(Kunde ku, Artikel ar, int anz){
+	public void warenkorbKaufen(Kunde ku, Artikel ar, int anz){
 		av.bestandAendern(ku, ar, anz);
 		ss.warenkorbAendern(ku, ar, anz);
 		ev.addEreignis(ku, ar, anz);
@@ -178,13 +177,16 @@ public class Shop {
 		ku.setCart(wa);
 	}
 	// Ereignismethoden??
+	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand,  float preisinfo, float gesamt){
+		return ss.rechnungErstellen(kunde, date, artikel, bestand, preisinfo, gesamt);
+	}
 	
 	//  ---------------------------------
 	//	---------- test/print -----------
 	//  ---------------------------------
 	public void printArtikelListe(){
 		for(int i = 0; i< av.getArtikelListe().size();i++){
-			System.out.println(av.getArtikelListe().get(i).getNummer() + " | "+ av.getArtikelListe().get(i).getBez()+ " | "+ av.getArtikelliste().get(i).getBestand());
+			System.out.println(av.getArtikelListe().get(i).getNummer() + " | "+ av.getArtikelListe().get(i).getBez()+ " | "+ av.getArtikelListe().get(i).getBestand());
 		}
 	}
 
@@ -220,26 +222,7 @@ public class Shop {
 		}
 	}
 
-	public void printLog(){
-		String zeile ;
-		for(int i = 0; i< ev.getLog().size();i++){
-			
-			zeile = ("Der Bestand des Artikels  "+ 
-			ev.getEreignisListe().get(i).getArtikel().getBez() + " wurde am " + 
-			ev.getEreignisListe().get(i).getWann()+" von dem Mitarbeiter "+ 
-			ev.getEreignisListe().get(i).getUser().getVorname()+ " "+ 
-			ev.getEreignisListe().get(i).getUser().getNachname() + " auf " + 
-			ev.getEreignisListe().get(i).getAnz() + " geaendert.");
-	
-	System.out.println(zeile);
-			System.out.println(ev.getLog().get(i));
-		}
+	public float WarenkorbGesamtpreis(Kunde kunde) {
+		return ss.WarenkorbGesamtpreis(kunde);
 	}
-
-
-
-	
-
-
-
 }

@@ -4,11 +4,14 @@ package eshop.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Date;
+
 import eshop.Shop;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Datenstrukturen.Rechnung;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
 
@@ -351,7 +354,6 @@ public class CUI {
 		do{
 			System.out.println("Hallo " + eingeloggterKunde.getVorname());
 			System.out.println("Artikel in den Warenkorb legen  	-> AW");
-			System.out.println("Artikel kaufen  		-> AK");
 			System.out.println("Warenkorb leeren  		-> WL");
 			System.out.println("Warenkorb aendern  		-> WA");
 			System.out.println("Warenkorbinhalt kaufen 	-> WK");
@@ -362,12 +364,18 @@ public class CUI {
 
 			switch (input) {
 			case "AW": 
-				break;
-			case "AK":
 				System.out.println("Artikel anhand ID auswählen");
 				Artikel ar = shop.artikelSuchenNachID(getInputInt());
+				System.out.println(ar.getBez());
+				System.out.println("Anzahl des gewünschten Artikels:");
 				int anz =  getInputInt();
-				shop.artikelKaufen(eingeloggterKunde, ar, anz);
+				break;
+			case "WK":
+				Artikel as;
+				shop.warenkorbKaufen(eingeloggterKunde, as, anz);
+				Date date;
+				float gesamtpreis = shop.WarenkorbGesamtpreis(eingeloggterKunde);
+				shop.rechnungErstellen(eingeloggterKunde, date, as, anz, ar.getPreis(), gesamtpreis);
 				break;
 			case "WL":
 				shop.warenkorbLeeren(eingeloggterKunde);

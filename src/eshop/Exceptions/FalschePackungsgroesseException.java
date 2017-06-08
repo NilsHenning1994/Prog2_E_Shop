@@ -8,7 +8,7 @@ import eshop.Datenstrukturen.Massengutartikel;
  * Exception zur Signalisierung, dass ein Artikel bereits existiert (z.B. bei einem Einfügevorgang).
  * 
  */
-public class FalschePackungsgroeßeException extends Exception {
+public class FalschePackungsgroesseException extends Exception {
 
 	/**
 	 * Konstruktor
@@ -16,7 +16,7 @@ public class FalschePackungsgroeßeException extends Exception {
 	 * @param artikel Das bereits existierende Artikel
 	 * @param zusatzMsg zusätzlicher Text für die Fehlermeldung
 	 */
-	public FalschePackungsgroeßeException() {
-		super("Dieser Artikel existiert nicht in der gewünschten Packungsgroeße!");
+	public FalschePackungsgroesseException() {
+		super("Dieser Artikel existiert nicht in der gewuenschten Packungsgroesse!");
 	}
 }

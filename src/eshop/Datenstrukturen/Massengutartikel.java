@@ -2,23 +2,23 @@ package eshop.Datenstrukturen;
 
 public class Massengutartikel extends Artikel{
 
-	private int packungsgroeße;
+	private int packungsgroesse;
 
-	public Massengutartikel(String bez, int nr, int preis, int bestand, int packungsgroeße) {
+	public Massengutartikel(String bez, int nr, int preis, int bestand, int packungsgroesse) {
 		super(bez, nr, preis, bestand);
-		this.setPackungsgroeße(packungsgroeße);
+		this.setPackungsgroesse(packungsgroesse);
 	}
 	
 	public String toString() {
-		return ( "Nummer: "+ getNummer() + " | Bezeichnung: " + getBez() + " | Preis: "+ getPreis() + " | Bestand: " + getBestand() + " | Packungsgroeße: " + getPackungsgroeße() );
+		return ( "Nummer: "+ getNummer() + " | Bezeichnung: " + getBez() + " | Preis: "+ getPreis() + " | Bestand: " + getBestand() + " | Packungsgroeße: " + getPackungsgroesse() );
 	}
 
-	public int getPackungsgroeße() {
-		return packungsgroeße;
+	public int getPackungsgroesse() {
+		return packungsgroesse;
 	}
 
-	public void setPackungsgroeße(int packungsgroeße) {
-		this.packungsgroeße = packungsgroeße;
+	public void setPackungsgroesse(int packungsgroesse) {
+		this.packungsgroesse = packungsgroesse;
 	}
 	
 }
