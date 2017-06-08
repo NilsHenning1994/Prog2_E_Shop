@@ -11,7 +11,8 @@ import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
-import eshop.Exceptions.FalschePackungsgroeßeException;
+import eshop.Exceptions.FalschePackungsgroesseException;
+import eshop.Exceptions.FalschePackungsgroesseException;
 import eshop.Exceptions.FehlerException;
 import persistence.PersistenceManager;
 
@@ -19,7 +20,7 @@ public class ShoppingServices {
 
 	private ArtikelVerwaltung av = null;
 	private Rechnung rechnung;
-
+	
 
 
 	// Ein Artikel wird in den Warenkorb gelegt z.B. ein Buch
@@ -37,18 +38,17 @@ public class ShoppingServices {
 	}
 
 	// Ein Massengutartikel wird in den Warenkorb gelegt z.B. ein 6er sprich 6 einzelne Flaschen Bier
-	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz) throws FalschePackungsgroeßeException{
+	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz) throws FalschePackungsgroesseException{
 
-		int packungsgroeße = ma.getPackungsgroeße();
-		if(anz % packungsgroeße != 0){
-			throw new FalschePackungsgroeßeException();
+		int packungsgroesse = ma.getPackungsgroesse();
+		if(anz % packungsgroesse != 0){
+			throw new FalschePackungsgroesseException();
 		} else {
 			WarenkorbEintrag eintrag = new WarenkorbEintrag(ma, anz);
 			kunde.getCart().addEintrag(eintrag);
 		}
 
 	}
-	
 	
 
 
@@ -59,6 +59,9 @@ public class ShoppingServices {
 			if(kunde.getCart().getEintraege().contains(artikel)){
 				int stueck = kunde.getCart().getEintraege().get(i).getStueckzahl() + anz;
 				kunde.getCart().getEintraege().get(i).setStueckzahl(stueck);
+				if(kunde.getCart().getEintraege().get(i).getStueckzahl() == 0){
+					kunde.getCart().getEintraege().remove(i);
+				}
 			}
 		}
 
@@ -76,8 +79,17 @@ public class ShoppingServices {
 		kunde.getCart().getEintraege().clear();
 	}
 
-	//
-	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand, int preisinfo, int gesamt){
+	public float WarenkorbGesamtpreis(Kunde kunde){
+		
+		float summe = 0.0f;
+		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
+			summe = summe + kunde.getCart().getEintraege().get(i).getArtikel().getPreis();
+			
+		}return summe;
+	}
+	
+	
+	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand, float preisinfo, float gesamt){
 		float summe = 0;
 		rechnung.setKunde(kunde);
 		rechnung.setDatum(date);
@@ -85,9 +97,10 @@ public class ShoppingServices {
 			rechnung.getArtikelListe().set(i, artikel);
 			rechnung.getArtikelListe().get(i).setBestand(bestand);
 			rechnung.getArtikelListe().get(i).setPreis(preisinfo);
-			summe = summe + (int) rechnung.getArtikelListe().get(i).getPreis();
+			summe = summe + (float) rechnung.getArtikelListe().get(i).getPreis();
 		}
 		rechnung.setGesamtpreis(summe);
+		System.out.println(rechnung);
 		return rechnung;
 	}
 
@@ -98,7 +111,7 @@ public class ShoppingServices {
 	//	dem Bildschirm ausgegeben. Das Rechnungsobjekt enth�lt u.a. Kunde, Datum, die gekauften
 	//	Artikel inkl. St�ckzahl und Preisinformation sowie den Gesamtpreis. 
 
-	public Rechnung artikelKaufen(Kunde kunde){
+	public Rechnung warenkorbKaufen(Kunde kunde){
 		Rechnung rechnung = null;
 		Warenkorb cart = kunde.getCart();
 		List<WarenkorbEintrag> eintraege = cart.getEintraege();

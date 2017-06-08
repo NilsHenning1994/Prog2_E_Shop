@@ -11,7 +11,9 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 import eshop.Shop;
@@ -132,9 +134,33 @@ public class FilePersistenceManager implements PersistenceManager {
 	}
 
 	public Ereignis ladeEreignis() throws IOException {
-
-		Date wann = liesZeile()
-				Artikel artikel;
+		
+		String inhalt = liesZeile();
+		StringTokenizer token = new StringTokenizer(inhalt);
+		int length = token.countTokens();  // Anzahl Teile, die gefunden werden.
+		String[] array = new String[6];  // Den Array herstellen
+		for( int i = 0; i < length; i++ ){
+		  array[i] = token.nextToken();  // Die einzelnen Teile abspeichern.
+		  
+		  
+		}
+		for(int i = 0; i < array.length; i++){
+			System.out.println(array[i]);
+		}
+		
+		int intMonth = Integer.parseInt(array[0]);
+		int intDay	  = Integer.parseInt(array[0+1]);
+		int intYear  = Integer.parseInt(array[0+2]);
+		int intHour  = Integer.parseInt(array[0+3]);
+		int intMinute = Integer.parseInt(array[0+4]);
+		int intSecond = Integer.parseInt(array[0+5]);		
+		Calendar wann;
+		
+		//System.out.println(wann);
+		return null;
+		
+		
+		/*		Artikel artikel;
 		int anz;
 		Benutzer user;
 
@@ -149,7 +175,7 @@ public class FilePersistenceManager implements PersistenceManager {
 
 		Artikel art = new Artikel(bez, nummer, preis, bestand);
 
-		return new Ereignis(wann, artikel, anz, user);
+		return new Ereignis(wann, artikel, anz, user);*/
 	}
 
 
@@ -222,10 +248,23 @@ public class FilePersistenceManager implements PersistenceManager {
 		for(int i = 0; i < e.size(); i++){
 
 			// Date to String
-			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-			Date today = (Date) e.get(i).getWann();
-			String reportDate = df.format(today);
-			schreibeZeile(reportDate);
+			
+			int intMonth = e.get(i).getWann().getMonth();
+			int intDay	  = e.get(i).getWann().getDay();
+			int intYear  = e.get(i).getWann().getYear();
+			int intHour  = e.get(i).getWann().getHours();
+			int intMinute = e.get(i).getWann().getMinutes();
+			int intSecond = e.get(i).getWann().getSeconds();
+			String Month = Integer.toString(intMonth);
+			String Day	  = Integer.toString(intDay);
+			String Year  = Integer.toString(intYear);
+			String Hour  = Integer.toString(intHour);
+			String Minute = Integer.toString(intMinute);
+			String Second = Integer.toString(intSecond);
+			String Date = "!"+ Month +"!"+ Day+ "!" + Year +"!"+ Hour +"!"+ Minute +"!"+ Second;
+			
+			
+			schreibeZeile(Date);
 			// Artikel
 			schreibeZeile(e.get(i).getArtikel().getBez());
 			// Int to String
@@ -240,124 +279,120 @@ public class FilePersistenceManager implements PersistenceManager {
 			int bes = 	e.get(i).getArtikel().getBestand();
 			String stringbes = Integer.toString(bes);
 			schreibeZeile(stringbes);
-			
-			e.get(i).getUser().getVorname();
 
+			int id = 	e.get(i).getUser().getId();
+			String stringid = Integer.toString(id);
+			schreibeZeile(stringid);
+			schreibeZeile(e.get(i).getUser().getVorname());
+			schreibeZeile(e.get(i).getUser().getNachname());
 
-			// Ereignis Date wann, Artikel artikel, int anz, Benutzer user
+			//			schreibeZeile(e.get(i).getUser().getAdresse().getStrasse());
+			//			schreibeZeile(e.get(i).getUser().getAdresse().getHausnummer());
+			//			schreibeZeile(e.get(i).getUser().getAdresse().getPlz());
+			//			schreibeZeile(e.get(i).getUser().getAdresse().getStadt());
 
-
-			schreibeZeile(e.get(i).getAdresse().getStadt());
-			schreibeZeile(e.get(i).getEmail());
-			schreibeZeile(e.get(i).getPasswort());
-
-
-			Date wann = liesZeile()
-					Artikel artikel;
-			int anz;
-			Benutzer user;
-
-			// Artikel
-			String bez = liesZeile();
-			int nummer;
-			float preis;
-			int bestand;
-
-
+			schreibeZeile(e.get(i).getUser().getEmail());
+			schreibeZeile(e.get(i).getUser().getPasswort());
 		}
 
+		// Ereignis Date wann, Artikel artikel, int anz, Benutzer user
 
-
-
-
-		private String liesZeile() throws IOException {
-			if (reader != null)
-				return reader.readLine();
-			else
-				return "";
-		}
-
-		private void schreibeZeile(String daten) {
-			if (writer != null)
-				writer.println(daten);
-		}
-
-		@Override
-		public Shop ladeShop(String datenQuelle) throws IOException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void speichereShop(Shop s, String datenQuelle) throws IOException {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean speichereWarenkorb(Warenkorb w) throws IOException {
-			// Titel, Nummer und Verfuegbarkeit schreiben
-			schreibeZeile("" + w.getKunde().getId());
-			for(int i = 0; i<w.getEintraege().size(); i++){
-				schreibeZeile("" + w.getEintraege().get(i));
-			}
-
-			return true;
-		}
-
-
-
-
-
-
-
-		//	// Warenkorb
-		//
-		//	/**
-		//	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
-		//	 * 
-		//	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
-		//	 * @throws java.io.IOException
-		//	 */
-		//
-		//	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
-		//		Vector<Artikel> artikel = artikelListe;
-		//		List<Kunde> kunden = kundenListe;
-		//		Kunde kunde = null;
-		//		Vector<Artikel> artikels = null;
-		//
-		//		String wknr = liesZeile();
-		//		if (wknr == null) {
-		//			// keine Daten mehr vorhanden
-		//			return null;
-		//		}
-		//		String kundennr = liesZeile();
-		//		if (kundennr == null) {
-		//			// keine Daten mehr vorhanden
-		//			return null;
-		//		}
-		//
-		//		int knr = Integer.parseInt(kundennr);
-		//		for (Kunde k : kunden) {
-		//			if (k.getId() == knr) {
-		//				kunde = k;
-		//				break;
-		//			}
-		//		}
-		//		int lel;
-		//		while(liesZeile() != null){
-		//			String artikelnr = liesZeile();
-		//			for(Artikel a : artikel){
-		//				lel = Integer.parseInt(artikelnr);
-		//				if(a.getNummer() ==(lel)){
-		//					artikels.add(a);
-		//				}
-		//
-		//			}
-		//		}
-		//
-		//		return new Warenkorb(kunde);
-		//	}
 
 
 	}
+
+
+
+
+
+	private String liesZeile() throws IOException {
+		if (reader != null)
+			return reader.readLine();
+		else
+			return "";
+	}
+
+	private void schreibeZeile(String daten) {
+		if (writer != null)
+			writer.println(daten);
+	}
+
+	@Override
+	public Shop ladeShop(String datenQuelle) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void speichereShop(Shop s, String datenQuelle) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean speichereWarenkorb(Warenkorb w) throws IOException {
+		// Titel, Nummer und Verfuegbarkeit schreiben
+		schreibeZeile("" + w.getKunde().getId());
+		for(int i = 0; i<w.getEintraege().size(); i++){
+			schreibeZeile("" + w.getEintraege().get(i));
+		}
+
+		return true;
+	}
+
+
+
+
+
+
+
+	//	// Warenkorb
+	//
+	//	/**
+	//	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
+	//	 * 
+	//	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
+	//	 * @throws java.io.IOException
+	//	 */
+	//
+	//	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
+	//		Vector<Artikel> artikel = artikelListe;
+	//		List<Kunde> kunden = kundenListe;
+	//		Kunde kunde = null;
+	//		Vector<Artikel> artikels = null;
+	//
+	//		String wknr = liesZeile();
+	//		if (wknr == null) {
+	//			// keine Daten mehr vorhanden
+	//			return null;
+	//		}
+	//		String kundennr = liesZeile();
+	//		if (kundennr == null) {
+	//			// keine Daten mehr vorhanden
+	//			return null;
+	//		}
+	//
+	//		int knr = Integer.parseInt(kundennr);
+	//		for (Kunde k : kunden) {
+	//			if (k.getId() == knr) {
+	//				kunde = k;
+	//				break;
+	//			}
+	//		}
+	//		int lel;
+	//		while(liesZeile() != null){
+	//			String artikelnr = liesZeile();
+	//			for(Artikel a : artikel){
+	//				lel = Integer.parseInt(artikelnr);
+	//				if(a.getNummer() ==(lel)){
+	//					artikels.add(a);
+	//				}
+	//
+	//			}
+	//		}
+	//
+	//		return new Warenkorb(kunde);
+	//	}
+
+
+}

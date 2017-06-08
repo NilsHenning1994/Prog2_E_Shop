@@ -76,8 +76,6 @@ public class ArtikelVerwaltung {
 	public Vector<Artikel> artikelVorhanden(String bez) {
 		Vector<Artikel> suchErg = new Vector<Artikel>();
 
-		// Set<Artikel> artikelListe = bestandsListe.keySet();
-
 		Iterator<Artikel> it = artikelListe.iterator();
 		while (it.hasNext()) {
 			Artikel einArtikel = it.next();
@@ -129,11 +127,7 @@ public class ArtikelVerwaltung {
 	 * 
 	 */
 
-	public Vector<Artikel> getArtikelliste() {
-		// return new Vector<Artikel>(bestandsListe.keySet());
-		System.out.println(artikelListe);
-		return artikelListe;
-	}
+	
 
 
 
