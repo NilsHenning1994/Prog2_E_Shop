@@ -9,13 +9,11 @@ Tischkicker
 JPS Zigaretten
 3
 7.0
-4
-<<<<<<< HEAD
+7
 Duschgel
 4
 1.99
 10
-=======
 L&M Zigaretten
 4
 7.0
@@ -28,4 +26,3 @@ HB Zigaretten
 6
 5.2
 17
->>>>>>> aad3e62f444b4dbfe47ed3ebb8b546cba9069389

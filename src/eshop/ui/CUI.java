@@ -371,11 +371,15 @@ public class CUI {
 				int anz =  getInputInt();
 				break;
 			case "WK":
-				Artikel as;
-				shop.warenkorbKaufen(eingeloggterKunde, as, anz);
-				Date date;
+				System.out.println("Artikel anhand ID auswählen");
+				Artikel as = shop.artikelSuchenNachID(getInputInt());
+				System.out.println(as.getBez());
+				System.out.println("Anzahl des gewünschten Artikels:");
+				int anz1 =  getInputInt();
+				shop.warenkorbKaufen(eingeloggterKunde, as, anz1);
+				Date date = null;
 				float gesamtpreis = shop.WarenkorbGesamtpreis(eingeloggterKunde);
-				shop.rechnungErstellen(eingeloggterKunde, date, as, anz, ar.getPreis(), gesamtpreis);
+				shop.rechnungErstellen(eingeloggterKunde, date, as, anz1, as.getPreis(), gesamtpreis);
 				break;
 			case "WL":
 				shop.warenkorbLeeren(eingeloggterKunde);

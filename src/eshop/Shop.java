@@ -101,7 +101,7 @@ public class Shop {
 	
 	public void ladeEreignis() throws IOException{
 		fp.openForReading("SHOP_E.txt");
-		fp.ladeEreignis();
+		ev.ladeEreignis();
 		fp.close();
 	}
 	//	Mitarbeiter Methoden ----->

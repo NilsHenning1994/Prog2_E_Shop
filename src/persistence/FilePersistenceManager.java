@@ -7,11 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.sql.Date;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -113,15 +114,18 @@ public class FilePersistenceManager implements PersistenceManager {
 		return new Kunde(intid, Name, Nachname,Mail,adress,Passwort,true);
 	}
 
-	public Artikel ladeArtikel() throws IOException {
+	public Artikel ladeArtikel() throws IOException {	
+
+
+
 		// Bezeichnung des Artikels
 		String bez = liesZeile();
 		if (bez == null) {
 			// keine Daten mehr vorhanden
 			return null;
 		}
+		String nr = liesZeile();
 		// Nummer des Artikels mit parse
-		String nr = liesZeile(); 
 		int intnr = Integer.parseInt(nr);
 		// Preis des Artikels mit parse
 		String preis = liesZeile();
@@ -134,48 +138,80 @@ public class FilePersistenceManager implements PersistenceManager {
 	}
 
 	public Ereignis ladeEreignis() throws IOException {
-		
-		String inhalt = liesZeile();
-		StringTokenizer token = new StringTokenizer(inhalt);
-		int length = token.countTokens();  // Anzahl Teile, die gefunden werden.
-		String[] array = new String[6];  // Den Array herstellen
-		for( int i = 0; i < length; i++ ){
-		  array[i] = token.nextToken();  // Die einzelnen Teile abspeichern.
-		  
-		  
-		}
-		for(int i = 0; i < array.length; i++){
-			System.out.println(array[i]);
-		}
-		
-		int intMonth = Integer.parseInt(array[0]);
-		int intDay	  = Integer.parseInt(array[0+1]);
-		int intYear  = Integer.parseInt(array[0+2]);
-		int intHour  = Integer.parseInt(array[0+3]);
-		int intMinute = Integer.parseInt(array[0+4]);
-		int intSecond = Integer.parseInt(array[0+5]);		
-		Calendar wann;
-		
-		//System.out.println(wann);
-		return null;
-		
-		
-		/*		Artikel artikel;
-		int anz;
-		Benutzer user;
 
-		// Artikel
+		String datum = liesZeile();	
+		String monat = "";
+		String jahr = "";
+		String tag = "";
+		String stunde = "";
+		String minute = "";
+		String sekunde = "";
+		long ldate;
+		
+		
+		char[] datumArray = datum.toCharArray();
+		int counter = 0; //0=tag 1= monat 2=jahr
+		char test =("!".charAt(0));
+		System.out.println(Character.valueOf(test));
+
+		for (int i = 0; i < datum.length();i++){
+
+			//			
+			//			}
+			if (datumArray[i] == "!".charAt(0)){
+				counter++;
+			}else{
+				switch(counter){
+
+				case(1):
+					tag += datumArray[i];
+				break;
+
+				case(2):
+					monat += datumArray[i];
+				break;
+
+				case(3):
+					jahr += datumArray[i];
+				break;
+
+				case(4):
+					stunde += datumArray[i];
+				break;
+				case (5):
+					minute += datumArray[i];
+				break;
+
+				case(6):
+					sekunde += datumArray[i];
+				break;
+				}
+			}
+		}
+		
+//		Date date = null;
+//		date.setDate(Integer.parseInt(tag));
+//		date.setMonth(Integer.parseInt(monat));
+//		date.setYear(Integer.parseInt(jahr));
+//		date.setHours(Integer.parseInt(stunde));
+//		date.setMinutes(Integer.parseInt(minute));
+//		date.setSeconds(Integer.parseInt(sekunde));
+		
+		
+		Date date = new Date(Integer.parseInt(jahr),Integer.parseInt(monat),Integer.parseInt(tag));
 		String bez = liesZeile();
-		int nummer;
-		float preis;
-		int bestand;
+		int nr = Integer.parseInt(liesZeile());
+		float preis = Float.parseFloat(liesZeile());
+		int bestand = Integer.parseInt(liesZeile());
+		int anz = Integer.parseInt(liesZeile());
+		Artikel art = new Artikel(bez, nr, preis, bestand);
+		Mitarbeiter mitarbeiter = new Mitarbeiter (7, "Name", "Nachname","Mail","adress",true);
+		
 
+		System.out.println("jahr: " + jahr +" monat: "+ monat +" tag: " +tag +" stunde: "+ stunde + " minute: "+minute +" sekunde: "+ sekunde);	
 
-		Date date;
-
-		Artikel art = new Artikel(bez, nummer, preis, bestand);
-
-		return new Ereignis(wann, artikel, anz, user);*/
+		return new Ereignis(date, art, anz, mitarbeiter);
+		//nrArray[i].t
 	}
 
 
@@ -248,7 +284,7 @@ public class FilePersistenceManager implements PersistenceManager {
 		for(int i = 0; i < e.size(); i++){
 
 			// Date to String
-			
+
 			int intMonth = e.get(i).getWann().getMonth();
 			int intDay	  = e.get(i).getWann().getDay();
 			int intYear  = e.get(i).getWann().getYear();
@@ -262,8 +298,8 @@ public class FilePersistenceManager implements PersistenceManager {
 			String Minute = Integer.toString(intMinute);
 			String Second = Integer.toString(intSecond);
 			String Date = "!"+ Month +"!"+ Day+ "!" + Year +"!"+ Hour +"!"+ Minute +"!"+ Second;
-			
-			
+
+
 			schreibeZeile(Date);
 			// Artikel
 			schreibeZeile(e.get(i).getArtikel().getBez());
