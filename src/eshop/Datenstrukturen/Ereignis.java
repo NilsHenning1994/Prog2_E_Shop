@@ -12,14 +12,21 @@ public class Ereignis {
 	private int anz;
 	private Date wann;
 	private Benutzer user;
-
-	public Ereignis( Date wann, Artikel artikel, int anz, Benutzer user) {
+	
+	public Ereignis( Artikel artikel, int anz, Benutzer user) {
 		super();
-		this.wann = wann;
 		this.artikel = artikel;
 		this.anz = anz;
 		this.user = user;
 	}
+
+//	public Ereignis( Date wann, Artikel artikel, int anz, Benutzer user) {
+//		super();
+//		this.wann = wann;
+//		this.artikel = artikel;
+//		this.anz = anz;
+//		this.user = user;
+//	}
 
 	public int getAnz() {
 		return anz;

@@ -139,55 +139,55 @@ public class FilePersistenceManager implements PersistenceManager {
 
 	public Ereignis ladeEreignis() throws IOException {
 
-		String datum = liesZeile();	
-		String monat = "";
-		String jahr = "";
-		String tag = "";
-		String stunde = "";
-		String minute = "";
-		String sekunde = "";
-		long ldate;
-		
-		
-		char[] datumArray = datum.toCharArray();
-		int counter = 0; //0=tag 1= monat 2=jahr
-		char test =("!".charAt(0));
-		System.out.println(Character.valueOf(test));
-
-		for (int i = 0; i < datum.length();i++){
-
-			//			
-			//			}
-			if (datumArray[i] == "!".charAt(0)){
-				counter++;
-			}else{
-				switch(counter){
-
-				case(1):
-					tag += datumArray[i];
-				break;
-
-				case(2):
-					monat += datumArray[i];
-				break;
-
-				case(3):
-					jahr += datumArray[i];
-				break;
-
-				case(4):
-					stunde += datumArray[i];
-				break;
-				case (5):
-					minute += datumArray[i];
-				break;
-
-				case(6):
-					sekunde += datumArray[i];
-				break;
-				}
-			}
-		}
+//		String datum = liesZeile();	
+//		String monat = "";
+//		String jahr = "";
+//		String tag = "";
+//		String stunde = "";
+//		String minute = "";
+//		String sekunde = "";
+//		long ldate;
+//		
+//		
+////		char[] datumArray = datum.toCharArray();
+//		int counter = 0; //0=tag 1= monat 2=jahr
+//		char test =("!".charAt(0));
+//		System.out.println(Character.valueOf(test));
+//
+//		for (int i = 0; i < datum.length();i++){
+//
+//			//			
+//			//			}
+//			if (datumArray[i] == "!".charAt(0)){
+//				counter++;
+//			}else{
+//				switch(counter){
+//
+//				case(1):
+//					tag += datumArray[i];
+//				break;
+//
+//				case(2):
+//					monat += datumArray[i];
+//				break;
+//
+//				case(3):
+//					jahr += datumArray[i];
+//				break;
+//
+//				case(4):
+//					stunde += datumArray[i];
+//				break;
+//				case (5):
+//					minute += datumArray[i];
+//				break;
+//
+//				case(6):
+//					sekunde += datumArray[i];
+//				break;
+//				}
+//			}
+//		}
 		
 //		Date date = null;
 //		date.setDate(Integer.parseInt(tag));
@@ -198,19 +198,28 @@ public class FilePersistenceManager implements PersistenceManager {
 //		date.setSeconds(Integer.parseInt(sekunde));
 		
 		
-		Date date = new Date(Integer.parseInt(jahr),Integer.parseInt(monat),Integer.parseInt(tag));
+//		Date date = new Date(Integer.parseInt(jahr),Integer.parseInt(monat),Integer.parseInt(tag));
 		String bez = liesZeile();
+		if(bez == null){
+			return null;
+		}
 		int nr = Integer.parseInt(liesZeile());
 		float preis = Float.parseFloat(liesZeile());
 		int bestand = Integer.parseInt(liesZeile());
 		int anz = Integer.parseInt(liesZeile());
 		Artikel art = new Artikel(bez, nr, preis, bestand);
-		Mitarbeiter mitarbeiter = new Mitarbeiter (7, "Name", "Nachname","Mail","adress",true);
+		
+		int id = Integer.parseInt(liesZeile());
+		String vorname = liesZeile();
+		String nachname = liesZeile();
+		String mail = liesZeile();
+		String passwort = liesZeile();
+		Mitarbeiter mitarbeiter = new Mitarbeiter (id, vorname, nachname, mail,passwort,false);
 		
 
-		System.out.println("jahr: " + jahr +" monat: "+ monat +" tag: " +tag +" stunde: "+ stunde + " minute: "+minute +" sekunde: "+ sekunde);	
+//		System.out.println("jahr: " + jahr +" monat: "+ monat +" tag: " +tag +" stunde: "+ stunde + " minute: "+minute +" sekunde: "+ sekunde);	
 
-		return new Ereignis(date, art, anz, mitarbeiter);
+		return new Ereignis(art, anz, mitarbeiter);
 		//nrArray[i].t
 	}
 
@@ -376,59 +385,6 @@ public class FilePersistenceManager implements PersistenceManager {
 		return true;
 	}
 
-
-
-
-
-
-
-	//	// Warenkorb
-	//
-	//	/**
-	//	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
-	//	 * 
-	//	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
-	//	 * @throws java.io.IOException
-	//	 */
-	//
-	//	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
-	//		Vector<Artikel> artikel = artikelListe;
-	//		List<Kunde> kunden = kundenListe;
-	//		Kunde kunde = null;
-	//		Vector<Artikel> artikels = null;
-	//
-	//		String wknr = liesZeile();
-	//		if (wknr == null) {
-	//			// keine Daten mehr vorhanden
-	//			return null;
-	//		}
-	//		String kundennr = liesZeile();
-	//		if (kundennr == null) {
-	//			// keine Daten mehr vorhanden
-	//			return null;
-	//		}
-	//
-	//		int knr = Integer.parseInt(kundennr);
-	//		for (Kunde k : kunden) {
-	//			if (k.getId() == knr) {
-	//				kunde = k;
-	//				break;
-	//			}
-	//		}
-	//		int lel;
-	//		while(liesZeile() != null){
-	//			String artikelnr = liesZeile();
-	//			for(Artikel a : artikel){
-	//				lel = Integer.parseInt(artikelnr);
-	//				if(a.getNummer() ==(lel)){
-	//					artikels.add(a);
-	//				}
-	//
-	//			}
-	//		}
-	//
-	//		return new Warenkorb(kunde);
-	//	}
 
 
 }

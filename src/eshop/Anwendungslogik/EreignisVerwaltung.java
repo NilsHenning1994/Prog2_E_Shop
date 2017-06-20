@@ -38,8 +38,8 @@ public class EreignisVerwaltung {
 	
 	
 	public void addEreignis(Benutzer be, Artikel ar, int anz){
-		Date date = new Date();
-		Ereignis er = new Ereignis(date, ar,anz, be);
+//		Date date = new Date();
+		Ereignis er = new Ereignis( ar,anz, be);
 		ereignisListe.add(er);
 	}
 	
@@ -54,8 +54,8 @@ public class EreignisVerwaltung {
 		this.ereignisListe = ereignisListe;
 	}
 	public void addEreignisArtikelAnlegen(Mitarbeiter m, Artikel ar,int anz ){
-		Date date = new Date();
-		Ereignis er = new Ereignis(date, ar, anz, m );
+//		Date date = new Date();
+		Ereignis er = new Ereignis(ar, anz, m );
 		ereignisListe.add(er);
 	}
 
