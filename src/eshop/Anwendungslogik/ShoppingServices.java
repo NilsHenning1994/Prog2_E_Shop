@@ -11,8 +11,6 @@ import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
-import eshop.Exceptions.FalschePackungsgroesseException;
-import eshop.Exceptions.FalschePackungsgroesseException;
 import eshop.Exceptions.FehlerException;
 import persistence.PersistenceManager;
 
@@ -38,11 +36,11 @@ public class ShoppingServices {
 	}
 
 	// Ein Massengutartikel wird in den Warenkorb gelegt z.B. ein 6er sprich 6 einzelne Flaschen Bier
-	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz) throws FalschePackungsgroesseException{
+	public void MartikelInWarenkorb(Kunde kunde, Massengutartikel ma, int anz) {
 
 		int packungsgroesse = ma.getPackungsgroesse();
 		if(anz % packungsgroesse != 0){
-			throw new FalschePackungsgroesseException();
+			System.out.println("Hier fehlt eine exception");
 		} else {
 			WarenkorbEintrag eintrag = new WarenkorbEintrag(ma, anz);
 			kunde.getCart().addEintrag(eintrag);

@@ -7,6 +7,7 @@ import persistence.FilePersistenceManager;
 import persistence.PersistenceManager;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -126,7 +127,11 @@ public class ArtikelVerwaltung {
 	 * Methode, die alle Artikel zurueck gibt.
 	 * 
 	 */
-
+	public Vector<Artikel> sortierenNachBezeichnung(){
+		Vector<Artikel> artikelListeBezeichnung = new Vector<Artikel>();
+		artikelListe.sort();
+		
+	}
 	
 
 

@@ -372,10 +372,11 @@ public class CUI {
 				break;
 			case "WK":
 				Artikel as;
-				shop.warenkorbKaufen(eingeloggterKunde, as, anz);
+				
 				Date date;
 				float gesamtpreis = shop.WarenkorbGesamtpreis(eingeloggterKunde);
-				shop.rechnungErstellen(eingeloggterKunde, date, as, anz, ar.getPreis(), gesamtpreis);
+				//shop.rechnungErstellen(eingeloggterKunde, date, as, anz, ar.getPreis(), gesamtpreis);
+				//shop.warenkorbKaufen(eingeloggterKunde, as, anz);
 				break;
 			case "WL":
 				shop.warenkorbLeeren(eingeloggterKunde);

@@ -26,16 +26,5 @@ public class ArtikelExistiertBereitsException extends Exception {
 				+ " existiert bereits. " + zusatzMsg);
 	}
 	
-	// Create an instance of SimpleDateFormat used for formatting 
-	// the string representation of date (month/day/year)
-	DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
-	// Get the date today using Calendar object.
-	Date today = Calendar.getInstance().getTime();        
-	// Using DateFormat format method we can create a string 
-	// representation of a date with the defined format.
-	String reportDate = df.format(today);
-
-	// Print what date is today!
-	System.out.println("Report Date: " + reportDate);
 }
