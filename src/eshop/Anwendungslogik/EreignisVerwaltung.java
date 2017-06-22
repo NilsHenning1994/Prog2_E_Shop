@@ -22,24 +22,24 @@ public class EreignisVerwaltung {
 	private List<String> log = new ArrayList<String>();
 	private PersistenceManager fp = null; // = new FilePersistenceManager();
 	
-	/*public void ladeLog() throws IOException {
+	public void ladeEreignis() throws IOException {
 		fp.openForReading("SHOP_E.txt");
-		String e = null;
+		Ereignis e;
 		do {
-			e = fp.ladeLog();
+			e = fp.ladeEreignis();
 			if (e != null)
-				log.add(e);
+				ereignisListe.add(e);
 		} while (e != null);
 		fp.close();
-	}*/
+	}
 	
 	
 	
 	
 	
 	public void addEreignis(Benutzer be, Artikel ar, int anz){
-		Date date = new Date();
-		Ereignis er = new Ereignis(date, ar,anz, be);
+//		Date date = new Date();
+		Ereignis er = new Ereignis( ar,anz, be);
 		ereignisListe.add(er);
 	}
 	
@@ -54,8 +54,8 @@ public class EreignisVerwaltung {
 		this.ereignisListe = ereignisListe;
 	}
 	public void addEreignisArtikelAnlegen(Mitarbeiter m, Artikel ar,int anz ){
-		Date date = new Date();
-		Ereignis er = new Ereignis(date, ar, anz, m );
+//		Date date = new Date();
+		Ereignis er = new Ereignis(ar, anz, m );
 		ereignisListe.add(er);
 	}
 

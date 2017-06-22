@@ -17,7 +17,6 @@ import persistence.PersistenceManager;
 public class ShoppingServices {
 
 	private ArtikelVerwaltung av = null;
-	private Rechnung rechnung;
 	
 
 
@@ -86,19 +85,33 @@ public class ShoppingServices {
 		}return summe;
 	}
 	
+	// Warenkorb anzeigen lassen
+	public void warenkorbAnzeigen(Kunde kunde) {
+		for(int i = 0; i < kunde.getCart().getEintraege().size(); i++){
+			System.out.println(kunde.getCart().getEintraege().get(i).getStueckzahl() + " " + kunde.getCart().getEintraege().get(i).getArtikel().getBez()); 
+		}
+		
+	}
 	
-	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand, float preisinfo, float gesamt){
+	
+	public Rechnung rechnungErstellen(Kunde kunde, Date date){
 		float summe = 0;
+		Rechnung rechnung = new Rechnung(kunde, null, date, null, null, 0, summe, summe);
 		rechnung.setKunde(kunde);
 		rechnung.setDatum(date);
+		int bestand2 = 0;
+		Artikel artikel;
 		for(int i = 0; i< kunde.getCart().getEintraege().size();i++){
+			artikel = kunde.getCart().getEintraege().get(i).getArtikel();
 			rechnung.getArtikelListe().set(i, artikel);
-			rechnung.getArtikelListe().get(i).setBestand(bestand);
-			rechnung.getArtikelListe().get(i).setPreis(preisinfo);
+			bestand2 = bestand2 -kunde.getCart().getEintraege().get(i).getStueckzahl();
+			rechnung.getArtikelListe().get(i).setBestand(bestand2);
+			rechnung.getArtikelListe().get(i).setPreis(kunde.getCart().getEintraege().get(i).getArtikel().getPreis());
 			summe = summe + (float) rechnung.getArtikelListe().get(i).getPreis();
+			
+			bestand2 = 0;
 		}
 		rechnung.setGesamtpreis(summe);
-		System.out.println(rechnung);
 		return rechnung;
 	}
 
@@ -120,5 +133,6 @@ public class ShoppingServices {
 		warenkorbLeeren(kunde);
 		return rechnung;
 	}
+
 }
 

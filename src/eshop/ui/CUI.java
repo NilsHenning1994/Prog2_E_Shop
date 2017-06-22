@@ -12,6 +12,7 @@ import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
+import eshop.Datenstrukturen.WarenkorbEintrag;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
 
@@ -57,10 +58,7 @@ public class CUI {
 
 		do{
 			try {
-				shop.ladeMitarbeiter();
-				shop.ladeKunden();
-				shop.ladeArtikel();
-				shop.ladeEreignis();
+				shop.ladeShop();
 			}
 			catch(IOException e){
 				e.printStackTrace();
@@ -211,11 +209,14 @@ public class CUI {
 
 					inputt =  getInputInt();
 					int anz = inputt;
+					int best = ar.getBestand();
 					shop.bestandAendern(eingeloggterMitarbeiter, ar, anz);
 					System.out.println("Artikel wurde erfolgreich geaendert!");
 					shop.printArtikelListe();
 					shop.speicherArtikel();
-					shop.speicherEreignis();
+					
+					System.out.println(best);
+					shop.speicherEreignis(best + anz);
 				}else{
 					//System.out.println("Artikelnummer existiert nicht"); // besser Exception
 				}
@@ -245,7 +246,7 @@ public class CUI {
 				shop.printArtikelListe();
 				
 				shop.speicherArtikel();
-				shop.speicherEreignis();
+				shop.speicherEreignis(bestand);
 			}
 
 
@@ -355,7 +356,8 @@ public class CUI {
 			System.out.println("Hallo " + eingeloggterKunde.getVorname());
 			System.out.println("Artikel in den Warenkorb legen  	-> AW");
 			System.out.println("Warenkorb leeren  		-> WL");
-			System.out.println("Warenkorb aendern  		-> WA");
+//			System.out.println("Warenkorb aendern  		-> WA");
+			System.out.println("Warenkorb anzeigen  		-> WA");
 			System.out.println("Warenkorbinhalt kaufen 	-> WK");
 			System.out.println("Ausloggen			  -> Logout");
 			input = br.readLine();
@@ -369,18 +371,36 @@ public class CUI {
 				System.out.println(ar.getBez());
 				System.out.println("Anzahl des gewünschten Artikels:");
 				int anz =  getInputInt();
+				WarenkorbEintrag e = new WarenkorbEintrag(ar, anz);
+				eingeloggterKunde.getCart().getEintraege().add(e);
 				break;
 			case "WK":
-				Artikel as;
+
 				
-				Date date;
-				float gesamtpreis = shop.WarenkorbGesamtpreis(eingeloggterKunde);
 				//shop.rechnungErstellen(eingeloggterKunde, date, as, anz, ar.getPreis(), gesamtpreis);
 				//shop.warenkorbKaufen(eingeloggterKunde, as, anz);
+
+//				System.out.println("Artikel anhand ID auswählen");
+//				Artikel as = shop.artikelSuchenNachID(getInputInt());
+//				System.out.println(as.getBez());
+//				System.out.println("Anzahl des gewünschten Artikels:");
+//				int anz1 =  getInputInt();
+				
+				shop.warenkorbKaufen(eingeloggterKunde);
+				Date date = null;
+				float gesamtpreis = shop.WarenkorbGesamtpreis(eingeloggterKunde);
+				shop.rechnungErstellen(eingeloggterKunde, date);
+				shop.speicherArtikel();
+
 				break;
 			case "WL":
 				shop.warenkorbLeeren(eingeloggterKunde);
 				break;
+				
+			case "WA":
+				shop.warenkorbAnzeigen(eingeloggterKunde);
+				break;
+				
 			case "Logout":
 				shop.kundeAusloggen(eingeloggterKunde);
 			}

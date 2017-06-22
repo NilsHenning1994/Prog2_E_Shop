@@ -7,11 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.sql.Date;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -113,15 +114,18 @@ public class FilePersistenceManager implements PersistenceManager {
 		return new Kunde(intid, Name, Nachname,Mail,adress,Passwort,true);
 	}
 
-	public Artikel ladeArtikel() throws IOException {
+	public Artikel ladeArtikel() throws IOException {	
+
+
+
 		// Bezeichnung des Artikels
 		String bez = liesZeile();
 		if (bez == null) {
 			// keine Daten mehr vorhanden
 			return null;
 		}
+		String nr = liesZeile();
 		// Nummer des Artikels mit parse
-		String nr = liesZeile(); 
 		int intnr = Integer.parseInt(nr);
 		// Preis des Artikels mit parse
 		String preis = liesZeile();
@@ -134,48 +138,89 @@ public class FilePersistenceManager implements PersistenceManager {
 	}
 
 	public Ereignis ladeEreignis() throws IOException {
-		
-		String inhalt = liesZeile();
-		StringTokenizer token = new StringTokenizer(inhalt);
-		int length = token.countTokens();  // Anzahl Teile, die gefunden werden.
-		String[] array = new String[6];  // Den Array herstellen
-		for( int i = 0; i < length; i++ ){
-		  array[i] = token.nextToken();  // Die einzelnen Teile abspeichern.
-		  
-		  
-		}
-		for(int i = 0; i < array.length; i++){
-			System.out.println(array[i]);
-		}
-		
-		int intMonth = Integer.parseInt(array[0]);
-		int intDay	  = Integer.parseInt(array[0+1]);
-		int intYear  = Integer.parseInt(array[0+2]);
-		int intHour  = Integer.parseInt(array[0+3]);
-		int intMinute = Integer.parseInt(array[0+4]);
-		int intSecond = Integer.parseInt(array[0+5]);		
-		Calendar wann;
-		
-		//System.out.println(wann);
-		return null;
-		
-		
-		/*		Artikel artikel;
-		int anz;
-		Benutzer user;
 
-		// Artikel
+		//		String datum = liesZeile();	
+		//		String monat = "";
+		//		String jahr = "";
+		//		String tag = "";
+		//		String stunde = "";
+		//		String minute = "";
+		//		String sekunde = "";
+		//		long ldate;
+		//		
+		//		
+		////		char[] datumArray = datum.toCharArray();
+		//		int counter = 0; //0=tag 1= monat 2=jahr
+		//		char test =("!".charAt(0));
+		//		System.out.println(Character.valueOf(test));
+		//
+		//		for (int i = 0; i < datum.length();i++){
+		//
+		//			//			
+		//			//			}
+		//			if (datumArray[i] == "!".charAt(0)){
+		//				counter++;
+		//			}else{
+		//				switch(counter){
+		//
+		//				case(1):
+		//					tag += datumArray[i];
+		//				break;
+		//
+		//				case(2):
+		//					monat += datumArray[i];
+		//				break;
+		//
+		//				case(3):
+		//					jahr += datumArray[i];
+		//				break;
+		//
+		//				case(4):
+		//					stunde += datumArray[i];
+		//				break;
+		//				case (5):
+		//					minute += datumArray[i];
+		//				break;
+		//
+		//				case(6):
+		//					sekunde += datumArray[i];
+		//				break;
+		//				}
+		//			}
+		//		}
+
+		//		Date date = null;
+		//		date.setDate(Integer.parseInt(tag));
+		//		date.setMonth(Integer.parseInt(monat));
+		//		date.setYear(Integer.parseInt(jahr));
+		//		date.setHours(Integer.parseInt(stunde));
+		//		date.setMinutes(Integer.parseInt(minute));
+		//		date.setSeconds(Integer.parseInt(sekunde));
+
+
+		//		Date date = new Date(Integer.parseInt(jahr),Integer.parseInt(monat),Integer.parseInt(tag));
 		String bez = liesZeile();
-		int nummer;
-		float preis;
-		int bestand;
+		if(bez == null){
+			return null;
+		}
+		int nr = Integer.parseInt(liesZeile());
+		float preis = Float.parseFloat(liesZeile());
+		int bestand = Integer.parseInt(liesZeile());
+		int anz = Integer.parseInt(liesZeile());
+		Artikel art = new Artikel(bez, nr, preis, bestand);
+
+		int id = Integer.parseInt(liesZeile());
+		String vorname = liesZeile();
+		String nachname = liesZeile();
+		String mail = liesZeile();
+		String passwort = liesZeile();
+		Mitarbeiter mitarbeiter = new Mitarbeiter (id, vorname, nachname, mail,passwort,false);
 
 
-		Date date;
+		//		System.out.println("jahr: " + jahr +" monat: "+ monat +" tag: " +tag +" stunde: "+ stunde + " minute: "+minute +" sekunde: "+ sekunde);	
 
-		Artikel art = new Artikel(bez, nummer, preis, bestand);
-
-		return new Ereignis(wann, artikel, anz, user);*/
+		return new Ereignis(art, anz, mitarbeiter);
+		//nrArray[i].t
 	}
 
 
@@ -242,29 +287,29 @@ public class FilePersistenceManager implements PersistenceManager {
 		return true;
 
 	}
-	public void speicherEreignis(List<Ereignis> e) {
+	public void speicherEreignis(List<Ereignis> e, int anz) {
 		System.out.println("List size:" + e.size());
 
 		for(int i = 0; i < e.size(); i++){
 
 			// Date to String
-			
-			int intMonth = e.get(i).getWann().getMonth();
-			int intDay	  = e.get(i).getWann().getDay();
-			int intYear  = e.get(i).getWann().getYear();
-			int intHour  = e.get(i).getWann().getHours();
-			int intMinute = e.get(i).getWann().getMinutes();
-			int intSecond = e.get(i).getWann().getSeconds();
-			String Month = Integer.toString(intMonth);
-			String Day	  = Integer.toString(intDay);
-			String Year  = Integer.toString(intYear);
-			String Hour  = Integer.toString(intHour);
-			String Minute = Integer.toString(intMinute);
-			String Second = Integer.toString(intSecond);
-			String Date = "!"+ Month +"!"+ Day+ "!" + Year +"!"+ Hour +"!"+ Minute +"!"+ Second;
-			
-			
-			schreibeZeile(Date);
+			//
+			//			int intMonth = e.get(i).getWann().getMonth();
+			//			int intDay	  = e.get(i).getWann().getDay();
+			//			int intYear  = e.get(i).getWann().getYear();
+			//			int intHour  = e.get(i).getWann().getHours();
+			//			int intMinute = e.get(i).getWann().getMinutes();
+			//			int intSecond = e.get(i).getWann().getSeconds();
+			//			String Month = Integer.toString(intMonth);
+			//			String Day	  = Integer.toString(intDay);
+			//			String Year  = Integer.toString(intYear);
+			//			String Hour  = Integer.toString(intHour);
+			//			String Minute = Integer.toString(intMinute);
+			//			String Second = Integer.toString(intSecond);
+			//			String Date = "!"+ Month +"!"+ Day+ "!" + Year +"!"+ Hour +"!"+ Minute +"!"+ Second;
+
+
+			//			schreibeZeile(Date);
 			// Artikel
 			schreibeZeile(e.get(i).getArtikel().getBez());
 			// Int to String
@@ -279,6 +324,10 @@ public class FilePersistenceManager implements PersistenceManager {
 			int bes = 	e.get(i).getArtikel().getBestand();
 			String stringbes = Integer.toString(bes);
 			schreibeZeile(stringbes);
+			// Int to String
+			String anzahl= Integer.toString(anz);
+			schreibeZeile(anzahl );
+
 
 			int id = 	e.get(i).getUser().getId();
 			String stringid = Integer.toString(id);
@@ -340,59 +389,6 @@ public class FilePersistenceManager implements PersistenceManager {
 		return true;
 	}
 
-
-
-
-
-
-
-	//	// Warenkorb
-	//
-	//	/**
-	//	 * Methode zum Einlesen der Warenkorbdatei aus einer externen Datenquelle.
-	//	 * 
-	//	 * @return Warenkorb-Objekt, wenn Einlesen erfolgreich, false null
-	//	 * @throws java.io.IOException
-	//	 */
-	//
-	//	public Warenkorb ladeWarenkorb(Vector<Artikel> artikelListe, List<Kunde> kundenListe) throws IOException {
-	//		Vector<Artikel> artikel = artikelListe;
-	//		List<Kunde> kunden = kundenListe;
-	//		Kunde kunde = null;
-	//		Vector<Artikel> artikels = null;
-	//
-	//		String wknr = liesZeile();
-	//		if (wknr == null) {
-	//			// keine Daten mehr vorhanden
-	//			return null;
-	//		}
-	//		String kundennr = liesZeile();
-	//		if (kundennr == null) {
-	//			// keine Daten mehr vorhanden
-	//			return null;
-	//		}
-	//
-	//		int knr = Integer.parseInt(kundennr);
-	//		for (Kunde k : kunden) {
-	//			if (k.getId() == knr) {
-	//				kunde = k;
-	//				break;
-	//			}
-	//		}
-	//		int lel;
-	//		while(liesZeile() != null){
-	//			String artikelnr = liesZeile();
-	//			for(Artikel a : artikel){
-	//				lel = Integer.parseInt(artikelnr);
-	//				if(a.getNummer() ==(lel)){
-	//					artikels.add(a);
-	//				}
-	//
-	//			}
-	//		}
-	//
-	//		return new Warenkorb(kunde);
-	//	}
 
 
 }

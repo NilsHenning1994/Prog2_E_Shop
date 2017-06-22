@@ -129,7 +129,8 @@ public class ArtikelVerwaltung {
 	 */
 	public Vector<Artikel> sortierenNachBezeichnung(){
 		Vector<Artikel> artikelListeBezeichnung = new Vector<Artikel>();
-		artikelListe.sort();
+		artikelListe.sort(null);
+		return artikelListeBezeichnung;
 		
 	}
 	
@@ -140,7 +141,7 @@ public class ArtikelVerwaltung {
 	public void bestandAendern(Benutzer be, Artikel artikel, int anz){
 		// artikel.getBestand();
 		if(artikel.getBestand()-anz < 0){
-			System.out.println("Es sind nicht ausreichend Artikel vorhanden!");
+			System.out.println("Es sind nicht ausreichend Artikel von " + artikel.getBez() +" vorhanden!");
 			return; // besser Exception
 		}
 		artikel.setBestand(artikel.getBestand()+anz);

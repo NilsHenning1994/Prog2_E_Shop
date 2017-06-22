@@ -71,11 +71,11 @@ public class Shop {
 		fp.close();
 	}
 	
-	public void speicherEreignis() throws IOException{
+	public void speicherEreignis(int anz) throws IOException{
 		List<Ereignis> newEreignisListe = new ArrayList<Ereignis>();
 		newEreignisListe = ev.getEreignisListe();
 		fp.openForWriting("SHOP_E.txt");
-		fp.speicherEreignis(newEreignisListe);
+		fp.speicherEreignis(newEreignisListe, anz);
 		fp.close();
 	}
 	//laden
@@ -101,8 +101,15 @@ public class Shop {
 	
 	public void ladeEreignis() throws IOException{
 		fp.openForReading("SHOP_E.txt");
-		fp.ladeEreignis();
+		ev.ladeEreignis();
 		fp.close();
+	}
+	
+	public void ladeShop() throws IOException {
+		ladeKunden();
+		ladeMitarbeiter();
+		ladeArtikel();
+		ladeEreignis();
 	}
 	//	Mitarbeiter Methoden ----->
 
@@ -148,26 +155,48 @@ public class Shop {
 	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand){
 		//		av.createArtikel(bez, nummer, preis, bestand);
 		Artikel art = av.createArtikel(bez, preis, bestand);
+		if(artikelSuchenNachBez(bez) != null){
+			return;
+		}
 		ev.addEreignisArtikelAnlegen(mitarbeiter, art, bestand);
 	}
 	// Artikel anhand der ID Suchen
 	public Artikel artikelSuchenNachID(int id){
 		return av.artikelNachID(id);
 	}
+	// Artikel anhand Bezeichnung finden
+	public Artikel artikelSuchenNachBez(String bez){
+		return av.artikelNachBez(bez);
+	}
 	// Artikel in den Warenkorb
 	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
 		av.artikelInWarenkorb();
 	}
 	// Artikel kaufen
-	public void warenkorbKaufen(Kunde ku, Artikel ar, int anz){
-		av.bestandAendern(ku, ar, anz);
-		ss.warenkorbAendern(ku, ar, anz);
-		ev.addEreignis(ku, ar, anz);
+	public void warenkorbKaufen(Kunde ku){
+		Artikel artikel;
+		int anzahl;
+		for(int i = 0; i < ku.getCart().getEintraege().size(); i++){
+			artikel = ku.getCart().getEintraege().get(i).getArtikel();
+			anzahl = -ku.getCart().getEintraege().get(i).getStueckzahl();
+			System.out.println(artikel + " " + anzahl);
+			av.bestandAendern(ku, artikel, anzahl);
+			ev.addEreignis(ku, artikel, anzahl);
+		}
+		ss.warenkorbLeeren(ku);
+//		ss.warenkorbAendern(ku, ar, anz);
+		
 	}
 	// Warenkorb leeren
 	public void warenkorbLeeren(Kunde ku){
 		ss.warenkorbLeeren(ku);
 	}
+	// Warenkorb anzeigen lassen
+	public void warenkorbAnzeigen(Kunde kunde) {
+		ss.warenkorbAnzeigen(kunde);
+		
+	}
+	
 	// get Warenkorb
 	public Warenkorb getWarenkorb(Kunde ku){
 		return ku.getCart();
@@ -177,8 +206,8 @@ public class Shop {
 		ku.setCart(wa);
 	}
 	// Ereignismethoden??
-	public Rechnung rechnungErstellen(Kunde kunde, Date date, Artikel artikel, int bestand,  float preisinfo, float gesamt){
-		return ss.rechnungErstellen(kunde, date, artikel, bestand, preisinfo, gesamt);
+	public Rechnung rechnungErstellen(Kunde kunde, Date date){
+		return ss.rechnungErstellen(kunde, date);
 	}
 	
 	//  ---------------------------------
@@ -225,4 +254,6 @@ public class Shop {
 	public float WarenkorbGesamtpreis(Kunde kunde) {
 		return ss.WarenkorbGesamtpreis(kunde);
 	}
+
+	
 }
