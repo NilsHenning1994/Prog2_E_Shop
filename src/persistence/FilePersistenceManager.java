@@ -7,22 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-//import java.sql.Date;
-//import java.text.DateFormat;
-//import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
-import java.util.Vector;
 
 import eshop.Shop;
+import eshop.Anwendungslogik.ArtikelVerwaltung;
+import eshop.Anwendungslogik.KundenVerwaltung;
+import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Warenkorb;
 
@@ -38,6 +33,16 @@ public class FilePersistenceManager implements PersistenceManager {
 	private BufferedReader reader = null;
 	private PrintWriter writer = null;
 
+//	private ArtikelVerwaltung av;
+//	private KundenVerwaltung kv;
+//	private MitarbeiterVerwaltung mv;
+//	
+//	public FilePersistenceManager(ArtikelVerwaltung av, KundenVerwaltung kv, MitarbeiterVerwaltung mv) {
+//		this.av = av;
+//		this.kv = kv;
+//		this.mv = mv;
+//	}
+	
 	public void openForReading(String datei) throws FileNotFoundException {
 		reader = new BufferedReader(new FileReader(datei));
 	}
@@ -56,11 +61,9 @@ public class FilePersistenceManager implements PersistenceManager {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -68,9 +71,7 @@ public class FilePersistenceManager implements PersistenceManager {
 
 		// id einlesen
 		String id = liesZeile();
-
 		// ... und von String in int konvertieren
-
 		if (id == null) {
 			// keine Daten mehr vorhanden
 			return null;
@@ -81,7 +82,6 @@ public class FilePersistenceManager implements PersistenceManager {
 		String Mail = liesZeile();
 		String Passwort = liesZeile();
 		liesZeile();
-
 		Mitarbeiter m = new Mitarbeiter(intid, Name, Nachname, Mail, Passwort, false);
 		if(reader != null){
 			return m;
@@ -134,11 +134,32 @@ public class FilePersistenceManager implements PersistenceManager {
 		String bestand = liesZeile();
 		int intbestand = Integer.parseInt(bestand);
 
-		return new Artikel(bez,intnr,floatpreis,intbestand);
+		// Massengutartikel?
+		String zeile = liesZeile();
+		if (zeile.equals("###")) {
+			return new Artikel(bez,intnr,floatpreis,intbestand);
+		} else {
+			int packungsgroesse = Integer.parseInt(zeile);
+			liesZeile();	// Begrenzer weglesen
+			return new Massengutartikel(bez,intnr,floatpreis,intbestand, packungsgroesse);
+		}
 	}
 
-	public Ereignis ladeEreignis() throws IOException {
-
+	public Ereignis ladeEreignis(ArtikelVerwaltung av, KundenVerwaltung kv, MitarbeiterVerwaltung mv) throws IOException {
+/*
+		// Laden
+		String artikelNummerString = "123";
+		String email = "test@hsb.de";
+		String anzahl = "5";
+		String datumString = "formatString";
+		
+		Artikel a = av.artikelNachID(Integer.parseInt(artikelNummerString));
+		Benutzer n = kv.kundeNachMail(email);
+		if (n == null)
+			n = mv.mitarbeiterNachMail(email);
+		
+		Ereignis e = new Ereignis(a, Integer.parseInt(anzahl), n);
+	*/	
 		//		String datum = liesZeile();	
 		//		String monat = "";
 		//		String jahr = "";
@@ -280,6 +301,12 @@ public class FilePersistenceManager implements PersistenceManager {
 
 			String bestand = Integer.toString(a.get(i).getBestand());
 			schreibeZeile(bestand);
+			
+			if(a.get(i) instanceof Massengutartikel){
+				Massengutartikel mar = (Massengutartikel) a.get(i);
+				schreibeZeile(mar.getPackungsgroesse()+ "");
+			}
+			schreibeZeile("###");
 
 
 		}
@@ -287,9 +314,41 @@ public class FilePersistenceManager implements PersistenceManager {
 		return true;
 
 	}
+	// speichere Massengutartikel
+//	public boolean speichereMArtikelliste(List<Artikel> a) throws IOException {
+//		System.out.println("List size:" + a.size());
+//
+//		for(int i = 0; i < a.size(); i++){
+//
+//			schreibeZeile(a.get(i).getBez());
+//
+//			String nummer = Integer.toString(a.get(i).getNummer());
+//			schreibeZeile(nummer);
+//
+//			String preis = Float.toString(a.get(i).getPreis());
+//			schreibeZeile(preis);
+//
+//			String bestand = Integer.toString(a.get(i).getBestand());
+//			schreibeZeile(bestand);
+//
+//
+//		}
+//
+//		return true;
+//
+//	}
+	
+	
 	public void speicherEreignis(List<Ereignis> e, int anz) {
 		System.out.println("List size:" + e.size());
 
+//		for (Ereignis ereignis: e) {
+//			schreibeZeile(ereignis.getUser().getEmail());
+//			schreibeZeile(ereignis.getArtikel().getNummer() + "");
+//			schreibeZeile(ereignis.getAnz() + "");
+//			schreibeZeile(ereignis.getWann() + "");	// Formatierung!
+//		}
+//		
 		for(int i = 0; i < e.size(); i++){
 
 			// Date to String
@@ -387,6 +446,12 @@ public class FilePersistenceManager implements PersistenceManager {
 		}
 
 		return true;
+	}
+
+	@Override
+	public void speicherEreignis(List<Ereignis> ereignisListe) throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 

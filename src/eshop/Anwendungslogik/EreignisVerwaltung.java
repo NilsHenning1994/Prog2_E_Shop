@@ -22,11 +22,11 @@ public class EreignisVerwaltung {
 	private List<String> log = new ArrayList<String>();
 	private PersistenceManager fp = null; // = new FilePersistenceManager();
 	
-	public void ladeEreignis() throws IOException {
+	public void ladeEreignis(ArtikelVerwaltung av, KundenVerwaltung kv, MitarbeiterVerwaltung mv) throws IOException {
 		fp.openForReading("SHOP_E.txt");
 		Ereignis e;
 		do {
-			e = fp.ladeEreignis();
+			e = fp.ladeEreignis(av, kv, mv);
 			if (e != null)
 				ereignisListe.add(e);
 		} while (e != null);
@@ -59,24 +59,5 @@ public class EreignisVerwaltung {
 		ereignisListe.add(er);
 	}
 
-
-
-
-
-	public List<String> getLog() {
-		return log;
-	}
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
 	
 }

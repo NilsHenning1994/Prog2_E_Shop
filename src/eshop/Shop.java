@@ -17,9 +17,11 @@ import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
 import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
+import eshop.Exceptions.ArtikelExistiertBereitsException;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
 import persistence.FilePersistenceManager;
@@ -101,7 +103,7 @@ public class Shop {
 	
 	public void ladeEreignis() throws IOException{
 		fp.openForReading("SHOP_E.txt");
-		ev.ladeEreignis();
+		ev.ladeEreignis(av, kv, mv);
 		fp.close();
 	}
 	
@@ -152,12 +154,21 @@ public class Shop {
 		ev.addEreignis(ma, ar, anz);
 		return ar;
 	}
-	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand){
+	
+	// Massengutartikel anlegen
+	public void mArtikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand, int pg) throws ArtikelExistiertBereitsException{
+		Massengutartikel mar = av.mArtikelAnlegen(bez, preis, bestand, pg);
+		ev.addEreignisArtikelAnlegen(mitarbeiter, mar, bestand);
+	}
+	
+	// Artikel anlegen
+	public void artikelAnlegen(Mitarbeiter mitarbeiter, String bez, float preis, int bestand) throws ArtikelExistiertBereitsException{
 		//		av.createArtikel(bez, nummer, preis, bestand);
 		Artikel art = av.createArtikel(bez, preis, bestand);
-		if(artikelSuchenNachBez(bez) != null){
-			return;
-		}
+		
+//		if(artikelSuchenNachBez(bez) != null){
+//			return;
+//		}
 		ev.addEreignisArtikelAnlegen(mitarbeiter, art, bestand);
 	}
 	// Artikel anhand der ID Suchen
@@ -168,10 +179,7 @@ public class Shop {
 	public Artikel artikelSuchenNachBez(String bez){
 		return av.artikelNachBez(bez);
 	}
-	// Artikel in den Warenkorb
-	public void artikelInWarenkorb(Kunde k, Artikel a, int anz){
-		av.artikelInWarenkorb();
-	}
+
 	// Artikel kaufen
 	public void warenkorbKaufen(Kunde ku){
 		Artikel artikel;

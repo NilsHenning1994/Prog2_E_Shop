@@ -2,11 +2,14 @@ package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
+import eshop.Exceptions.ArtikelExistiertBereitsException;
 import persistence.FilePersistenceManager;
 import persistence.PersistenceManager;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Vector;
@@ -131,9 +134,9 @@ public class ArtikelVerwaltung {
 		Vector<Artikel> artikelListeBezeichnung = new Vector<Artikel>();
 		artikelListe.sort(null);
 		return artikelListeBezeichnung;
-		
+
 	}
-	
+
 
 
 
@@ -149,7 +152,7 @@ public class ArtikelVerwaltung {
 
 
 	// Artikel erstellen
-	public Artikel createArtikel(String bez, float preis, int bestand){
+	public Artikel createArtikel(String bez, float preis, int bestand) throws ArtikelExistiertBereitsException{
 		int id = 0;
 
 		// Set<Artikel> artikelListe = bestandsListe.keySet();
@@ -164,17 +167,59 @@ public class ArtikelVerwaltung {
 		}
 		id ++;
 		Artikel ar = new Artikel(bez, id, preis, bestand);
+		for(int i = 0; i< artikelListe.size(); i++){
+			if(bez.equals(artikelListe.get(i).getBez())){
+				try {
+					throw new ArtikelExistiertBereitsException(ar, "Artikel existiert bereits.");
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+				
+		}
 		artikelListe.add(ar);
 		return ar;
-	}
 
-	public void artikelInWarenkorb(){
-		
 	}
 	
-	public void warenkorbKaufen(){
-		
-	}
+	// Massengutartikel anlegen
+		public Massengutartikel mArtikelAnlegen(String bez, float preis, int bestand, int pg) throws ArtikelExistiertBereitsException{
+			
+			int id = 0;
+
+			// Set<Artikel> artikelListe = bestandsListe.keySet();
+
+			Iterator<Artikel> it = artikelListe.iterator();
+			while (it.hasNext()) {
+				Artikel einArtikel = it.next();
+				if (einArtikel.getNummer() > id){
+					id = einArtikel.getNummer();
+				}
+
+			}
+			id ++;
+			Massengutartikel ar = new Massengutartikel(bez, id, preis, bestand, pg);
+			for(int i = 0; i< artikelListe.size(); i++){
+				if(bez.equals(artikelListe.get(i).getBez())){
+					try {
+						throw new ArtikelExistiertBereitsException(ar, "Artikel existiert bereits.");
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					artikelListe.add(ar);
+			}
+			return ar;
+			
+		}
+
+//		public int getPackungsgroesse(Massengutartikel mar){
+//			for(int i = 0; i< artikelListe.size(); i++){
+//				
+//			}
+//		}
 
 
 }

@@ -1,8 +1,10 @@
 package eshop.Anwendungslogik;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import eshop.Datenstrukturen.Artikel;
@@ -11,6 +13,7 @@ import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.Warenkorb;
 import eshop.Datenstrukturen.WarenkorbEintrag;
+import eshop.Exceptions.ArtikelExistiertBereitsException;
 import eshop.Exceptions.FehlerException;
 import persistence.PersistenceManager;
 
@@ -47,7 +50,7 @@ public class ShoppingServices {
 
 	}
 	
-
+	
 
 
 	// Aendert die Stueckzahl im Warenkorb

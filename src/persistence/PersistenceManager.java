@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Vector;
 
 import eshop.Shop;
+import eshop.Anwendungslogik.ArtikelVerwaltung;
+import eshop.Anwendungslogik.KundenVerwaltung;
+import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Kunde;
@@ -26,7 +29,7 @@ public interface PersistenceManager {
 	public Kunde ladeKunde() throws IOException;
 	public Mitarbeiter ladeMitarbeiter() throws IOException;
 	public Artikel ladeArtikel() throws IOException;
-	public Ereignis ladeEreignis() throws IOException;
+	public Ereignis ladeEreignis(ArtikelVerwaltung av, KundenVerwaltung kv, MitarbeiterVerwaltung mv) throws IOException;
 //	public String ladeLog() throws IOException;
 	
 	public void  speichereShop(Shop s, String datenQuelle) throws IOException;

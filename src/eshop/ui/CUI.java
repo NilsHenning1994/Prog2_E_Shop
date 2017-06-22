@@ -13,6 +13,7 @@ import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.WarenkorbEintrag;
+import eshop.Exceptions.ArtikelExistiertBereitsException;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
 
@@ -149,7 +150,7 @@ public class CUI {
 				//							}					
 
 				try {
-					
+
 					eingeloggterMitarbeiter = shop.mitarbeiterEinloggen(mail, passwort);
 					if(eingeloggterMitarbeiter == null){
 						System.out.println("Einloggen Fehlgeschlagen ...");
@@ -160,9 +161,12 @@ public class CUI {
 				} catch (EinloggenFehlgeschlagenException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ArtikelExistiertBereitsException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
-				
+
 
 			}
 
@@ -173,11 +177,11 @@ public class CUI {
 			}		
 		} while (true);
 	}
-	
-	private String mitarbeiterMenü() throws IOException {
+
+	private String mitarbeiterMenü() throws IOException, ArtikelExistiertBereitsException {
 		String input;
 		do{
-			
+
 			System.out.println("Hallo " + eingeloggterMitarbeiter.getVorname());
 			System.out.println("Bestand von Artikel aendern  	-> BA");
 			System.out.println("Neuen Artikel anlegen  		-> AA");
@@ -190,7 +194,7 @@ public class CUI {
 
 			if(input.equals("EA")){
 				shop.printEreignisListe();
-				
+
 			}
 
 
@@ -198,7 +202,7 @@ public class CUI {
 			if(input.equals("BA")){
 				System.out.println(shop.getArtikelListe());
 				System.out.println("Von welchem Artikel den Bestand aendern?");
-//				shop.printArtikelListe();
+				//				shop.printArtikelListe();
 				System.out.println("Waehlen Sie den Artikel anhand der ID aus");
 				int inputt =  getInputInt();
 				int id = inputt;
@@ -214,9 +218,10 @@ public class CUI {
 					System.out.println("Artikel wurde erfolgreich geaendert!");
 					shop.printArtikelListe();
 					shop.speicherArtikel();
-					
+
 					System.out.println(best);
-					shop.speicherEreignis(best + anz);
+					int summe = best + anz;
+					shop.speicherEreignis(summe);
 				}else{
 					//System.out.println("Artikelnummer existiert nicht"); // besser Exception
 				}
@@ -229,24 +234,54 @@ public class CUI {
 
 			if(input.equals("AA")){
 
+				System.out.println("Wollen Sie einen Massengutartikel anlegen?");
+				System.out.println("JA oder NEIN ?");
 
-				System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
-				System.out.println("Bezeichnung:");
-				input = br.readLine();					
-				String bez = input;
+				input = br.readLine();
+				if(input.equals("NEIN")){
+					System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
+					System.out.println("Bezeichnung:");
+					input = br.readLine();					
+					String bez = input;
 
-				System.out.println("Preis:");
-				float fl = getInputFloat();				
-				float preis = fl;
+					System.out.println("Preis:");
+					float fl = getInputFloat();				
+					float preis = fl;
 
-				System.out.println("Bestand:");
-				int inputt = getInputInt();					
-				int bestand = inputt;
-				shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
-				shop.printArtikelListe();
+					System.out.println("Bestand:");
+					int inputt = getInputInt();					
+					int bestand = inputt;
+					shop.artikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand);
+					shop.printArtikelListe();
+
+					shop.speicherArtikel();
+					shop.speicherEreignis(bestand);
+				}
 				
-				shop.speicherArtikel();
-				shop.speicherEreignis(bestand);
+				if(input.equals("JA")){
+					System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
+					System.out.println("Bezeichnung:");
+					input = br.readLine();					
+					String bez = input;
+
+					System.out.println("Preis:");
+					float fl = getInputFloat();				
+					float preis = fl;
+
+					System.out.println("Bestand:");
+					int inputt = getInputInt();					
+					int bestand = inputt;
+					
+					System.out.println("Packungsgroesse:");
+					inputt = getInputInt();					
+					int pg = inputt;
+					
+					shop.mArtikelAnlegen(eingeloggterMitarbeiter, bez, preis, bestand, pg);
+					shop.printArtikelListe();
+					shop.speicherArtikel();
+					shop.speicherEreignis(bestand);
+				}
+				
 			}
 
 
@@ -356,7 +391,7 @@ public class CUI {
 			System.out.println("Hallo " + eingeloggterKunde.getVorname());
 			System.out.println("Artikel in den Warenkorb legen  	-> AW");
 			System.out.println("Warenkorb leeren  		-> WL");
-//			System.out.println("Warenkorb aendern  		-> WA");
+			//			System.out.println("Warenkorb aendern  		-> WA");
 			System.out.println("Warenkorb anzeigen  		-> WA");
 			System.out.println("Warenkorbinhalt kaufen 	-> WK");
 			System.out.println("Ausloggen			  -> Logout");
@@ -366,6 +401,7 @@ public class CUI {
 
 			switch (input) {
 			case "AW": 
+				System.out.println(shop.getArtikelListe());
 				System.out.println("Artikel anhand ID auswählen");
 				Artikel ar = shop.artikelSuchenNachID(getInputInt());
 				System.out.println(ar.getBez());
@@ -376,31 +412,32 @@ public class CUI {
 				break;
 			case "WK":
 
-				
+
 				//shop.rechnungErstellen(eingeloggterKunde, date, as, anz, ar.getPreis(), gesamtpreis);
 				//shop.warenkorbKaufen(eingeloggterKunde, as, anz);
 
-//				System.out.println("Artikel anhand ID auswählen");
-//				Artikel as = shop.artikelSuchenNachID(getInputInt());
-//				System.out.println(as.getBez());
-//				System.out.println("Anzahl des gewünschten Artikels:");
-//				int anz1 =  getInputInt();
-				
+				//				System.out.println("Artikel anhand ID auswählen");
+				//				Artikel as = shop.artikelSuchenNachID(getInputInt());
+				//				System.out.println(as.getBez());
+				//				System.out.println("Anzahl des gewünschten Artikels:");
+				//				int anz1 =  getInputInt();
+
 				shop.warenkorbKaufen(eingeloggterKunde);
 				Date date = null;
 				float gesamtpreis = shop.WarenkorbGesamtpreis(eingeloggterKunde);
 				shop.rechnungErstellen(eingeloggterKunde, date);
 				shop.speicherArtikel();
 
+
 				break;
 			case "WL":
 				shop.warenkorbLeeren(eingeloggterKunde);
 				break;
-				
+
 			case "WA":
 				shop.warenkorbAnzeigen(eingeloggterKunde);
 				break;
-				
+
 			case "Logout":
 				shop.kundeAusloggen(eingeloggterKunde);
 			}
