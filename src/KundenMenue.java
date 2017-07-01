@@ -30,6 +30,18 @@ public class KundenMenue {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
+	private JButton button_5;
+	private JButton button_6;
+	private JTextField textField_7;
+	private JButton button_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JButton button_8;
+	private JTextField textField_10;
+	private JButton button_9;
+	private JButton button_10;
+	private JTextField textField_11;
 
 	/**
 	 * Launch the application.
@@ -166,6 +178,60 @@ public class KundenMenue {
 		textField_5.setColumns(10);
 		textField_5.setBounds(389, 171, 57, 20);
 		panel.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(389, 313, 57, 20);
+		panel.add(textField_6);
+		
+		button_5 = new JButton("in Warenkorb");
+		button_5.setBounds(446, 312, 97, 23);
+		panel.add(button_5);
+		
+		button_6 = new JButton("in Warenkorb");
+		button_6.setBounds(446, 264, 97, 23);
+		panel.add(button_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(389, 288, 57, 20);
+		panel.add(textField_7);
+		
+		button_7 = new JButton("in Warenkorb");
+		button_7.setBounds(446, 287, 97, 23);
+		panel.add(button_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
+		textField_8.setBounds(389, 265, 57, 20);
+		panel.add(textField_8);
+		
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		textField_9.setBounds(389, 243, 57, 20);
+		panel.add(textField_9);
+		
+		button_8 = new JButton("in Warenkorb");
+		button_8.setBounds(446, 242, 97, 23);
+		panel.add(button_8);
+		
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(389, 220, 57, 20);
+		panel.add(textField_10);
+		
+		button_9 = new JButton("in Warenkorb");
+		button_9.setBounds(446, 219, 97, 23);
+		panel.add(button_9);
+		
+		button_10 = new JButton("in Warenkorb");
+		button_10.setBounds(446, 195, 97, 23);
+		panel.add(button_10);
+		
+		textField_11 = new JTextField();
+		textField_11.setColumns(10);
+		textField_11.setBounds(389, 196, 57, 20);
+		panel.add(textField_11);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 35, 107, 403);
