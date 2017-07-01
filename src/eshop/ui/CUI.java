@@ -10,6 +10,7 @@ import eshop.Shop;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
 import eshop.Datenstrukturen.Kunde;
+import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Datenstrukturen.Rechnung;
 import eshop.Datenstrukturen.WarenkorbEintrag;
@@ -405,8 +406,22 @@ public class CUI {
 				System.out.println("Artikel anhand ID auswählen");
 				Artikel ar = shop.artikelSuchenNachID(getInputInt());
 				System.out.println(ar.getBez());
+				if(ar instanceof Massengutartikel){
+					Massengutartikel mar = (Massengutartikel) ar;
+					System.out.println("Dieser Artikel ist ein Massengutartikel und kann nur in entsprechenden Packungsgroeßen gekauft werden. ("+ mar.getPackungsgroesse() +")" );
+					System.out.println("Anzahl des gewünschten Artikels:");
+					int anz =  getInputInt();
+					if(anz % mar.getPackungsgroesse()!= 0){
+						System.out.println("Die ausgewählte Anzahl entspricht keinem Vielfachen der Packungsgroesse.");
+						break;
+					}
+					WarenkorbEintrag e = new WarenkorbEintrag(ar, anz);
+					eingeloggterKunde.getCart().getEintraege().add(e);
+					break;
+				}
 				System.out.println("Anzahl des gewünschten Artikels:");
 				int anz =  getInputInt();
+				
 				WarenkorbEintrag e = new WarenkorbEintrag(ar, anz);
 				eingeloggterKunde.getCart().getEintraege().add(e);
 				break;

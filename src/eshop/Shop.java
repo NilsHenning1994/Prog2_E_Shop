@@ -1,5 +1,6 @@
 package eshop;
 
+import java.awt.Frame;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class Shop {
 	private EreignisVerwaltung ev;
 	private FilePersistenceManager fp;
 	private ShoppingServices ss;
+	private Frame f1;
 
 	public Shop() throws IOException {
 		fp = new FilePersistenceManager();
@@ -42,6 +44,7 @@ public class Shop {
 		kv = new KundenVerwaltung(fp);
 		ev = new EreignisVerwaltung(fp);
 		ss = new ShoppingServices();
+		f1 = new Frame();
 	}
 
 	// Getter
