@@ -32,7 +32,7 @@ public class Frame1 {
 	private JTextField txtNachname;
 	private JTextField txtEmail;
 	private JTextField txtPasswort;
-	private JTextField txtStrae;
+	private JTextField txtStrasse;
 	private JTextField txtHausnnummer;
 	private JTextField txtStadt;
 	private JPasswordField passwordField;
@@ -118,14 +118,14 @@ public class Frame1 {
 		frame.getContentPane().add(txtPasswort);
 		txtPasswort.setColumns(10);
 		
-		txtStrae = new JTextField();
-		txtStrae.setBackground(Color.WHITE);
-		txtStrae.setEditable(false);
-		txtStrae.setHorizontalAlignment(SwingConstants.CENTER);
-		txtStrae.setText("Stra\u00DFe");
-		txtStrae.setBounds(234, 181, 86, 20);
-		frame.getContentPane().add(txtStrae);
-		txtStrae.setColumns(10);
+		txtStrasse = new JTextField();
+		txtStrasse.setBackground(Color.WHITE);
+		txtStrasse.setEditable(false);
+		txtStrasse.setHorizontalAlignment(SwingConstants.CENTER);
+		txtStrasse.setText("Stra\u00DFe");
+		txtStrasse.setBounds(234, 181, 86, 20);
+		frame.getContentPane().add(txtStrasse);
+		txtStrasse.setColumns(10);
 		
 		txtHausnnummer = new JTextField();
 		txtHausnnummer.setBackground(Color.WHITE);
@@ -185,14 +185,14 @@ public class Frame1 {
 		lblKundeRegistrieren.setBounds(234, 11, 211, 43);
 		frame.getContentPane().add(lblKundeRegistrieren);
 		
-		JButton btnBesttigen = new JButton("Best\u00E4tigen");
-		btnBesttigen.addActionListener(new ActionListener() {
+		JButton Btn_confirm = new JButton("Bestaetigen");
+		Btn_confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String vor = textField.getText();
+				String vor = txtVorname.getText();
 				String nach = txtNachname.getText();
 				String mail = txtEmail.getText();
 				String passwort = txtPasswort.getText();
-				String str = txtStrae.getText();
+				String str = txtStrasse.getText();
 				String hnr = txtHausnnummer.getText();
 				String plz = txtPlz.getText();
 				String stadt = txtStadt.getText();
@@ -206,8 +206,8 @@ public class Frame1 {
 				}
 			}
 		});
-		btnBesttigen.setBounds(297, 272, 89, 23);
-		frame.getContentPane().add(btnBesttigen);
+		Btn_confirm.setBounds(297, 272, 89, 23);
+		frame.getContentPane().add(Btn_confirm);
 		
 		txtPlz = new JTextField();
 		txtPlz.setHorizontalAlignment(SwingConstants.CENTER);
