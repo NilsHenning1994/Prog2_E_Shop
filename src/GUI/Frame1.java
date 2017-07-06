@@ -1,3 +1,4 @@
+package GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -27,7 +28,7 @@ import java.awt.event.ActionEvent;
 public class Frame1 {
 
 	private Shop shop;
-	private JFrame frame;
+	private JFrame frmKundeRegistrieren;
 	private JTextField txtVorname;
 	private JTextField txtNachname;
 	private JTextField txtEmail;
@@ -35,19 +36,19 @@ public class Frame1 {
 	private JTextField txtStrasse;
 	private JTextField txtHausnnummer;
 	private JTextField txtStadt;
-	private JPasswordField passwordField;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JPasswordField txt4;
+	private JTextField txt1;
+	private JTextField txt2;
+	private JTextField txt3;
+	private JTextField txt5;
+	private JTextField txt6;
+	private JTextField txt7;
 	private JTextField txtPlz;
-	private JTextField textField_7;
+	private JTextField txt8;
 
-//	public Frame1 (Shop shop){
-//		this.shop = shop;
-//	}
+	public Frame1 (Shop shop){
+		this.shop = shop;
+	}
 	
 	
 	/**
@@ -58,7 +59,7 @@ public class Frame1 {
 			public void run() {
 				try {
 					Frame1 window = new Frame1();
-					window.frame.setVisible(true);
+					window.frmKundeRegistrieren.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -77,10 +78,11 @@ public class Frame1 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 681, 373);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmKundeRegistrieren = new JFrame();
+		frmKundeRegistrieren.setTitle("Kunde Registrieren");
+		frmKundeRegistrieren.setBounds(100, 100, 681, 373);
+		frmKundeRegistrieren.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKundeRegistrieren.getContentPane().setLayout(null);
 		
 		txtVorname = new JTextField();
 		txtVorname.setBackground(Color.WHITE);
@@ -88,7 +90,7 @@ public class Frame1 {
 		txtVorname.setHorizontalAlignment(SwingConstants.CENTER);
 		txtVorname.setText("Vorname");
 		txtVorname.setBounds(234, 99, 86, 20);
-		frame.getContentPane().add(txtVorname);
+		frmKundeRegistrieren.getContentPane().add(txtVorname);
 		txtVorname.setColumns(10);
 		
 		txtNachname = new JTextField();
@@ -97,7 +99,7 @@ public class Frame1 {
 		txtNachname.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNachname.setText("Nachname");
 		txtNachname.setBounds(234, 121, 86, 20);
-		frame.getContentPane().add(txtNachname);
+		frmKundeRegistrieren.getContentPane().add(txtNachname);
 		txtNachname.setColumns(10);
 		
 		txtEmail = new JTextField();
@@ -106,7 +108,7 @@ public class Frame1 {
 		txtEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEmail.setText("Email");
 		txtEmail.setBounds(234, 141, 86, 20);
-		frame.getContentPane().add(txtEmail);
+		frmKundeRegistrieren.getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		txtPasswort = new JTextField();
@@ -115,7 +117,7 @@ public class Frame1 {
 		txtPasswort.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPasswort.setText("Passwort");
 		txtPasswort.setBounds(234, 162, 86, 20);
-		frame.getContentPane().add(txtPasswort);
+		frmKundeRegistrieren.getContentPane().add(txtPasswort);
 		txtPasswort.setColumns(10);
 		
 		txtStrasse = new JTextField();
@@ -124,7 +126,7 @@ public class Frame1 {
 		txtStrasse.setHorizontalAlignment(SwingConstants.CENTER);
 		txtStrasse.setText("Stra\u00DFe");
 		txtStrasse.setBounds(234, 181, 86, 20);
-		frame.getContentPane().add(txtStrasse);
+		frmKundeRegistrieren.getContentPane().add(txtStrasse);
 		txtStrasse.setColumns(10);
 		
 		txtHausnnummer = new JTextField();
@@ -133,7 +135,7 @@ public class Frame1 {
 		txtHausnnummer.setHorizontalAlignment(SwingConstants.CENTER);
 		txtHausnnummer.setText("Hausnnummer");
 		txtHausnnummer.setBounds(234, 201, 86, 20);
-		frame.getContentPane().add(txtHausnnummer);
+		frmKundeRegistrieren.getContentPane().add(txtHausnnummer);
 		txtHausnnummer.setColumns(10);
 		
 		txtStadt = new JTextField();
@@ -142,60 +144,54 @@ public class Frame1 {
 		txtStadt.setHorizontalAlignment(SwingConstants.CENTER);
 		txtStadt.setText("Stadt");
 		txtStadt.setBounds(234, 241, 86, 20);
-		frame.getContentPane().add(txtStadt);
+		frmKundeRegistrieren.getContentPane().add(txtStadt);
 		txtStadt.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(359, 162, 86, 20);
-		frame.getContentPane().add(passwordField);
+		txt4 = new JPasswordField();
+		txt4.setBounds(359, 162, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt4);
 		
-		textField = new JTextField();
-		textField.setBounds(359, 99, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		txt1 = new JTextField();
+		txt1.setBounds(359, 99, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt1);
+		txt1.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(359, 121, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		txt2 = new JTextField();
+		txt2.setBounds(359, 121, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt2);
+		txt2.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(359, 141, 86, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		txt3 = new JTextField();
+		txt3.setBounds(359, 141, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt3);
+		txt3.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(359, 181, 86, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		txt5 = new JTextField();
+		txt5.setBounds(359, 181, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt5);
+		txt5.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(359, 201, 86, 20);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		txt6 = new JTextField();
+		txt6.setBounds(359, 201, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt6);
+		txt6.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(359, 221, 86, 20);
-		frame.getContentPane().add(textField_5);
-		textField_5.setColumns(10);
-		
-		JLabel lblKundeRegistrieren = DefaultComponentFactory.getInstance().createTitle("Kunde Registrieren");
-		lblKundeRegistrieren.setHorizontalAlignment(SwingConstants.CENTER);
-		lblKundeRegistrieren.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblKundeRegistrieren.setBounds(234, 11, 211, 43);
-		frame.getContentPane().add(lblKundeRegistrieren);
+		txt7 = new JTextField();
+		txt7.setBounds(359, 221, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt7);
+		txt7.setColumns(10);
 		
 		JButton Btn_confirm = new JButton("Bestaetigen");
 		Btn_confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String vor = txtVorname.getText();
-				String nach = txtNachname.getText();
-				String mail = txtEmail.getText();
-				String passwort = txtPasswort.getText();
-				String str = txtStrasse.getText();
-				String hnr = txtHausnnummer.getText();
-				String plz = txtPlz.getText();
-				String stadt = txtStadt.getText();
+				String vor = txt1.getText();
+				String nach = txt2.getText();
+				String mail = txt3.getText();
+				String passwort = txt4.getPassword().toString();
+				String str = txt5.getText();
+				String hnr = txt6.getText();
+				String plz = txt7.getText();
+				String stadt = txt8.getText();
 				Adresse adresse = new Adresse(str, hnr, plz, stadt);
 				try {
 					shop.kundeRegi(vor, nach, mail, passwort, adresse);
@@ -207,7 +203,7 @@ public class Frame1 {
 			}
 		});
 		Btn_confirm.setBounds(297, 272, 89, 23);
-		frame.getContentPane().add(Btn_confirm);
+		frmKundeRegistrieren.getContentPane().add(Btn_confirm);
 		
 		txtPlz = new JTextField();
 		txtPlz.setHorizontalAlignment(SwingConstants.CENTER);
@@ -215,12 +211,17 @@ public class Frame1 {
 		txtPlz.setEditable(false);
 		txtPlz.setText("PLZ");
 		txtPlz.setBounds(234, 221, 86, 20);
-		frame.getContentPane().add(txtPlz);
+		frmKundeRegistrieren.getContentPane().add(txtPlz);
 		txtPlz.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(359, 241, 86, 20);
-		frame.getContentPane().add(textField_7);
-		textField_7.setColumns(10);
+		txt8 = new JTextField();
+		txt8.setBounds(359, 241, 86, 20);
+		frmKundeRegistrieren.getContentPane().add(txt8);
+		txt8.setColumns(10);
+		
+		JLabel label = new JLabel();
+		label.setText("Willkommen zur Registrierung unseres E-Shops");
+		label.setBounds(234, 55, 223, 14);
+		frmKundeRegistrieren.getContentPane().add(label);
 	}
 }

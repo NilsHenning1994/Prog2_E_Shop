@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
+import GUI.FrameBeispiel;
 import eshop.Anwendungslogik.ArtikelVerwaltung;
 import eshop.Anwendungslogik.EreignisVerwaltung;
 import eshop.Anwendungslogik.KundenVerwaltung;
@@ -35,7 +36,7 @@ public class Shop {
 	private EreignisVerwaltung ev;
 	private FilePersistenceManager fp;
 	private ShoppingServices ss;
-	private Frame f1;
+	private FrameBeispiel fb;
 
 	public Shop() throws IOException {
 		fp = new FilePersistenceManager();
@@ -44,7 +45,7 @@ public class Shop {
 		kv = new KundenVerwaltung(fp);
 		ev = new EreignisVerwaltung(fp);
 		ss = new ShoppingServices();
-		f1 = new Frame();
+		fb = new FrameBeispiel();
 	}
 
 	// Getter

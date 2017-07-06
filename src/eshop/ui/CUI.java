@@ -1,11 +1,14 @@
 package eshop.ui;
 
 
+import java.awt.Component;
+import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
 
+import GUI.FrameBeispiel;
 import eshop.Shop;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
@@ -25,6 +28,7 @@ public class CUI {
 
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
+	private FrameBeispiel fb;
 
 
 
@@ -346,6 +350,7 @@ public class CUI {
 					String passwort = input;
 
 					try {
+						
 						success = shop.kundeRegi(vorname, nachname, mail, passwort, adresse);
 						shop.speicherKunde();
 					} catch (BenutzerExistiertBereitsException e) {
