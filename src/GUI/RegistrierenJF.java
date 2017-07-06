@@ -14,11 +14,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.common.EShopRemote;
-import rmi.common.KundeExistiertBereitsException;
+//import rmi.common.EShopRemote;
+//import rmi.common.KundeExistiertBereitsException;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import eshop.Shop;
+import eshop.Exceptions.BenutzerExistiertBereitsException;
 
 
 
@@ -29,8 +32,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class RegistrierenJF extends javax.swing.JFrame {
 
     
-    private EShopRemote eshopartikel;
-    private Vector artikelliste;
+//    private EShopRemote eshopartikel;
+//    private Vector artikelliste;
+//    private Shop shop;
     /**
      * Creates new form RegistrierenJF
      */
@@ -39,8 +43,8 @@ public class RegistrierenJF extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         Registry registry = LocateRegistry.getRegistry();
-        eshopartikel = (EShopRemote) registry.lookup("eshop");
-        artikelliste = eshopartikel.gibArtikelListe();
+//        eshopartikel = (EShopRemote) registry.lookup("shopü");
+//        artikelliste = eshopartikel.gibArtikelListe();
         
     }
 
@@ -237,18 +241,7 @@ public class RegistrierenJF extends javax.swing.JFrame {
         String strasse = jTextFieldRegStrasse.getText();
         String plz = jTextFieldRegPLZ.getText();
 
-        try {
-            eshopartikel.kundeRegistrieren(nr, name, vorname, login, passwort, email, wohnort, strasse, plz);
-        } catch (KundeExistiertBereitsException ex) {
-            Logger.getLogger(RegistrierenJF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
-            Logger.getLogger(RegistrierenJF.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            eshopartikel.schreibeKunde();
-        } catch (IOException ex) {
-            Logger.getLogger(RegistrierenJF.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         jLabelRegError.setForeground(Color.GREEN);
         jLabelRegError.setText("Erfolgreich registriert.");
         jTextFieldRegNachname.setEnabled(false);

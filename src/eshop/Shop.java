@@ -36,7 +36,7 @@ public class Shop {
 	private EreignisVerwaltung ev;
 	private FilePersistenceManager fp;
 	private ShoppingServices ss;
-	private FrameBeispiel fb;
+//	private FrameBeispiel fb;
 
 	public Shop() throws IOException {
 		fp = new FilePersistenceManager();
@@ -45,7 +45,7 @@ public class Shop {
 		kv = new KundenVerwaltung(fp);
 		ev = new EreignisVerwaltung(fp);
 		ss = new ShoppingServices();
-		fb = new FrameBeispiel();
+//		fb = new FrameBeispiel(null);
 	}
 
 	// Getter

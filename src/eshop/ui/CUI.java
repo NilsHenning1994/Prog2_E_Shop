@@ -28,7 +28,7 @@ public class CUI {
 
 	private Mitarbeiter eingeloggterMitarbeiter = null;
 	private Kunde eingeloggterKunde = null;
-	private FrameBeispiel fb;
+//	private FrameBeispiel fb;
 
 
 
@@ -313,6 +313,7 @@ public class CUI {
 
 				boolean success = false;
 				do {
+					
 					System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
 					System.out.println("Vorname:");
 					input = br.readLine();					
@@ -479,6 +480,7 @@ public class CUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+//		fb = new FrameBeispiel(this.shop);
 
 
 	}

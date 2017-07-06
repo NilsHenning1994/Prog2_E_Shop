@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public final class FrameBeispiel extends JPanel {
+//public class FrameBeispiel extends javax.swing.JFrame {
 
 	private Shop shop;
 	private JFrame frmKundeRegistrieren;
@@ -57,10 +58,10 @@ public final class FrameBeispiel extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmKundeRegistrieren = new JFrame();
-		frmKundeRegistrieren.setTitle("Kunde Registrieren");
-		frmKundeRegistrieren.setBounds(100, 100, 681, 373);
-		frmKundeRegistrieren.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frmKundeRegistrieren = new JFrame();
+//		frmKundeRegistrieren.setTitle("Kunde Registrieren");
+//		frmKundeRegistrieren.setBounds(100, 100, 681, 373);
+//		frmKundeRegistrieren.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		
 		txtVorname = new JTextField();
