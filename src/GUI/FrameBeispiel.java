@@ -20,6 +20,7 @@ import eshop.Datenstrukturen.Adresse;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public final class FrameBeispiel extends JPanel {
@@ -178,6 +179,12 @@ public final class FrameBeispiel extends JPanel {
 					shop.kundeRegi(vor, nach, mail, passwort, adresse);
 					
 				} catch (BenutzerExistiertBereitsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					shop.speicherKunde();
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

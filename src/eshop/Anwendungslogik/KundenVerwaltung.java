@@ -60,6 +60,10 @@ public class KundenVerwaltung {
 			kundenliste.add(ku);
 			return true;
 		} else{
+			for (int i = 0; i < kundenliste.size(); i++) {
+				System.out.println(kundenliste.get(i).getVorname() + kundenliste.get(i).getNachname());
+			}
+			
 			throw new BenutzerExistiertBereitsException(ku); 
 		}
 	}

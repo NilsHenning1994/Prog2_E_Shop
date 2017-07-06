@@ -21,6 +21,7 @@ public class Gui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setContentPane(new FrameBeispiel(shop));
+		
 	}
 	/**
 	 * Launch the application.

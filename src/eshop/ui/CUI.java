@@ -308,7 +308,7 @@ public class CUI {
 			input = br.readLine();
 
 			//						---- Kunde Registrieren ----
-
+/**
 			if(input.equals("R")){ // Methode zum Registrieren von Kunden
 
 				boolean success = false;
@@ -365,9 +365,12 @@ public class CUI {
 				} while (!success);
 				System.out.println("Erfolgreich registriert");
 				shop.printKundenListe();
+				
+		
 
 				//							---- Als Kunde Einloggen ----
 			}
+					**/
 			if(input.equals("E")){
 				System.out.println("Bitte geben sie ihre Daten nacheinander ein!");
 				System.out.println("Email Adresse:");
