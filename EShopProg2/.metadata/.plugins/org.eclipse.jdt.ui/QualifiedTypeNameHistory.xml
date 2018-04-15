@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="eshop.ui.CUI"/>
+<fullyQualifiedTypeName name="eshop.Anwendungslogik.EreignisVerwaltung"/>
+<fullyQualifiedTypeName name="persistence.ObjectPersistenceManager"/>
+<fullyQualifiedTypeName name="eshop.Exceptions.EingabeException"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Artikel"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="eshop.Anwendungslogik.WarenkorbVerwaltung"/>
+<fullyQualifiedTypeName name="eshop.Anwendungslogik.ShoppingServices"/>
+<fullyQualifiedTypeName name="persistence.PersistenceManager"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Mitarbeiter"/>
+<fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="eshop.Exceptions.FalschePackungsgroesseException"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Warenkorb"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Rechnung"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="java.util.Locale"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="eshop.Exceptions.ArtikelExistiertBereitsException"/>
+<fullyQualifiedTypeName name="persistence.FilePersistenceManager"/>
+<fullyQualifiedTypeName name="eshop.Anwendungslogik.ArtikelVerwaltung"/>
+<fullyQualifiedTypeName name="eshop.Anwendungslogik.KundenVerwaltung"/>
+<fullyQualifiedTypeName name="eshop.Anwendungslogik.MitarbeiterVerwaltung"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Ereignis"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Massengutartikel"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Adresse"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Kunde"/>
+<fullyQualifiedTypeName name="eshop.Datenstrukturen.Benutzer"/>
+<fullyQualifiedTypeName name="java.awt.Frame"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="eshop.Exceptions.BenutzerExistiertBereitsException"/>
+<fullyQualifiedTypeName name="eshop.Shop"/>
+<fullyQualifiedTypeName name="GUI.FrameBeispiel"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="Domain.ArtikelVerwaltung"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="javax.swing.DefaultListModel"/>
+<fullyQualifiedTypeName name="ValueObjects.Artikel"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,8 @@
+1522245033607	Rename field 'strasse'
+1522245044644	Rename local variable 'strasse'
+1522245057655	Rename local variable 'stadt'
+1522245078339	Rename field 'stadt'
+1522245098616	Rename field 'hausnummer'
+1522251429621	Rename type 'Ereignisverwaltung'
+1522251669787	Rename local variable 'be'
+1522253229415	Rename method 'mitarbeiterMenü'

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;WarenkorbExistiertBereitsException.java&apos; to &apos;Prog2_E_Shop/src/eshop.Exceptions&apos;&#x0D;&#x0A;- Original project: &apos;p2 projekt&apos;&#x0D;&#x0A;- Destination element: &apos;Prog2_E_Shop/src/eshop.Exceptions&apos;&#x0D;&#x0A;- Original element: &apos;domain.exceptions.WarenkorbExistiertBereitsException.java&apos;" description="Copy compilation unit" destination="=Prog2_E_Shop/src&lt;eshop.Exceptions" element1="/ESHOP\/src&lt;domain.exceptions{WarenkorbExistiertBereitsException.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1495026390015" units="1" version="1.0"/>
+</session>

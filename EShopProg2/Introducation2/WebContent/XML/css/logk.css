@@ -1,0 +1,81 @@
+html {
+	background: transparent!important
+}
+
+body {
+	margin: 10px auto;
+	max-width: 60em;
+	font-family: sans-serif;
+	color: #333333;
+}
+
+h1,
+main,
+# li {
+  display: inline;            /* Listenelemente nebeneinander */
+  list-style-type: none;      /* Aufzählungszeichen entfernen */
+}
+svg {
+	border-radius: 0px 0.5em 0.5em;
+	border: 1px solid;
+	padding: 10px;
+	margin: 10px;
+}
+
+h1 {
+	background: #F1F3F4 url("") 10px 5px no-repeat;
+	border-color: #d5d5d5;
+	padding-left: 200px;
+}
+
+h1 span {
+	margin-left: 4.5em;
+
+}
+
+main {
+	display: block;
+	/* für IE */
+	
+	background:  #F1F3F4;
+	border-color: #8a9da8;
+	min-height: 400px;
+}
+
+form {
+	width: 30em;
+	padding-top: 3em;
+}
+
+input,
+label {
+	float: left;
+}
+
+input {
+	margin: 0 0 1em .2em;
+	padding: .2em .5em;
+	width: 40%;
+	background-color: #fffbf0;
+	border: 1px solid #e7c157;
+	
+}
+
+label {
+	text-align: right;
+	line-height: 1.5;
+	width: 30%;
+}
+
+label::after {
+	content: ": ";
+}
+
+button {
+	margin-left: 30%;
+}
+
+
+#login{
+	margin-left: 30%;
+}

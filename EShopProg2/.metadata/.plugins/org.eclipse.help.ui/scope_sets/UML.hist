@@ -1,0 +1,6 @@
+#Tue Mar 27 14:05:52 CEST 2018
+__DEFAULT__=false
+org.eclipse.sdk.Eclipse.master=true
+org.eclipse.sdk.Google.master=true
+org.eclipse.help.ui.localSearch.master=true
+expression=UML
