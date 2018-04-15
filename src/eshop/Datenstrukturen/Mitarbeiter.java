@@ -1,6 +1,6 @@
 package eshop.Datenstrukturen;
 
-public class Mitarbeiter extends Benutzer {
+public class Mitarbeiter extends User {
 	
 	
 	

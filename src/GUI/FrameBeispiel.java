@@ -33,7 +33,7 @@ public final class FrameBeispiel extends JPanel {
 	private JTextField txtEmail;
 	private JTextField txtPasswort;
 	private JTextField txtStrasse;
-	private JTextField txtHausnnummer;
+	private JTextField txtHausnummer;
 	private JTextField txtStadt;
 	private JPasswordField txt4;
 	private JTextField txt1;
@@ -111,14 +111,14 @@ public final class FrameBeispiel extends JPanel {
 		add(txtStrasse);
 		txtStrasse.setColumns(10);
 		
-		txtHausnnummer = new JTextField();
-		txtHausnnummer.setBackground(Color.WHITE);
-		txtHausnnummer.setEditable(false);
-		txtHausnnummer.setHorizontalAlignment(SwingConstants.CENTER);
-		txtHausnnummer.setText("Hausnnummer");
-		txtHausnnummer.setBounds(30, 170, 86, 20);
-		add(txtHausnnummer);
-		txtHausnnummer.setColumns(10);
+		txtHausnummer = new JTextField();
+		txtHausnummer.setBackground(Color.WHITE);
+		txtHausnummer.setEditable(false);
+		txtHausnummer.setHorizontalAlignment(SwingConstants.CENTER);
+		txtHausnummer.setText("Hausnnummer");
+		txtHausnummer.setBounds(30, 170, 86, 20);
+		add(txtHausnummer);
+		txtHausnummer.setColumns(10);
 		
 		txtStadt = new JTextField();
 		txtStadt.setBackground(Color.WHITE);

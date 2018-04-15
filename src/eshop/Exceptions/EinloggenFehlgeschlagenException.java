@@ -1,6 +1,6 @@
 package eshop.Exceptions;
 
-import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.User;
 
 public class EinloggenFehlgeschlagenException extends Exception{
 	

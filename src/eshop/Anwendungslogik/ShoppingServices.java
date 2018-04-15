@@ -23,7 +23,7 @@ public class ShoppingServices {
 	
 
 
-	// Ein Artikel wird in den Warenkorb gelegt z.B. ein Buch
+	// Ein Artikel wird in den Warenkorb gelegt
 	public void artikelInWarenkorb(Kunde kunde, Artikel artikel, int anz) throws FehlerException{
 
 		if(artikel.getBestand()>=anz){

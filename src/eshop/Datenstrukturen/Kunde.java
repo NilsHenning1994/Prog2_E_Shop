@@ -1,6 +1,6 @@
 package eshop.Datenstrukturen;
 
-public class Kunde extends Benutzer {
+public class Kunde extends User {
 
 	private Adresse adresse;	// Adresse des Kunden
 	private Warenkorb cart;		// Artikelobjekt

@@ -6,7 +6,7 @@ import java.util.List;
 
 import eshop.Shop;
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.User;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
@@ -55,7 +55,7 @@ public class MitarbeiterVerwaltung {
 
 
 	//  Mitarbeiter wird ausgeloggt
-	public void ausloggen(Benutzer mitarbeiter){
+	public void ausloggen(User mitarbeiter){
 		mitarbeiter.setLogin(false);
 	}
 

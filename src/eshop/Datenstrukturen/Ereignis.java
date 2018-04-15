@@ -11,9 +11,9 @@ public class Ereignis {
 	private Artikel artikel;
 	private int anz;
 	private Date wann;
-	private Benutzer user;
+	private User user;
 	
-	public Ereignis( Artikel artikel, int anz, Benutzer user) {
+	public Ereignis( Artikel artikel, int anz, User user) {
 		super();
 		this.artikel = artikel;
 		this.anz = anz;
@@ -52,11 +52,11 @@ public class Ereignis {
 		this.wann = wann;
 	}
 
-	public Benutzer getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Benutzer user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 }

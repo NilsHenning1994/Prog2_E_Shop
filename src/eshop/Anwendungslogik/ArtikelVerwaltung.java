@@ -1,7 +1,7 @@
 package eshop.Anwendungslogik;
 
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.User;
 import eshop.Datenstrukturen.Massengutartikel;
 import eshop.Datenstrukturen.Mitarbeiter;
 import eshop.Exceptions.ArtikelExistiertBereitsException;
@@ -141,7 +141,7 @@ public class ArtikelVerwaltung {
 
 
 	//	Methode, um den Bestand eines Artikels zu erh�hen.
-	public void bestandAendern(Benutzer be, Artikel artikel, int anz){
+	public void bestandAendern(User be, Artikel artikel, int anz){
 		// artikel.getBestand();
 		if(artikel.getBestand()-anz < 0){
 			System.out.println("Es sind nicht ausreichend Artikel von " + artikel.getBez() +" vorhanden!");

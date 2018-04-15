@@ -16,7 +16,7 @@ import eshop.Anwendungslogik.MitarbeiterVerwaltung;
 import eshop.Anwendungslogik.ShoppingServices;
 import eshop.Datenstrukturen.Adresse;
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.User;
 import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Datenstrukturen.Massengutartikel;
@@ -128,7 +128,7 @@ public class Shop {
 		return mv.einloggen(mail, passwort);
 	}
 	// Mitarbeiter ausloggen
-	public void mitarbeiterAusloggen(Benutzer mitarbeiter){
+	public void mitarbeiterAusloggen(User mitarbeiter){
 		mv.ausloggen(mitarbeiter);
 	}
 	// Mitarbeiter vorhanden
@@ -147,7 +147,7 @@ public class Shop {
 		return kv.einloggen(mail, passwort);
 	}
 	// Kunde ausloggen
-	public void kundeAusloggen(Benutzer user){
+	public void kundeAusloggen(User user){
 		kv.ausloggen(user);
 	}
 	//	Artikel Methoden ---->

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eshop.Datenstrukturen.Adresse;
-import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.User;
 import eshop.Datenstrukturen.Kunde;
 import eshop.Exceptions.BenutzerExistiertBereitsException;
 import eshop.Exceptions.EinloggenFehlgeschlagenException;
@@ -46,7 +46,7 @@ public class KundenVerwaltung {
 
 	
 	//  Kunde wird ausgeloggt
-	public void ausloggen(Benutzer kunde){
+	public void ausloggen(User kunde){
 		kunde.setLogin(false);
 	}
 	

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import eshop.Datenstrukturen.Artikel;
-import eshop.Datenstrukturen.Benutzer;
+import eshop.Datenstrukturen.User;
 import eshop.Datenstrukturen.Ereignis;
 import eshop.Datenstrukturen.Mitarbeiter;
 import persistence.FilePersistenceManager;
@@ -37,7 +37,7 @@ public class EreignisVerwaltung {
 	
 	
 	
-	public void addEreignis(Benutzer be, Artikel ar, int anz){
+	public void addEreignis(User be, Artikel ar, int anz){
 //		Date date = new Date();
 		Ereignis er = new Ereignis( ar,anz, be);
 		ereignisListe.add(er);

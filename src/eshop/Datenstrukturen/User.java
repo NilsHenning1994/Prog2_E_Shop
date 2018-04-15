@@ -1,6 +1,6 @@
 package eshop.Datenstrukturen;
 
-public abstract class Benutzer {
+public abstract class User {
 
 	private int id;
 	private  String vorname;
@@ -9,7 +9,7 @@ public abstract class Benutzer {
 	private String passwort;
 	private boolean login;
 	
-	public Benutzer(int id, String vorname, String nachname, String email, String passwort, boolean login) {
+	public User(int id, String vorname, String nachname, String email, String passwort, boolean login) {
 		super();
 		this.id = id;
 		this.vorname = vorname;
@@ -66,8 +66,8 @@ public abstract class Benutzer {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Benutzer) {
-			Benutzer andererBenutzer = (Benutzer) obj;
+		if (obj instanceof User) {
+			User andererBenutzer = (User) obj;
 			return (this.email.equals(andererBenutzer.email));
 		}
 		
